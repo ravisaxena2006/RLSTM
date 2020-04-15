@@ -7,6 +7,8 @@ import com.techm.entity.RLS;
 
 public class RLSList {
 
+	
+	
 	private List<RLS> RLSDetails=new ArrayList<RLS>();
 
 	public List<RLS> getRLSDetails() {
