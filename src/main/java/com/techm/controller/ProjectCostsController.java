@@ -54,7 +54,7 @@ public class ProjectCostsController {
 	@Autowired
 	ProjectCostsDao2 projectCostsDao2;
 	
-	
+	// View project cost form
 	@RequestMapping("/ProjectCosts")
 	public ModelAndView getProjectCosts(HttpServletRequest request, HttpServletResponse res ) {
 		ModelAndView mav = new ModelAndView("ProjectCosts3");
