@@ -1,5 +1,7 @@
 package com.techm.controller;
 
+
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -54,7 +56,7 @@ public class ProjectCostsController {
 	@Autowired
 	ProjectCostsDao2 projectCostsDao2;
 	
-	// View project cost form
+	// View project cost form in RLS Tool
 	@RequestMapping("/ProjectCosts")
 	public ModelAndView getProjectCosts(HttpServletRequest request, HttpServletResponse res ) {
 		ModelAndView mav = new ModelAndView("ProjectCosts3");
