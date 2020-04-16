@@ -2,6 +2,7 @@ package com.techm.dao;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,13 @@ import com.techm.entity.BoughtOuts;
 import com.techm.entity.QuoteCurrency;
 import com.techm.entity.QuoteExists;
 import com.techm.entity.Tower;
+import com.techm.entity.TowerMapping;
 import com.techm.repository.AmortizeRepository;
 import com.techm.repository.BoughtOutsRepository;
 import com.techm.repository.BoughtSearchRepositroy;
 import com.techm.repository.QuoteCurrencyRepository;
 import com.techm.repository.QuoteExistsRepository;
+import com.techm.repository.TowerMappingRepository;
 import com.techm.repository.TowerRepository;
 
 
@@ -35,6 +38,8 @@ public class BoughtOutsDao {
 	QuoteExistsRepository repo4;
 	@Autowired
 	BoughtSearchRepositroy brepo;
+	@Autowired
+	TowerMappingRepository repo5;
 	
 	 public void add(List<BoughtOuts> boughtOuts) {
 	    	System.out.println("Inside add method ");
@@ -54,11 +59,18 @@ public class BoughtOutsDao {
 			return brepo.searchDlList();
 		}
 	 
-	 public List<Tower> getTower()
+	 public List<Tower> getTowerList(int id)
 	    {
-	      	 List<Tower> towerList=repo1.findAll();
-	    	 return towerList;
+		 List<TowerMapping> tMList=repo5.findAllByBidId(id);
+      	 List<Integer> towerIdList=new ArrayList<Integer>();
+      	 for(TowerMapping tm:tMList)
+      	 {
+      		towerIdList.add(tm.getTowerId()); 
+      	 }
+      	List<Tower>towerList=repo1.findByTowerIdIn(towerIdList);
+    	 return towerList;
 	    }
+	    
 	 
 	 public List<Amortize> getAmortize()
 	    {

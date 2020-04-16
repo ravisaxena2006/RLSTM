@@ -1,5 +1,6 @@
 package com.techm.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,11 +13,13 @@ import com.techm.entity.CostType;
 import com.techm.entity.DealSpecs;
 import com.techm.entity.ProjectCosts;
 import com.techm.entity.Tower;
+import com.techm.entity.TowerMapping;
 import com.techm.repository.CostCategoryRepository;
 import com.techm.repository.CostItemRepository;
 import com.techm.repository.CostTypeRepository;
 import com.techm.repository.ProductSearchRepositroy;
 import com.techm.repository.ProjectCostsRepository;
+import com.techm.repository.TowerMappingRepository;
 import com.techm.repository.TowerRepository;
 
 
@@ -32,6 +35,8 @@ public class ProjectCostsDao {
 	
 	@Autowired
 	TowerRepository towerRepository;
+	@Autowired
+	TowerMappingRepository towerMappingRepository;
 	@Autowired
 	CostCategoryRepository costCategoryRepository;
 	@Autowired
@@ -53,9 +58,15 @@ public class ProjectCostsDao {
 					
 					
 		}
-	 public List<Tower> getTowerList(){
-	        List<Tower> towerList = towerRepository.findAll();
-	        return towerList ;
+	 public List<Tower> getTowerList(int id){
+		 List<TowerMapping> tMList=towerMappingRepository.findAllByBidId(id);
+      	 List<Integer> towerIdList=new ArrayList<Integer>();
+      	 for(TowerMapping tm:tMList)
+      	 {
+      		towerIdList.add(tm.getTowerId()); 
+      	 }
+      	List<Tower>towerList=towerRepository.findByTowerIdIn(towerIdList);
+    	 return towerList;
 	    }
 	  
 	 public List<CostCategory> getCostCategoryList(){

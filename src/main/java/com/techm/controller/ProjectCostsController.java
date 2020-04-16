@@ -192,8 +192,11 @@ public class ProjectCostsController {
 	}
 	
 	@ModelAttribute
-    public void setModelList(Model model){
-		 List<Tower> towerList = projectCostsDao.getTowerList();
+    public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res){
+			
+			int dsId=Integer.parseInt(request.getParameter("dsld"));
+			
+			List<Tower> towerList = projectCostsDao.getTowerList(dsId);
 	        model.addAttribute("towerList", towerList) ;
 	        
 	        List<CostCategory> costCategoryList = projectCostsDao.getCostCategoryList();

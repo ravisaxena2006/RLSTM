@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.techm.bean.RLSList;
-import com.techm.dao.DealSpecsDao;
+//import com.techm.dao.DealSpecsDao;
 import com.techm.dao.RLSDao;
 import com.techm.entity.Band;
 import com.techm.entity.Billable;
@@ -31,6 +31,7 @@ import com.techm.entity.RLS;
 import com.techm.entity.ResourceType;
 import com.techm.entity.SkillType;
 import com.techm.entity.Tower;
+import com.techm.entity.TowerMapping;
 import com.techm.entity.Vertical;
 import com.techm.entity.WorkPlace;
 import com.techm.repository.BandRepository;
@@ -82,15 +83,18 @@ public class RLSControllerTest {
 	}
 	
     @ModelAttribute
-    public void setModelList(Model model){
+    public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res ){
+    	
+    	
+    	int dsId=Integer.parseInt(request.getParameter("dsld"));
     	
         List<ProjectPhase> projectPhases = rlsDao.getProjectPhase();
         model.addAttribute("projectPhases", projectPhases) ;
         
-        List<Vertical> verticals = rlsDao.getVertical();
+        List<Vertical> verticals = rlsDao.getVerticals(dsId);
         model.addAttribute("verticals", verticals) ;
         
-        List<Tower> towers = rlsDao.getTower();
+        List<Tower> towers = rlsDao.getTowers(dsId);
         model.addAttribute("towers", towers) ;
     	
         List<Billable> billable = rlsDao.getBillable();

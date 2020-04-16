@@ -132,10 +132,13 @@ public class BoughtOutsController {
 
 
 	@ModelAttribute
-	public void setModelList(Model model) {
-
-		List<Tower> towerList = boughtOutsDao.getTower();
-		model.addAttribute("towerList", towerList);
+	 public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res){
+		
+		int dsId=Integer.parseInt(request.getParameter("dsld"));
+		
+		List<Tower> towerList = boughtOutsDao.getTowerList(dsId);
+        model.addAttribute("towerList", towerList) ;
+        
 
 		List<Amortize> amortizeList = boughtOutsDao.getAmortize();
 		model.addAttribute("amortizeList", amortizeList);
