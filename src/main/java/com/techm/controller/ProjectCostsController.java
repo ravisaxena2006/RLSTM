@@ -17,6 +17,7 @@ import java.util.Calendar;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +34,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.techm.bean.MappingRole;
 import com.techm.bean.ProjectCostsList;
+import com.techm.dao.MappingDao;
 import com.techm.dao.ProjectCostsDao;
 import com.techm.dao.ProjectCostsDao2;
 import com.techm.entity.CostCategory;
@@ -56,11 +59,16 @@ public class ProjectCostsController {
 	@Autowired
 	ProjectCostsDao2 projectCostsDao2;
 	
+	@Autowired
+	MappingDao mappingDao;
+	
 	// View project cost form in RLS Tool
 	@RequestMapping("/ProjectCosts")
 	public ModelAndView getProjectCosts(HttpServletRequest request, HttpServletResponse res ) {
 		ModelAndView mav = new ModelAndView("ProjectCosts3");
 		
+		HttpSession session=request.getSession(true);
+		String loginId=(String) session.getAttribute("name");
 		String dl_id=request.getParameter("dsld");	
 		String timestamp=getTimestampNumber();
 		String creationDate=getCurrentDateTime(); 
@@ -74,6 +82,14 @@ public class ProjectCostsController {
 			System.out.println(pc.getDl_id());
 			System.out.println(pc.getDaysYear1());
 			} 
+		 //Role access
+		 List<MappingRole>  role =mappingDao.getMappingById(loginId);
+			
+			for (MappingRole mappingRole : role) {
+				Stream<MappingRole> stream = Stream.of(mappingRole);
+				stream.forEach(System.out::println);
+				System.out.println(mappingRole.getRole());
+			}
 			
 		mav.addObject("timestamp_key", timestamp);
 		mav.addObject("creationDate",creationDate);
@@ -81,6 +97,7 @@ public class ProjectCostsController {
 		mav.addObject("dl_id_key", dl_id);
 		mav.addObject("project_duration", project_duration);
 		mav.addObject("projectCostsviewTimp", projectCostsviewTimp);
+		mav.addObject("roleMapping", role);
 		return mav;
 
 	}

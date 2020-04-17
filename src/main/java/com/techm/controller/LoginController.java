@@ -1,6 +1,7 @@
 package com.techm.controller;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.techm.bean.MappingRole;
 import com.techm.dao.LoginDao;
+ 
+import com.techm.dao.MappingDao;
 import com.techm.entity.UserDetails;
 
 @Controller
@@ -20,11 +24,18 @@ public class LoginController {
 	
 	@Autowired
 	LoginDao  loginDao;
+	@Autowired
+	MappingDao mappingDao;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLogin(HttpServletRequest request, HttpServletResponse response) {
 		// ModelAndView mav = new ModelAndView("/view/login");
 		// mav.addObject("login", new Login());
+		
+	
+		
+	 
+		
 		return "login";
 	}
 	
@@ -41,6 +52,17 @@ public class LoginController {
 		String uname = request.getParameter("uname");
 		String password = request.getParameter("psw");
 		String status="C";
+		
+	/*	List<MappingRole>  role =mappingDao.getMappingById("Bid Manager");
+		
+		for (MappingRole mappingRole : role) {
+			Stream<MappingRole> stream = Stream.of(mappingRole);
+			stream.forEach(System.out::println);
+		}
+		
+		
+		
+		System.out.println("++++"+role);*/
 
 	/*	String pass = request.getParameter("psw");
 		String name = "admin";

@@ -3,6 +3,7 @@ package com.techm.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.techm.bean.MappingRole;
 import com.techm.dao.DealSpecsDao;
-
+import com.techm.dao.MappingDao;
 import com.techm.entity.CurrencyQuote;
 import com.techm.entity.DealSpecs;
 import com.techm.entity.PricingModel;
@@ -35,6 +36,9 @@ public class HomeController {
 
 	@Autowired
 	private DealSpecsDao dao;
+	
+	@Autowired
+	MappingDao mappingDao;
 	
 	
 	@RequestMapping("/")
@@ -78,10 +82,24 @@ public class HomeController {
 	}
 
 	@RequestMapping(value ="/view", method = RequestMethod.GET,headers = "Accept=application/json")
-	public ModelAndView bidview(@ModelAttribute("deal") DealSpecs dealobj) {
+	public ModelAndView bidview(@ModelAttribute("deal") DealSpecs dealobj ,HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("bidmanager");
+		HttpSession session=request.getSession(true);
+		String roleName=null;
+		String loginId=(String) session.getAttribute("name");
+       List<MappingRole>  role =mappingDao.getMappingById(loginId);
+		
+		for (MappingRole mappingRole : role) {
+			Stream<MappingRole> stream = Stream.of(mappingRole);
+			stream.forEach(System.out::println);
+			System.out.println(mappingRole.getRole());
+			roleName=mappingRole.getRole();
+		}
 		List<DealSpecs> list = dao.findAll();
 		mav.addObject("list", list);
+		mav.addObject("roleMapping", role);
+		
+		mav.addObject("roleName", roleName);
 		return mav;
 		
 		
