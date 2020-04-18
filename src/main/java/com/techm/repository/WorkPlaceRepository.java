@@ -6,5 +6,5 @@ import com.techm.entity.WorkPlace;
 
 public interface WorkPlaceRepository extends JpaRepository<WorkPlace,Integer> 
 {
-
+	WorkPlace findFirstByWorkPlaceId(int id);
 }

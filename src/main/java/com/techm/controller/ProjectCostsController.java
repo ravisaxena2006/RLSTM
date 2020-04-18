@@ -91,6 +91,8 @@ public class ProjectCostsController {
 				System.out.println(mappingRole.getRole());
 			}
 			
+		session.setAttribute("Bid_ID",dl_id);
+		session.setAttribute("duryr", project_duration);
 		mav.addObject("timestamp_key", timestamp);
 		mav.addObject("creationDate",creationDate);
 	    mav.addObject("createdBy",createdBy);
@@ -115,6 +117,9 @@ public class ProjectCostsController {
 		String dlId=request.getParameter("dlidkey");
 		String creationDate=getCurrentDateTime(); 
 		String createdBy="Prem";
+		HttpSession session=request.getSession(true);
+		session.setAttribute("Bid_ID",dlId);
+		session.setAttribute("duryr", project_duration);
 		
 		
 		
@@ -172,6 +177,10 @@ public class ProjectCostsController {
 		String project_duration2=request.getParameter("durayear");
 		String project_duration=request.getParameter("project_duration");
 		
+		HttpSession session=request.getSession(true);
+		session.setAttribute("Bid_ID",dlId);
+		session.setAttribute("duryr", project_duration);
+		
 		Integer count=1;
 		if(count!=0) {
 			count=projectCostsview.size();
@@ -211,7 +220,7 @@ public class ProjectCostsController {
 	@ModelAttribute
     public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res){
 			
-			int dsId=Integer.parseInt(request.getParameter("dsld"));
+    	int dsId=Integer.parseInt(request.getParameter("dsld"));
 			
 			List<Tower> towerList = projectCostsDao.getTowerList(dsId);
 	        model.addAttribute("towerList", towerList) ;
@@ -225,11 +234,7 @@ public class ProjectCostsController {
 	        List<CostType> CostTypeList = projectCostsDao.getCostTypeList();
 	        model.addAttribute("CostTypeList", CostTypeList) ;
 	}
-	
-	
-	
-	
-	
+		
 	// Find the Timestamp number
 	public String getTimestampNumber(){
         String timeStamp = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(Calendar.getInstance().getTime());

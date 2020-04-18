@@ -15,6 +15,7 @@
 .y1, .y2, .y3, .y4, .y5, .y6, .y7, .y8, .y9, .y10{
 display:none;
 }
+
 table.table-bordered{
     border:1px solid black;
     margin-top:5px;
@@ -30,6 +31,10 @@ th {
     color: white;
     text-align: center;
 }
+.disabled {
+        pointer-events: none;
+        cursor: default;
+    }
 </style>
 </head>
 <body>
@@ -221,8 +226,16 @@ th {
   <table>
    <tr>
 		<td align="left">
+		<c:choose>
+		 <c:when test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='CMC SPOC' || sessionScope.roleName=='PreSales Head'}">
+		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()" disabled>Add More</button>
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" disabled>Submit</button>
+		</c:when>
+		<c:otherwise>
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()">Add More</button>
-		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" >Submit</button>
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		</c:otherwise>
+		</c:choose>
 		</td>
 	</tr>
  </table>
@@ -245,12 +258,10 @@ th {
 	   	    
                    	   
 			var addMoreString = '<tr id="myrow_'+ row +'">';
-			alert(addMoreString);
-          
-	       	addMoreString +=   '<td align="left"><select name="RLSDetails['+row+'].projectPhaseId">'
+	
+   	       	addMoreString +=   '<td align="left"><select name="RLSDetails['+row+'].projectPhaseId">'
 	          					  +document.getElementById("projectPhase").innerHTML+'</select></td>';
-	          					alert(addMoreString);
-	          					  
+	          						          					  
 			addMoreString +=   '<td align="left"><select name="RLSDetails['+row+'].verticalId">'
 								  +document.getElementById("vertical").innerHTML+'</select></td>';
 								  
@@ -349,7 +360,7 @@ th {
 		// For populating cities in city drop down
 			 $('#country').on('change', function(){
 
-				alert("Hello");
+				//alert("Hello");
 				var countryId = $(this).val();
 				
 				$.ajax({
@@ -358,10 +369,10 @@ th {
                    data:{ countryId: countryId}, 
                    
 					success: function(result) {
-						alert("Hello2"+result);
+						//alert("Hello2"+result);
 						var result = JSON.parse(result);
 						
-						alert("Hello3"+result);
+						//alert("Hello3"+result);
 						var s = '';
 						for(var i = 0; i < result.length; i++) {
 							s += '<option value="' + result[i].cityId + '">' + result[i].city + '</option>';
@@ -394,7 +405,7 @@ th {
 								
 			for(i=1; i<=projectduration1; i++){
 				
-				alert(".y"+i);
+				//alert(".y"+i);
 				$(".y"+i).show();
 				
 			}
@@ -505,10 +516,10 @@ function validate()
  </table>
  </div>
 
-<br>
+<%-- <br>
 <a href="/getRLSDetails?dsld=${dl_id_key}">View Added Details</a>
 <br>
-<a href="/excelExport.xls?dsld=${dl_id_key}">Excel Export</a>
+<a href="/excelExport.xls?dsld=${dl_id_key}">Excel Export</a> --%>
 
 <br>
 </div>

@@ -61,32 +61,51 @@ th {
 							<td><c:out value=" ${e.RECEIVED_FROM}" /></td>
 							<td><c:out value=" ${e.RECEIVED_DATE}" /></td>
 							<td><c:out value=" ${e.BID_SUBMISSION_DATE}" /></td>
-
-
-
-                 <c:if test="${roleName=='Bid Manager'}">
-							<td>
 							
-							<a
-								href="${pageContext.request.contextPath}/bidview/${e.BID_DETAILS_ID}">Deal-Specs</a>
-								
-							</td>
-							</c:if>
-							<td> <a
-								href="${pageContext.request.contextPath}/RLS?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}" class="disabled">RLS</a>
-							</td>
-							<c:if test="${roleName=='Bid Manager'}">
-							<td><a
-							href="${pageContext.request.contextPath}/ProjectCosts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}" class="disabled">ProjectCost</a>
-							 
-							</td>
-							</c:if>
-							
-							<c:if test="${roleName=='Bid Manager'}">
-							<td><a
-								href="${pageContext.request.contextPath}/BoughtOuts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}" class="disabled">Bought-Outs</a>
-							</td>
-							</c:if>
+						
+
+              		   <c:if test="${sessionScope.roleName=='Bid Manager'}">
+							<td><a href="${pageContext.request.contextPath}/bidview/${e.BID_DETAILS_ID}">Deal-Specs</a>	</td>
+							<td><a href="${pageContext.request.contextPath}/RLS?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}" class="disabled">RLS</a></td>
+							<td><a href="${pageContext.request.contextPath}/ProjectCosts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}" class="disabled">ProjectCost</a></td>
+							<td><a href="${pageContext.request.contextPath}/BoughtOuts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}" class="disabled">Bought-Outs</a></td>
+						</c:if>
+						 <c:if test="${sessionScope.roleName=='Solution Architect'}">
+							<td><a href="${pageContext.request.contextPath}/bidview/${e.BID_DETAILS_ID}">Deal-Specs</a>	</td>
+							<td><a href="${pageContext.request.contextPath}/RLS?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">RLS</a></td>
+							<td><a href="${pageContext.request.contextPath}/ProjectCosts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">ProjectCost</a></td>
+							<td><a href="${pageContext.request.contextPath}/BoughtOuts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">Bought-Outs</a></td>
+						</c:if>
+						<c:if test="${sessionScope.roleName=='Delivery SPOCS'}">
+							<td><a href="${pageContext.request.contextPath}/bidview/${e.BID_DETAILS_ID}">Deal-Specs</a>	</td>
+							<td><a href="${pageContext.request.contextPath}/RLS?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">RLS</a></td>
+							<td><a href="${pageContext.request.contextPath}/ProjectCosts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">ProjectCost</a></td>
+							<td><a href="${pageContext.request.contextPath}/BoughtOuts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">Bought-Outs</a></td>
+						</c:if>
+						<c:if test="${sessionScope.roleName=='Sales SPOC'}">
+							<td><a href="${pageContext.request.contextPath}/bidview/${e.BID_DETAILS_ID}">Deal-Specs</a>	</td>
+							<td><a href="${pageContext.request.contextPath}/RLS?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">RLS</a></td>
+							<td><a href="${pageContext.request.contextPath}/ProjectCosts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">ProjectCost</a></td>
+							<td><a href="${pageContext.request.contextPath}/BoughtOuts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">Bought-Outs</a></td>
+						</c:if>
+						<c:if test="${sessionScope.roleName=='Competency SPOCs'}">
+							<td><a href="${pageContext.request.contextPath}/bidview/${e.BID_DETAILS_ID}">Deal-Specs</a>	</td>
+							<td><a href="${pageContext.request.contextPath}/RLS?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">RLS</a></td>
+							<td><a href="${pageContext.request.contextPath}/ProjectCosts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">ProjectCost</a></td>
+							<td><a href="${pageContext.request.contextPath}/BoughtOuts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">Bought-Outs</a></td>
+						</c:if>
+						<c:if test="${sessionScope.roleName=='CMC SPOC'}">
+							<td><a href="${pageContext.request.contextPath}/bidview/${e.BID_DETAILS_ID}">Deal-Specs</a>	</td>
+							<td><a href="${pageContext.request.contextPath}/RLS?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">RLS</a></td>
+							<td><a href="${pageContext.request.contextPath}/ProjectCosts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">ProjectCost</a></td>
+							<td><a href="${pageContext.request.contextPath}/BoughtOuts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">Bought-Outs</a></td>
+						</c:if>
+						<c:if test="${sessionScope.roleName=='PreSales Head'}">
+							<td><a href="${pageContext.request.contextPath}/bidview/${e.BID_DETAILS_ID}">Deal-Specs</a>	</td>
+							<td><a href="${pageContext.request.contextPath}/RLS?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">RLS</a></td>
+							<td><a href="${pageContext.request.contextPath}/ProjectCosts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">ProjectCost</a></td>
+							<td><a href="${pageContext.request.contextPath}/BoughtOuts?dsld=${e.BID_DETAILS_ID}&durayear=${e.PROJECT_DURATION}">Bought-Outs</a></td>
+						</c:if>
 						</tr>
 					</c:forEach>
 				</table>
@@ -96,3 +115,4 @@ th {
 	</div>
 </div>
 <jsp:include page="footer.jsp" />
+	Name: <c:out value="${roleName}"/>

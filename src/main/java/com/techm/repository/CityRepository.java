@@ -19,5 +19,5 @@ public interface CityRepository extends JpaRepository<City,Integer>
 	
 		List<City> findAllByLocationId(int id);
 		
-		String findCityByCityId(int id);
+		City findFirstByCityId(int id);
 }

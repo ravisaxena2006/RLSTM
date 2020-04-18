@@ -6,6 +6,7 @@ import com.techm.entity.Billable;
 
 public interface BillableRepository extends JpaRepository<Billable,Integer> 
 {
+	Billable findFirstByBillableId(int id);
 
 }
 

@@ -174,16 +174,21 @@ th {
    <table>
    <tr>
 		<td align="left">
+		<c:choose>
+		<c:when test="${sessionScope.roleName=='CMC SPOC' || sessionScope.roleName=='PreSales Head'}">
+		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()" disabled>Add More</button>
+		<div class="file btn btn-info mr-1"><input type="file" name="file" id="filepath" accept=".xls,.xlsx" required="required" disabled/>	</div>
+		<br> <br>
+		<button type="submit" class="btn btn-info" name="submit" id="submit" disabled>Submit</button>\
+		</c:when>
 		
-		
-		
-		
+		<c:otherwise>
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()">Add More</button>
-		<div class="file btn btn-info mr-1">	
-							<input type="file" name="file" id="filepath" accept=".xls,.xlsx" required="required" />
-						</div>
+		<div class="file btn btn-info mr-1"><input type="file" name="file" id="filepath" accept=".xls,.xlsx" required="required" />	</div>
 		<br> <br>
 		<button type="submit" class="btn btn-info" name="submit" id="submit" >Submit</button>
+		</c:otherwise>
+		</c:choose>
 		</td>
 	</tr>
  </table>

@@ -227,10 +227,18 @@ th {
    <br>
  </div>
   <table>
-   <tr>
+    <tr>
 		<td align="left">
+		<c:choose>
+		 <c:when test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='CMC SPOC' || sessionScope.roleName=='PreSales Head'}">
+		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()" disabled>Add More</button>
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" disabled>Submit</button>
+		</c:when>
+		<c:otherwise>
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()">Add More</button>
-		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" >Submit</button>
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		</c:otherwise>
+		</c:choose>
 		</td>
 	</tr>
  </table>
@@ -369,22 +377,22 @@ th {
 			showHideCol(projectduration1);
 		
 		
-		// For populating cities in city drop down
+			// For populating cities in city drop down
 			 $('#country').on('change', function(){
 
-			//	alert("Hello");
+				alert("Hello");
 				var countryId = $(this).val();
 				
 				$.ajax({
 					type: 'GET',
-                    url: '/getCities',
-                   data:{ countryId: countryId}, 
-                   
+                   url: '/getCities',
+                  data:{ countryId: countryId}, 
+                  
 					success: function(result) {
-						//alert("Hello2"+result);
+						alert("Hello2"+result);
 						var result = JSON.parse(result);
 						
-						//alert("Hello3"+result);
+						alert("Hello3"+result);
 						var s = '';
 						for(var i = 0; i < result.length; i++) {
 							s += '<option value="' + result[i].cityId + '">' + result[i].city + '</option>';
@@ -392,7 +400,7 @@ th {
 						$('#city').html(s);
 					},
 					error: function () {
-	                   // alert("error");
+	                    alert("error");
 	                }
 				});
 			});

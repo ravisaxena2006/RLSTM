@@ -5,5 +5,5 @@ import com.techm.entity.Premises;
 
 public interface PremisesRepository extends JpaRepository<Premises,Integer> 
 {
-
+	Premises findFirstByPremisesId(int id);
 }

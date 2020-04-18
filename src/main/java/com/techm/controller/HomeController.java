@@ -95,11 +95,11 @@ public class HomeController {
 			System.out.println(mappingRole.getRole());
 			roleName=mappingRole.getRole();
 		}
+		session.setAttribute("roleName", roleName);
 		List<DealSpecs> list = dao.findAll();
 		mav.addObject("list", list);
 		mav.addObject("roleMapping", role);
-		
-		mav.addObject("roleName", roleName);
+		//mav.addObject("roleName", roleName);
 		return mav;
 		
 		

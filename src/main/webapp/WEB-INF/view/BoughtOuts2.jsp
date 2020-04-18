@@ -250,10 +250,18 @@ table.table-bordered > tbody > tr > td{
  </div>
  <br>
   <table>
-   <tr>
+     <tr>
 		<td align="left">
+		<c:choose>
+		 <c:when test="${sessionScope.roleName=='CMC SPOC' || sessionScope.roleName=='PreSales Head'}">
+		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()" disabled>Add More</button>
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" disabled>Submit</button>
+		</c:when>
+		<c:otherwise>
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()">Add More</button>
-		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" >Submit</button>
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		</c:otherwise>
+		</c:choose>
 		</td>
 	</tr>
  </table>

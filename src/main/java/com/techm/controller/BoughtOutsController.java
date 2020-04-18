@@ -11,6 +11,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,7 +67,9 @@ public class BoughtOutsController {
 			System.out.println(bo.getTime_stamp());
 			System.out.println(bo.getDl_id());
 		} 
-		
+		 HttpSession session=request.getSession(true);
+		session.setAttribute("Bid_ID",dl_id);
+		session.setAttribute("duryr", project_duration);
 	   mav.addObject("boughtoutviewTimp", boughtoutviewTimp);
 	   mav.addObject("timestamp_key",timestamp); 
 	   mav.addObject("dl_id_key", dl_id);
@@ -100,6 +103,9 @@ public class BoughtOutsController {
 		String project_duration2=request.getParameter("durayear");
 		String project_duration=request.getParameter("project_duration");
 		
+		HttpSession session=request.getSession(true);
+		session.setAttribute("Bid_ID",dl_id);
+		session.setAttribute("duryr", project_duration);
 		Integer count=1;
 		if(count!=0) {
 			count=boughtoutview.size();

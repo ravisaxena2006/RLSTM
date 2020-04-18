@@ -7,5 +7,5 @@ import com.techm.entity.Location;
 
 public interface LocationRepository extends JpaRepository<Location,Integer> 
 {
-
+	Location findFirstByLocationId(int id);
 }

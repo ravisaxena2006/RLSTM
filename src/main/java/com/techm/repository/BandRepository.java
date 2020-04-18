@@ -7,5 +7,5 @@ import com.techm.entity.Band;
 
 public interface BandRepository extends JpaRepository<Band,Integer> 
 {
-
+	Band findFirstByBandId(int id);
 }

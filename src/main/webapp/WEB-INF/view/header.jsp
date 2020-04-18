@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +27,12 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script src="/js/jquery.min.js"></script>
-  
+  <style>
+.disabled {
+        pointer-events: none;
+        cursor: default;
+    }
+</style>
 </head>
 <title>RLS TOOL</title>
 <body class="fix-header">
@@ -96,10 +101,12 @@
                         <a href="/view" class="waves-effect"><i class="fa fa-clock-o fa-fw"
                                 aria-hidden="true"></i>Bid Manager</a>
                     </li>
-                 <li >
-                        <a href="/dealspecs" class="waves-effect"><i class="fa fa-columns fa-fw"
+                    <c:if test="${sessionScope.roleName=='Bid Manager' || sessionScope.roleName=='Solution Architect' }">
+                	 <li >
+                        <a href="/dealspecs" class="waves-effect" ><i class="fa fa-columns fa-fw"
                                 aria-hidden="true"></i>Deal Specs</a>
                     </li>
+                    </c:if>
  
                     
                 </ul>

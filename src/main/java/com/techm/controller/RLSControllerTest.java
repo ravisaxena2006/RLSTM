@@ -1,4 +1,4 @@
-/*package com.techm.controller;
+package com.techm.controller;
 
 
 import java.text.SimpleDateFormat;
@@ -8,6 +8,8 @@ import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,6 +61,9 @@ public class RLSControllerTest {
 		List<RLS> rlsListLatest= rlsDao.getRLSDetailsLatest(dsId1);
 		int count=rlsListLatest.size();
 		List<RLS> rlsListSorted= rlsDao.getRLSDetailsSorted(dsId1);
+		HttpSession session=request.getSession(false);
+		session.setAttribute("Bid_ID",dsId);
+		session.setAttribute("duryr", project_duration);
 		if(rlsListLatest.isEmpty())
 		{
 		mav1.addObject("trackingNumber", trackingNumber);
@@ -86,7 +91,7 @@ public class RLSControllerTest {
     public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res ){
     	
     	
-    	int dsId=Integer.parseInt(request.getParameter("dsld"));
+	    	int dsId=Integer.parseInt(request.getParameter("dsld"));
     	
         List<ProjectPhase> projectPhases = rlsDao.getProjectPhase();
         model.addAttribute("projectPhases", projectPhases) ;
@@ -210,4 +215,3 @@ public class RLSControllerTest {
 
 	
 }
-*/

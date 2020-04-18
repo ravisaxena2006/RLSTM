@@ -3,6 +3,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="header.jsp" />
+
+<style>
+.disabled {
+        pointer-events: none;
+        cursor: default;
+    }
+</style>
+
 <div class="container-fluid">
 	
 		<form:form action="/bidview" method="get" modelattribute="deal">
@@ -11,13 +19,22 @@
 			<h2 class="text-center">
 				<b>Deal Specific Details</b>
 			</h2>
-	 <div class="row">	
+	 		<div class="row">	
 	
 			<div class="btn-group pull-left " style="width:1080px">
 			<div class="text-right">
-			 <a href="/RLS?dsld=${deal.BID_DETAILS_ID}&durayear=${deal.PROJECT_DURATION}" class="btn btn-info">RLS</a>
+			<c:choose>
+		 	<c:when test="${sessionScope.roleName=='Bid Manager'}">
+			 <a href="/RLS?dsld=${deal.BID_DETAILS_ID}&durayear=${deal.PROJECT_DURATION}" class="btn btn-info disabled">RLS</a>
+			 <a href="/ProjectCosts?dsld=${deal.BID_DETAILS_ID}&durayear=${deal.PROJECT_DURATION}" class="btn btn-info disabled">Project Cost</a>
+			 <a href="/BoughtOuts?dsld=${deal.BID_DETAILS_ID}&durayear=${deal.PROJECT_DURATION}" class="btn btn-info disabled">Bought-Out</a>
+			 </c:when>
+			 <c:otherwise>
+			  <a href="/RLS?dsld=${deal.BID_DETAILS_ID}&durayear=${deal.PROJECT_DURATION}" class="btn btn-info">RLS</a>
 			 <a href="/ProjectCosts?dsld=${deal.BID_DETAILS_ID}&durayear=${deal.PROJECT_DURATION}" class="btn btn-info">Project Cost</a>
 			 <a href="/BoughtOuts?dsld=${deal.BID_DETAILS_ID}&durayear=${deal.PROJECT_DURATION}" class="btn btn-info">Bought-Out</a>
+			 </c:otherwise>
+			 </c:choose>
 			 </div>
 			</div>
 </div> 

@@ -8,5 +8,5 @@ import com.techm.entity.ResourceType;
 
 public interface ResourceTypeRepository extends JpaRepository<ResourceType,Integer> 
 {
-
+	ResourceType findFirstByResourceTypeId(int id);
 }
