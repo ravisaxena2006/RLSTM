@@ -3,6 +3,7 @@ package com.techm.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ import com.techm.entity.PricingModel;
 import com.techm.entity.ProjectIdStatus;
 
 import com.techm.entity.Tower;
+import com.techm.entity.Vertical;
 
 
 @Controller
@@ -68,8 +70,6 @@ public class HomeController {
 	public ModelAndView save(@ModelAttribute("deal") DealSpecs dealobj) {
 		ModelAndView mav = new ModelAndView("save");
 		try {
-		System.out.println(dealobj.getCONTRACT_SIGNED_STATUS());
-		System.out.println(dealobj.getBID_SUBMISSION_DATE());
 		dao.add(dealobj);
 		}catch (Exception e) {
 	           e.printStackTrace();
@@ -111,6 +111,13 @@ public class HomeController {
 		String creationDate=getCurrentDateTime();
 		Integer project_duration=   dealobj.getPROJECT_DURATION();
 		System.out.println(project_duration);
+		Set<Integer> towerselected = dealobj.getTowers();
+		System.out.println(towerselected);
+		request.setAttribute("towerselected", towerselected);
+		
+		Set<Integer> verticalselected = dealobj.getVerticals();
+		System.out.println(verticalselected);
+		request.setAttribute("verticalselected", verticalselected);
 		HttpSession session=request.getSession();
 		 session.setAttribute("Bid_ID",bID_DETAILS_ID);
 		 session.setAttribute("duryr", project_duration);
@@ -133,7 +140,9 @@ public class HomeController {
         
         List <Tower> towerList = dao.getTower();
         model.addAttribute("towerList", towerList);
-        
+
+        List<Vertical> verticals = dao.getVertical();
+        model.addAttribute("verticals", verticals) ;
     }
 	
 	public String getCurrentDateTime(){

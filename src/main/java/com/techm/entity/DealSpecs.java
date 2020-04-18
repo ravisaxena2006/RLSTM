@@ -1,7 +1,8 @@
 package com.techm.entity;
 
 import java.util.Date;
-
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -11,7 +12,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 
 @Entity
-@Table(name ="dealspecs")
+@Table(name ="t_dealspecs")
 @DynamicInsert
 @DynamicUpdate
 public class DealSpecs {
@@ -107,10 +108,23 @@ public class DealSpecs {
 	private String ANY_OTHER_INFO_FOR_PRICING;
 	
 	private String BA_COMMISSION;
-	private int towerId;
+	
 	private String RECEIVED_FROM;
 	@Temporal(TemporalType.DATE)
 	private Date RECEIVED_DATE;
+	
+	// table mapping
+	
+		@ElementCollection
+	    @CollectionTable(name = "t_tower_mapping", joinColumns = @JoinColumn(name = "BID_ID"))
+	    @Column(name = "TOWER_ID")
+	    private Set<Integer> towers = new HashSet<>();
+		
+		@ElementCollection
+	    @CollectionTable(name = "t_vertical_mapping", joinColumns = @JoinColumn(name = "BID_ID"))
+	    @Column(name = "VERTICAL_ID")
+	    private Set<Integer> verticals = new HashSet<>();
+	
 	public Long getBID_DETAILS_ID() {
 		return BID_DETAILS_ID;
 	}
@@ -406,14 +420,18 @@ public class DealSpecs {
 	public void setCURRENCY_QUOTE_ID(Long cURRENCY_QUOTE_ID) {
 		CURRENCY_QUOTE_ID = cURRENCY_QUOTE_ID;
 	}
-	public int getTowerId() {
-		return towerId;
+	public Set<Integer> getTowers() {
+		return towers;
 	}
-	public void setTowerId(int towerId) {
-		this.towerId = towerId;
+	public void setTowers(Set<Integer> towers) {
+		this.towers = towers;
 	}
-	
-	
+	public Set<Integer> getVerticals() {
+		return verticals;
+	}
+	public void setVerticals(Set<Integer> verticals) {
+		this.verticals = verticals;
+	}
 	
 	
 }

@@ -321,26 +321,68 @@
 					</div>
 				</div>
 			</div>
+				<div class="row">
+				<div class="col-md-6">
 			<label>Any other information critical for pricing</label>
 			<br>
 			<input type="text" name="ANY_OTHER_INFO_FOR_PRICING"
 				value="${deal.ANY_OTHER_INFO_FOR_PRICING}" class="form-control"
 				readonly="readonly">
+            </div>
 
+				<div class="col-md-6">
+				<label>Number of Towers</label><br>
+				<select name="towers" id="towers" class="form-control" multiple disabled="disabled" >
+				
+		  <c:forEach items="${towerList}" var="tower">
+		  <option value="${tower.towerId}">${tower.tower}</option>
+		    </c:forEach>
+	 	  </select>
+				</div>
+</div>				
 			<div class="row">
 				<div class="col-md-6">
 					<label>Received From:</label> <input type="text"
 						name="RECEIVED_FROM" value="${deal.RECEIVED_FROM}"
 						class="form-control" readonly="readonly"> <label>Received
 						Date*:</label> <input type="text" name="RECEIVED_DATE"
-						value="${deal.RECEIVED_DATE}" class="form-control"
-						readonly="readonly">
+						value="${deal.RECEIVED_DATE}" class="form-control">
 				</div>
-                   
+                  <div class="col-md-6">
+				<label>Select Vertical</label><br>
+   <select id="verticals" name="verticals" class="form-control" multiple disabled="disabled">
+		  <c:forEach items="${verticals}" var="vertical">
+		  <option value="${vertical.verticalId}">${vertical.vertical}</option>	        
+		    </c:forEach>
+		    
+		</select>
+		</div>
 			</div>
-           <div class="row">
-					 <a href="/view" class="btn btn-info pull-left" style="width:100px">Back</a>
+			<br>
+           
+           <div align="right">
+					 <a href="/view" class="btn btn-info" style="width:100px">Back</a>
 				</div>
+				
 		</form:form>
 	</div>
 <jsp:include page="footer.jsp" />
+<script>
+var towerselected = [];
+<c:forEach items="${towerselected}" var="towerId">
+  
+towerselected.push(<c:out value="${towerId}"/>) 
+		  
+		      </c:forEach>
+  
+  $('#towers').val(towerselected);
+
+var verticalSelect = [];
+  <c:forEach items="${verticalselected}" var="verticalId">
+    
+    verticalSelect.push(<c:out value="${verticalId}"/>) 
+  		  
+  		      </c:forEach>
+    
+    $('#verticals').val(verticalSelect);
+</script>

@@ -265,11 +265,19 @@
 </div>
 
 				<div class="col-md-6">
-				<label>Number of Towers</label><br>
-				<select id="towerId" class="custom-select" multiple >
+				<label>Select Towers</label><br>
+				<select name="towers" id="towers" class="form-control" multiple >
 				
 		  <c:forEach items="${towerList}" var="tower">
 		        <option value="${tower.towerId}">${tower.tower}</option>
+		    </c:forEach>
+	 	  </select>
+				</div>
+				<div class="col-md-6">
+				<label>Select Vertical</label><br>
+   <select id="verticals" name="verticals" class="form-control" multiple  >
+		  <c:forEach items="${verticals}" var="vertical">
+		        <option value="${vertical.verticalId}">${vertical.vertical}</option>
 		    </c:forEach>
 	 	  </select>
 				</div>

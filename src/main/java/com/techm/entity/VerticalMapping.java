@@ -1,10 +1,7 @@
 package com.techm.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
 @Entity
@@ -21,12 +18,7 @@ public class VerticalMapping {
 	int bidId;
 	@Column(name="record_status")
 	String recordStatus;
-	public int getVerticalMappingId() {
-		return verticalMappingId;
-	}
-	public void setVerticalMappingId(int verticalMappingId) {
-		this.verticalMappingId = verticalMappingId;
-	}
+	
 	public int getVerticalId() {
 		return verticalId;
 	}
@@ -44,6 +36,12 @@ public class VerticalMapping {
 	}
 	public void setRecordStatus(String recordStatus) {
 		this.recordStatus = recordStatus;
+	}
+	public int getVerticalMappingId() {
+		return verticalMappingId;
+	}
+	public void setVerticalMappingId(int verticalMappingId) {
+		this.verticalMappingId = verticalMappingId;
 	}
 	
 	

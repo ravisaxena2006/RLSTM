@@ -1,10 +1,7 @@
 package com.techm.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
 @Entity
@@ -23,12 +20,7 @@ public class TowerMapping {
 	@Column(name="record_status")
 	String recordStatus;
 	
-	public int getTowerMappingId() {
-		return towerMappingId;
-	}
-	public void setTowerMappingId(int towerMappingId) {
-		this.towerMappingId = towerMappingId;
-	}
+	
 	public int getTowerId() {
 		return towerId;
 	}
@@ -46,6 +38,12 @@ public class TowerMapping {
 	}
 	public void setRecordStatus(String recordStatus) {
 		this.recordStatus = recordStatus;
+	}
+	public int getTowerMappingId() {
+		return towerMappingId;
+	}
+	public void setTowerMappingId(int towerMappingId) {
+		this.towerMappingId = towerMappingId;
 	}
 	
 	

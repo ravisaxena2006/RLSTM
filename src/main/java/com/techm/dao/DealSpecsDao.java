@@ -1,5 +1,6 @@
 package com.techm.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,11 +16,17 @@ import com.techm.entity.DealSpecs;
 import com.techm.entity.PricingModel;
 import com.techm.entity.ProjectIdStatus;
 import com.techm.entity.Tower;
+import com.techm.entity.TowerMapping;
+import com.techm.entity.Vertical;
+import com.techm.entity.VerticalMapping;
 import com.techm.repository.CurrencyQuoteRepo;
 import com.techm.repository.DealSpecsRepo;
 import com.techm.repository.PricingModelRepo;
 import com.techm.repository.ProjectIdStatusRepo;
+import com.techm.repository.TowerMappingRepository;
 import com.techm.repository.TowerRepository;
+import com.techm.repository.VerticalMappingRepository;
+import com.techm.repository.VerticalRepository;
 
 @Repository
 public class DealSpecsDao {
@@ -34,6 +41,14 @@ public class DealSpecsDao {
 	private ProjectIdStatusRepo psservice;
 	@Autowired
 	TowerRepository towerrepo;
+	@Autowired
+	VerticalRepository vrepo;
+	
+	@Autowired
+	TowerMappingRepository tmaprepo;
+	@Autowired
+	VerticalMappingRepository vmaprepo;
+	
 	public List<DealSpecs> findAll() {
 		return dealdao.findAll();
 	}
@@ -74,5 +89,13 @@ public class DealSpecsDao {
       	 List<Tower> towerList=towerrepo.findAll();
     	 return towerList;
     }
+    
+    // list of Vertical
+    public List<Vertical> getVertical()
+    {
+      	 List<Vertical> verticalList=vrepo.findAll();
+    	 return verticalList;
+    }
 
+   
 }
