@@ -362,7 +362,7 @@ th {
 
 				//alert("Hello");
 				var countryId = $(this).val();
-				
+				var dsld=${dl_id_key};
 				$.ajax({
 					type: 'GET',
                     url: '/getCities',
