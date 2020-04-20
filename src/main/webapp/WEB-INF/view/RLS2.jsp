@@ -382,11 +382,12 @@ th {
 
 				alert("Hello");
 				var countryId = $(this).val();
-				
+				var dsld=${dl_id_key}
 				$.ajax({
 					type: 'GET',
                    url: '/getCities',
-                  data:{ countryId: countryId}, 
+                  data:{ countryId: countryId,
+                	 	 dsld: dsld}, 
                   
 					success: function(result) {
 						alert("Hello2"+result);

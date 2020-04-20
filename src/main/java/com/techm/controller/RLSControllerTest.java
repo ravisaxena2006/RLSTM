@@ -90,8 +90,8 @@ public class RLSControllerTest {
     @ModelAttribute
     public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res ){
     	
-    	
-	    	int dsId=Integer.parseInt(request.getParameter("dsld"));
+    		String dsId1=request.getParameter("dsld");
+	    	int dsId=Integer.parseInt(dsId1);
     	
         List<ProjectPhase> projectPhases = rlsDao.getProjectPhase();
         model.addAttribute("projectPhases", projectPhases) ;
