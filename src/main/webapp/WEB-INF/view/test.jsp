@@ -115,7 +115,7 @@ th {
 			<input type="hidden"  id="projectduration" name="projectCost[${loop.index}].project_duration" value="${allEmp.project_duration}"/>
 		  </td>
 			  
-	    <td align="left"><input type="text" id="description" name="projectCost[${loop.index}].description" > <c:out value="${allEmp.description}" />
+	    <td align="left"><input type="text" id="description" name="projectCost[${loop.index}].description" value="${allEmp.description}" />
 	    
 	    
 	    </td>
