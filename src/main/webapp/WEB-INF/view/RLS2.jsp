@@ -379,7 +379,7 @@ th {
 			// For populating cities in city drop down
 			 $('#country').on('change', function(){
 
-				alert("Hello");
+				//alert("Hello");
 				var countryId = $(this).val();
 				var dsld=${dl_id_key}
 				$.ajax({
@@ -389,10 +389,10 @@ th {
                 	 	 dsld: dsld}, 
                   
 					success: function(result) {
-						alert("Hello2"+result);
+						//alert("Hello2"+result);
 						var result = JSON.parse(result);
 						
-						alert("Hello3"+result);
+						//alert("Hello3"+result);
 						var s = '';
 						for(var i = 0; i < result.length; i++) {
 							s += '<option value="' + result[i].cityId + '">' + result[i].city + '</option>';
