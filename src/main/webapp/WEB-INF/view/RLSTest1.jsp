@@ -355,9 +355,9 @@ th {
 		
 		//Calling function for hiding extra daysYear columns
 			showHideCol(projectduration1);
-		
-		
-		// For populating cities in city drop down
+
+
+			// For populating cities in city drop down
 			 $('#country').on('change', function(){
 
 				//alert("Hello");
@@ -366,7 +366,8 @@ th {
 				$.ajax({
 					type: 'GET',
                     url: '/getCities',
-                   data:{ countryId: countryId}, 
+                    data:{ countryId: countryId,
+               	 	 dsld: dsld}, 
                    
 					success: function(result) {
 						//alert("Hello2"+result);

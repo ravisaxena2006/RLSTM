@@ -375,8 +375,7 @@ th {
 		
 		//Calling function for hiding extra daysYear columns
 			showHideCol(projectduration1);
-		
-		
+				
 			// For populating cities in city drop down
 			 $('#country').on('change', function(){
 
