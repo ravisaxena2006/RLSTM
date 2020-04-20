@@ -259,20 +259,16 @@
  </div>
  </div>
  <div class="row">
-				<div class="col-md-6">
-			<label>Any other information critical for pricing</label><br> <input
-				type="text" name="ANY_OTHER_INFO_FOR_PRICING" class="form-control">
-</div>
 
-				<div class="col-md-6">
-				<label>Select Towers</label><br>
-				<select name="towers" id="towers" class="form-control" multiple >
+		  <div class="col-md-6">
+		  <label>Select Towers</label><br>
+		  <select name="towers" id="towers" class="form-control" multiple >
 				
-		  <c:forEach items="${towerList}" var="tower">
+		    <c:forEach items="${towerList}" var="tower">
 		        <option value="${tower.towerId}">${tower.tower}</option>
 		    </c:forEach>
 	 	  </select>
-				</div>
+		  </div>
 				<div class="col-md-6">
 				<label>Select Vertical</label><br>
    <select id="verticals" name="verticals" class="form-control" multiple  >
@@ -281,7 +277,11 @@
 		    </c:forEach>
 	 	  </select>
 				</div>
-</div>				
+</div>	
+
+			<label>Any other information critical for pricing</label><br> <input
+				type="text" name="ANY_OTHER_INFO_FOR_PRICING" class="form-control">
+			
 			<div class="row">
 				<div class="col-md-6">
 					<label>Received From:</label> <input type="text"
@@ -292,12 +292,13 @@
 						Date*:</label> <input type="text" name="RECEIVED_DATE"
 						 class="form-control datepicker">
 				</div>
-
-				<div class="col-md-6">
-					<br>
-					<br><button type="submit" class="btn btn-info mr-1" name="submit" id="submit" >Submit</button>
-				</div>
-			</div>
+            </div>
+			<br>
+           
+           <div align="right">
+					<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" >Submit</button>
+		  </div>	
+			
 		</form:form>
 </div>
 <jsp:include page="footer.jsp" />
