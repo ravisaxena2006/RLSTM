@@ -10,7 +10,7 @@ public class TowerMapping {
 	
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="tower_mapping_id")
 	int towerMappingId;
 	@Column(name="tower_id")

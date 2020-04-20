@@ -59,7 +59,8 @@ public class ProjectCostsDao {
 					
 		}
 	 public List<Tower> getTowerList(int id){
-		 List<TowerMapping> tMList=towerMappingRepository.findAllByBidId(id);
+		 String str = Integer.toString(id);
+		 List<TowerMapping> tMList=towerMappingRepository.search(str);
       	 List<Integer> towerIdList=new ArrayList<Integer>();
       	 for(TowerMapping tm:tMList)
       	 {

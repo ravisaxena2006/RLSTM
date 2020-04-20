@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class VerticalMapping {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="vertical_mapping_id")
 	int verticalMappingId;
 	@Column(name="vertical_id")

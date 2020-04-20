@@ -62,7 +62,8 @@ public class BoughtOutsDao {
 	 
 	 public List<Tower> getTowerList(int id)
 	    {
-		 List<TowerMapping> tMList=repo5.findAllByBidId(id);
+		 String str = Integer.toString(id);
+		 List<TowerMapping> tMList=repo5.search(str);
       	 List<Integer> towerIdList=new ArrayList<Integer>();
       	 for(TowerMapping tm:tMList)
       	 {

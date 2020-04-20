@@ -96,7 +96,8 @@ public class RLSDao {
    
     public List<Vertical> getVerticals(int id)
     {
-     	 List<VerticalMapping> vMList=repo13.findAllByBidId(id);
+    	 String str = Integer.toString(id);
+     	 List<VerticalMapping> vMList=repo13.search(str);
      	 List<Integer> verticalIdList=new ArrayList<Integer>();
      	 for(VerticalMapping vm:vMList)
      	 {
@@ -114,7 +115,8 @@ public class RLSDao {
     
     public List<Tower> getTowers(int id)
     {
-      	 List<TowerMapping> tMList=repo12.findAllByBidId(id);
+    	String str = Integer.toString(id);
+		 List<TowerMapping> tMList=repo12.search(str);
       	 List<Integer> towerIdList=new ArrayList<Integer>();
       	 for(TowerMapping tm:tMList)
       	 {
