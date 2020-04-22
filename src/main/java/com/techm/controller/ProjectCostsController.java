@@ -220,9 +220,18 @@ public class ProjectCostsController {
 	@ModelAttribute
     public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res){
 			
-    	int dsId=Integer.parseInt(request.getParameter("dsld"));
+    		String dsId=request.getParameter("dsld");
+    		HttpSession session=request.getSession(true);
+    		int bidId=0;
+    		if(dsId==null)
+    		{
+    			bidId=Integer.parseInt((String)session.getAttribute("Bid_ID"));
+    		}else
+    		{
+    			bidId=Integer.parseInt(dsId);
+    		}
 			
-			List<Tower> towerList = projectCostsDao.getTowerList(dsId);
+			List<Tower> towerList = projectCostsDao.getTowerList(bidId);
 	        model.addAttribute("towerList", towerList) ;
 	        
 	        List<CostCategory> costCategoryList = projectCostsDao.getCostCategoryList();

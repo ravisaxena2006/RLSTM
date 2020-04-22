@@ -75,9 +75,9 @@ th {
 		<!-- <th></th> -->
     </tr>  
 		</thead>
-	<%-- <tr>	<td> <input type="hidden"  id="listCount" name="listCount" value="${count}"/>
+<%-- 	<tr>	<td> <input type="hidden"  id="listCount" name="listCount" value="${count}"/>
 		 	<td> <td>  <input type="hidden"  id="projectduration2" name="project_duration" value="${project_duration2}"/> </td>
-    </tr> --%>
+    </tr> --%> 
     
     <tbody id="myTableObj">
    
@@ -85,25 +85,25 @@ th {
      <c:forEach items="${projectCostsview}" var="allEmp" varStatus="loop"> 
    
     <tr>
-	     <td align="left"><select id="towerId" name="projectCost[${loop.index}].tower" >
+	     <td align="left"><select id="towerId" name="projectCost[${loop.index}].towerId" >
 		 <c:forEach items="${towerList}" var="tower">
 		        <option value="${tower.towerId}" ${tower.towerId == allEmp.towerId ? 'selected="selected"' : ''}>${tower.tower}</option>
 		    </c:forEach>
 	 	  </select><input type="hidden"  id="listCount" name="listCount" value="${count}"/></td>
  	  
-	     <td align="left"><select id="costCategoryId" name="projectCost[${loop.index}].costCategory">
+	     <td align="left"><select id="costCategoryId" name="projectCost[${loop.index}].costCategoryId">
 		  <c:forEach items="${costCategoryList}" var="costCategory">
 		        <option value="${costCategory.costCategoryId}" ${costCategory.costCategoryId == allEmp.costCategoryId ? 'selected="selected"' : ''}>${costCategory.costCategory}</option>
 		    </c:forEach>
 		  </select><input type="hidden"  id="projectduration2" name="project_duration" value="${project_duration2}"/></td>
 	  
-	     <td align="left"><select id="costItemId" name="projectCost[${loop.index}].costItem" >
+	     <td align="left"><select id="costItemId" name="projectCost[${loop.index}].costItemId" >
 		   <c:forEach items="${CostItemList}" var="costItem">
 		        <option value="${costItem.costItemId}" ${costItem.costItemId == allEmp.costItemId ? 'selected="selected"' : ''}>${costItem.costItem}</option>
 		    </c:forEach>
 		  </select></td>
 		   
-		 <td align="left"><select id="costTypeId" name="projectCost[${loop.index}].costType">
+		 <td align="left"><select id="costTypeId" name="projectCost[${loop.index}].costTypeId">
 		 <c:forEach items="${CostTypeList}" var="costType">
 		        <option value="${costType.costTypeId}"  ${costType.costTypeId == allEmp.costTypeId ? 'selected="selected"' : ''}>${costType.costType}</option>
 		    </c:forEach>
@@ -212,7 +212,7 @@ th {
     	   rowT.parentNode.removeChild(rowT);
        }
       
-       var row = 1;
+       var row = document.getElementById("listCount").value;
        var projectduration1=document.getElementById("projectduration2").value; 
        function Add() {
     	     

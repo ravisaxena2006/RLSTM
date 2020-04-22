@@ -90,16 +90,25 @@ public class RLSControllerTest {
     @ModelAttribute
     public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res ){
     	
-    		String dsId1=request.getParameter("dsld");
-	    	int dsId=Integer.parseInt(dsId1);
+    	String dsId=request.getParameter("dsld");
+		HttpSession session=request.getSession(true);
+		int bidId=0;
+		if(dsId==null)
+		{
+			bidId=Integer.parseInt((String)session.getAttribute("Bid_ID"));
+		}else
+		{
+			bidId=Integer.parseInt(dsId);
+		}
+		
     	
         List<ProjectPhase> projectPhases = rlsDao.getProjectPhase();
         model.addAttribute("projectPhases", projectPhases) ;
         
-        List<Vertical> verticals = rlsDao.getVerticals(dsId);
+        List<Vertical> verticals = rlsDao.getVerticals(bidId);
         model.addAttribute("verticals", verticals) ;
         
-        List<Tower> towers = rlsDao.getTowers(dsId);
+        List<Tower> towers = rlsDao.getTowers(bidId);
         model.addAttribute("towers", towers) ;
     	
         List<Billable> billable = rlsDao.getBillable();
