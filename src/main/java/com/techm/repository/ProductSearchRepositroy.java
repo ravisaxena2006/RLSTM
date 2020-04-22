@@ -17,8 +17,8 @@ public interface ProductSearchRepositroy extends CrudRepository<ProjectCosts, Lo
 	@Query(value = "SELECT * FROM project_costs WHERE dl_id=:keyword and time_stamp=:keyword1 ",nativeQuery = true)
 	public List<ProjectCosts> search(@Param("keyword") String keyword, String keyword1);
 	
-	@Query(value = "SELECT  * FROM project_costs  WHERE time_stamp IS NOT NULL AND dl_id IS NOT NULL GROUP BY time_stamp ORDER BY time_stamp desc ",nativeQuery = true)
-	public List<ProjectCosts> searchDlList();
+	@Query(value = "SELECT  * FROM project_costs  WHERE dl_id=:keyword AND time_stamp IS NOT NULL AND dl_id IS NOT NULL GROUP BY time_stamp ORDER BY time_stamp desc ",nativeQuery = true)
+	public List<ProjectCosts> searchDlList(@Param("keyword")String keyword);
 
 
 }

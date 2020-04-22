@@ -37,19 +37,7 @@ public class BoughtOutsController {
 	@Autowired
 	BoughtOutsDao boughtOutsDao;
 
-	public String getTimestampNumber() {
-
-		String timeStamp = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(Calendar.getInstance().getTime());
-		String trackingNumber = timeStamp;
-		return trackingNumber;
-
-	}
-	  public String getCurrentDateTime(){
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
-			LocalDateTime now = LocalDateTime.now();  
-			String dateTime= dtf.format(now); 
-			return dateTime;
-	  }
+	
 	
 	  @RequestMapping("/BoughtOuts") public ModelAndView
 	  getBoughtOutsForm(HttpServletRequest request, HttpServletResponse res) {
@@ -58,16 +46,17 @@ public class BoughtOutsController {
 	  String dl_id = request.getParameter("dsld");
 	  String timestamp = getTimestampNumber(); 
 	  String creationDate=getCurrentDateTime(); 
-	  String createdBy="Somya";
+	  
 	  String project_duration=request.getParameter("durayear");
 	  List<BoughtOuts> uniqeList= new ArrayList<BoughtOuts>();		
-		List<BoughtOuts> boughtoutviewTimp = boughtOutsDao.findByboughTimptList();
+		List<BoughtOuts> boughtoutviewTimp = boughtOutsDao.findByboughTimptList(dl_id);
 		  Set<BoughtOuts> s = new LinkedHashSet<BoughtOuts>(boughtoutviewTimp); 
 		 for(BoughtOuts bo:s) {			
 			System.out.println(bo.getTime_stamp());
 			System.out.println(bo.getDl_id());
 		} 
 		 HttpSession session=request.getSession(true);
+		 String createdBy= (String) session.getAttribute("name");
 		session.setAttribute("Bid_ID",dl_id);
 		session.setAttribute("duryr", project_duration);
 	   mav.addObject("boughtoutviewTimp", boughtoutviewTimp);
@@ -85,7 +74,68 @@ public class BoughtOutsController {
 	   return mav;
 	  
 	  }
+	  @ModelAttribute
+		 public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res){
+			
+			String dsId=request.getParameter("dsld");
+			HttpSession session=request.getSession(true);
+			int bidId=0;
+			if(dsId==null)
+			{
+				bidId=Integer.parseInt((String)session.getAttribute("Bid_ID"));
+			}else
+			{
+				bidId=Integer.parseInt(dsId);
+			}
+			
+			
+			List<Tower> towerList = boughtOutsDao.getTowerList(bidId);
+	        model.addAttribute("towerList", towerList) ;
+	        
+
+			List<Amortize> amortizeList = boughtOutsDao.getAmortize();
+			model.addAttribute("amortizeList", amortizeList);
+
+			List<QuoteCurrency> quoteCurrencyList = boughtOutsDao.getQuoteCurrency();
+			model.addAttribute("quoteCurrencyList", quoteCurrencyList);
+
+			List<QuoteExists> quoteExistsList = boughtOutsDao.getQuoteExists();
+			model.addAttribute("quoteExistsList", quoteExistsList);
+
+		}
 	 
+	  @RequestMapping(value = "/BoughtOutsDetails")
+		public ModelAndView addBoughtOutsDetails(@ModelAttribute("boughtOutsList") BoughtOutsList boughtOutsList,HttpServletRequest request, HttpServletResponse res) {
+			ModelAndView mav = new ModelAndView("BoughtOuts2");
+			System.out.println("Inside addBoughtOutsDetails method");
+			String dlId=request.getParameter("dlidkey");
+			String timestamp=getTimestampNumber();
+			String project_duration=request.getParameter("durayear");
+			String creationDate=getCurrentDateTime(); 
+			HttpSession session=request.getSession(true);
+			String createdBy= (String) session.getAttribute("name");
+			session.setAttribute("Bid_ID",dlId);
+			session.setAttribute("duryr", project_duration);
+			List<BoughtOuts> boughtOuts = boughtOutsList.getBoughtOuts();
+			for (BoughtOuts bo : boughtOutsList.getBoughtOuts()) {
+				
+				System.out.println(bo.getDescription());
+				System.out.println(bo.getLicenceYear1());
+				System.out.println(bo.getLicenceTotal());
+
+	          }
+			boughtOutsDao.add(boughtOuts);
+			List<BoughtOuts> boughtoutviewTimp = boughtOutsDao.findByboughTimptList(dlId);
+			
+			mav.addObject("boughtoutviewTimp", boughtoutviewTimp);
+			mav.addObject("timestamp_key", timestamp);
+			mav.addObject("dl_id_key", dlId);
+			mav.addObject("creationDate",creationDate);
+			mav.addObject("createdBy",createdBy);
+			mav.addObject("project_duration", project_duration);
+			return mav;
+
+		}
 
 	@RequestMapping("/BoughtOutsView")
 	public ModelAndView getProjectCostsView(HttpServletRequest request, HttpServletResponse res ) {
@@ -96,16 +146,17 @@ public class BoughtOutsController {
 		String timestmp=request.getParameter("timestampId");
 		String dlId=request.getParameter("dsld");
 		String creationDate=getCurrentDateTime(); 
-		String createdBy="Somya";
+		
 		List<BoughtOuts> boughtoutview = boughtOutsDao.findByboughtOutsId(dlId,timestmp);
 		
-		List<BoughtOuts> boughtoutviewTimp = boughtOutsDao.findByboughTimptList();
+		List<BoughtOuts> boughtoutviewTimp = boughtOutsDao.findByboughTimptList(dl_id);
 		String project_duration2=request.getParameter("durayear");
 		String project_duration=request.getParameter("project_duration");
 		
 		HttpSession session=request.getSession(true);
+		String createdBy= (String) session.getAttribute("name");
 		session.setAttribute("Bid_ID",dl_id);
-		session.setAttribute("duryr", project_duration);
+		session.setAttribute("duryr", project_duration2);
 		Integer count=1;
 		if(count!=0) {
 			count=boughtoutview.size();
@@ -137,62 +188,20 @@ public class BoughtOutsController {
 	}
 
 
-	@ModelAttribute
-	 public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res){
-		
-		String dsId=request.getParameter("dsld");
-		HttpSession session=request.getSession(true);
-		int bidId=0;
-		if(dsId==null)
-		{
-			bidId=Integer.parseInt((String)session.getAttribute("Bid_ID"));
-		}else
-		{
-			bidId=Integer.parseInt(dsId);
-		}
-		
-		
-		List<Tower> towerList = boughtOutsDao.getTowerList(bidId);
-        model.addAttribute("towerList", towerList) ;
-        
+	
 
-		List<Amortize> amortizeList = boughtOutsDao.getAmortize();
-		model.addAttribute("amortizeList", amortizeList);
+	public String getTimestampNumber() {
 
-		List<QuoteCurrency> quoteCurrencyList = boughtOutsDao.getQuoteCurrency();
-		model.addAttribute("quoteCurrencyList", quoteCurrencyList);
-
-		List<QuoteExists> quoteExistsList = boughtOutsDao.getQuoteExists();
-		model.addAttribute("quoteExistsList", quoteExistsList);
+		String timeStamp = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(Calendar.getInstance().getTime());
+		String trackingNumber = timeStamp;
+		return trackingNumber;
 
 	}
-
-	@RequestMapping(value = "/BoughtOutsDetails")
-	public ModelAndView addBoughtOutsDetails(@ModelAttribute("boughtOutsList") BoughtOutsList boughtOutsList,HttpServletRequest request, HttpServletResponse res) {
-		ModelAndView mav = new ModelAndView("BoughtOuts2");
-		System.out.println("Inside addBoughtOutsDetails method");
-		String dlId=request.getParameter("dlidkey");
-		String timestamp=getTimestampNumber();
-		String project_duration=request.getParameter("durayear");
-		String creationDate=getCurrentDateTime(); 
-		String createdBy="Somya";
-		List<BoughtOuts> boughtOuts = boughtOutsList.getBoughtOuts();
-		for (BoughtOuts bo : boughtOutsList.getBoughtOuts()) {
-			
-			System.out.println(bo.getDescription());
-			System.out.println(bo.getLicenceYear1());
-			System.out.println(bo.getLicenceTotal());
-
-          }
-		List<BoughtOuts> boughtoutviewTimp = boughtOutsDao.findByboughTimptList();
-		boughtOutsDao.add(boughtOuts);
-		mav.addObject("boughtoutviewTimp", boughtoutviewTimp);
-		mav.addObject("timestamp_key", timestamp);
-		mav.addObject("dl_id_key", dlId);
-		mav.addObject("creationDate",creationDate);
-		mav.addObject("createdBy",createdBy);
-		mav.addObject("project_duration", project_duration);
-		return mav;
-
-	}
+	  public String getCurrentDateTime(){
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
+			LocalDateTime now = LocalDateTime.now();  
+			String dateTime= dtf.format(now); 
+			return dateTime;
+	  }
+	
 }

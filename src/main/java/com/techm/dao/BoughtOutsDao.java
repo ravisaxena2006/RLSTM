@@ -55,9 +55,9 @@ public class BoughtOutsDao {
 			// TODO Auto-generated method stub
 			return brepo.search(dl_id,time_stamp);
 		}
-		public List<BoughtOuts> findByboughTimptList() {
+		public List<BoughtOuts> findByboughTimptList(String dl_id) {
 			// TODO Auto-generated method stub
-			return brepo.searchDlList();
+			return brepo.searchDlList(dl_id);
 		}
 	 
 	 public List<Tower> getTowerList(int id)

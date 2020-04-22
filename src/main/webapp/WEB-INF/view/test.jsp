@@ -234,7 +234,7 @@ th {
 			addMoreString +=   '<td align="left"><select name="projectCost['+row+'].costItemId">' +document.getElementById("costItemId").innerHTML+'</select><Input type="hidden" name="projectCost['+row+'].dl_id" value="'+dlId1+'"></td>';
         	
 			addMoreString +=   '<td align="left"><select name="projectCost['+row+'].projectPhase">' +document.getElementById("costTypeId").innerHTML+'</select></td>';
-           	addMoreString += ' <td align="left"><Input type="text" size =10 id="description" name="projectCost['+row+'].description" value="" ></td>';
+           	addMoreString += ' <td align="left"><Input type="text" id="description" name="projectCost['+row+'].description" value="" ></td>';
            	addMoreString += ' <td align="left" class="y1"><Input class="'+horizontalClass+' ty1" size =10    type="text" name="projectCost['+row+'].daysYear1" value=""  id="daysYear1"></td>';
            	
           	addMoreString += ' <td align="left" class="y2"><Input class="'+horizontalClass+' ty2" size =10  type="text" name="projectCost['+row+'].daysYear2"></td>';

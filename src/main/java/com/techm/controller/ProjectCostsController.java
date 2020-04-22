@@ -72,16 +72,15 @@ public class ProjectCostsController {
 		String dl_id=request.getParameter("dsld");	
 		String timestamp=getTimestampNumber();
 		String creationDate=getCurrentDateTime(); 
-		String createdBy="Prem";
+		String createdBy= (String) session.getAttribute("name");
 		String project_duration=request.getParameter("durayear");
 		//List<ProjectCosts> uniqeList= new ArrayList<ProjectCosts>();	
-		List<ProjectCosts> projectCostsviewTimp = projectCostsDao2.findByprojecTimptList();
-		  Set<ProjectCosts> s = new LinkedHashSet<ProjectCosts>(projectCostsviewTimp); 
-		 for(ProjectCosts pc:s) {
-			System.out.println(pc.getTime_stamp());
-			System.out.println(pc.getDl_id());
-			System.out.println(pc.getDaysYear1());
-			} 
+	     List<ProjectCosts> projectCostsviewTimp = projectCostsDao2.findByprojecTimptList(dl_id);
+		
+		  Set<ProjectCosts> s = new LinkedHashSet<ProjectCosts>(projectCostsviewTimp);
+		  for(ProjectCosts pc:s) { System.out.println(pc.getTime_stamp());
+		  System.out.println(pc.getDl_id()); System.out.println(pc.getDaysYear1()); }
+		  
 		 //Role access
 		 List<MappingRole>  role =mappingDao.getMappingById(loginId);
 			
@@ -93,6 +92,7 @@ public class ProjectCostsController {
 			
 		session.setAttribute("Bid_ID",dl_id);
 		session.setAttribute("duryr", project_duration);
+       
 		mav.addObject("timestamp_key", timestamp);
 		mav.addObject("creationDate",creationDate);
 	    mav.addObject("createdBy",createdBy);
@@ -116,8 +116,9 @@ public class ProjectCostsController {
 		String timestamp=getTimestampNumber();
 		String dlId=request.getParameter("dlidkey");
 		String creationDate=getCurrentDateTime(); 
-		String createdBy="Prem";
+		
 		HttpSession session=request.getSession(true);
+		String createdBy= (String) session.getAttribute("name");
 		session.setAttribute("Bid_ID",dlId);
 		session.setAttribute("duryr", project_duration);
 		
@@ -148,7 +149,7 @@ public class ProjectCostsController {
 
 		
 				
-		List<ProjectCosts> projectCostsviewTimp = projectCostsDao2.findByprojecTimptList();
+		List<ProjectCosts> projectCostsviewTimp = projectCostsDao2.findByprojecTimptList(dlId);
 		mav.addObject("projectCostsviewTimp", projectCostsviewTimp);
 		mav.addObject("timestamp_key", timestamp);
 		mav.addObject("dl_id_key", dlId);
@@ -168,18 +169,20 @@ public class ProjectCostsController {
 		String timestmp=request.getParameter("timestampId");
 		String dlId=request.getParameter("dsld");
 		String creationDate=getCurrentDateTime(); 
-		String createdBy="Prem";
+		
+		
 		List<ProjectCosts> projectCostsview = projectCostsDao2.findByprojectCostId(dlId,timestmp);
 		
-		List<ProjectCosts> projectCostsviewTimp = projectCostsDao2.findByprojecTimptList();
+		List<ProjectCosts> projectCostsviewTimp = projectCostsDao2.findByprojecTimptList(dl_id);
 		
 		
 		String project_duration2=request.getParameter("durayear");
 		String project_duration=request.getParameter("project_duration");
 		
 		HttpSession session=request.getSession(true);
+		String createdBy= (String) session.getAttribute("name");
 		session.setAttribute("Bid_ID",dlId);
-		session.setAttribute("duryr", project_duration);
+		session.setAttribute("duryr", project_duration2);
 		
 		Integer count=1;
 		if(count!=0) {
@@ -205,6 +208,8 @@ public class ProjectCostsController {
 
 		 
 		String timestamp=getTimestampNumber();
+		
+		
 		mav.addObject("timestamp_key", timestamp);
 		mav.addObject("creationDate",creationDate);
 		mav.addObject("createdBy",createdBy);

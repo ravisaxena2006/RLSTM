@@ -46,8 +46,8 @@ public class ProjectCostsDao2 {
 					
 		}
 	 
-	 public List<ProjectCosts> findByprojecTimptList() {
-			return productSearchRepositroy.searchDlList();
+	 public List<ProjectCosts> findByprojecTimptList(String dl_id) {
+			return productSearchRepositroy.searchDlList(dl_id);
 					
 					
 		}
