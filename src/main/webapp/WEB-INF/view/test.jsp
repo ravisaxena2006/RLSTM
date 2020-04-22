@@ -41,7 +41,7 @@ th {
 	
 			<div class="btn-group pull-left " style="width:1080px">
 			<div class="text-right">
-			<a href="/view?dsld=${Bid_ID}&durayear=${sessionScope.duryr}" class="btn btn-info">Deal Specs</a>
+			<a href="/bidview?dsld=${Bid_ID}&durayear=${sessionScope.duryr}" class="btn btn-info">Deal Specs</a>
 			 <a href="/RLS?dsld=${Bid_ID}&durayear=${sessionScope.duryr}" class="btn btn-info">RLS</a>
 			 <a href="/BoughtOuts?dsld=${Bid_ID}&durayear=${sessionScope.duryr}" class="btn btn-info">Bought-Out</a>
 			 </div>
@@ -75,10 +75,7 @@ th {
 		<!-- <th></th> -->
     </tr>  
 		</thead>
-<%-- 	<tr>	<td> <input type="hidden"  id="listCount" name="listCount" value="${count}"/>
-		 	<td> <td>  <input type="hidden"  id="projectduration2" name="project_duration" value="${project_duration2}"/> </td>
-    </tr> --%> 
-    
+
     <tbody id="myTableObj">
    
     

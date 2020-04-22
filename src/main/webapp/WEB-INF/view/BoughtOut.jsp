@@ -26,6 +26,8 @@ table.table-bordered > tbody > tr > td{
     border:1px solid black;
 }
 th {
+    background-color:#66b3ff;
+    color: white;
     text-align: center;
 }
 </style>
@@ -38,7 +40,7 @@ th {
 	
 			<div class="btn-group pull-left " style="width:1080px">
 			<div class="text-right">
-			<a href="/view?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Deal Specs</a>
+			<a href="/bidview?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Deal Specs</a>
 			 <a href="/RLS?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">RLS</a>
 			 <a href="/ProjectCosts?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Project Cost</a>
 			 </div>
@@ -113,7 +115,7 @@ th {
   <tbody id="myTableObj">
     <c:forEach items="${boughtoutview}" var="b" varStatus="loop">
 						<tr>
-							<td><select name="towerId" name="boughtOuts[${loop.index}].towerId">
+							<td><select name="towerId" name="boughtOuts[${loop.index}].towerId" disabled="disabled">
 							<c:forEach items="${towerList}" var="tower">
 		        <option value="${tower.towerId}"
 		        ${tower.towerId == b.towerId ? 'selected="selected"' : ''}>${tower.tower}</option>
@@ -125,22 +127,22 @@ th {
 		    
 		   
 		   
-	 <td align="left"><Input type="text" size=6 name="boughtOuts[${loop.index}].vendor" id="vendor" value="${b.vendor}"></td>
+	 <td align="left"><Input type="text" size=6 name="boughtOuts[${loop.index}].vendor" readonly="readonly" id="vendor" value="${b.vendor}"></td>
 	 	  	 	  
-	 	  <td align="left"><Input type="text" size=11 name="boughtOuts[${loop.index}].productDescription" id="productDescription" value="${b.productDescription}"></td>
+	 	  <td align="left"><Input type="text" size=11 name="boughtOuts[${loop.index}].productDescription" readonly="readonly" id="productDescription" value="${b.productDescription}"></td>
 											
 							
-							<td><select name="amortizeId" name="boughtOuts[${loop.index}].amortizeId">
+							<td><select name="amortizeId" name="boughtOuts[${loop.index}].amortizeId" disabled="disabled">
 							<c:forEach items="${amortizeList}" var="amortize">
 		        <option value="${amortize.amortizeId}"
 		        ${amortize.amortizeId == b.amortizeId ? 'selected="selected"' : ''}>${amortize.amortize}</option>
 		    </c:forEach></select></td>
-							<td><select name="quoteCurrencyId" name="boughtOuts[${loop.index}].quoteCurrencyId">
+							<td><select name="quoteCurrencyId" name="boughtOuts[${loop.index}].quoteCurrencyId" disabled="disabled">
 							<c:forEach items="${quoteCurrencyList}" var="quoteCurrency">
 		        <option value="${quoteCurrency.quoteCurrencyId}"
 		        ${quoteCurrency.quoteCurrencyId == b.quoteCurrencyId ? 'selected="selected"' : ''}>${quoteCurrency.quoteCurrency}</option>
 		    </c:forEach></select></td>
-							<td><select name="quoteExistsId" name="boughtOuts[${loop.index}].quoteExistsId">
+							<td><select name="quoteExistsId" name="boughtOuts[${loop.index}].quoteExistsId" disabled="disabled">
 							<c:forEach items="${quoteExistsList}" var="quoteExists">
 		        <option value="${quoteExists.quoteExistsId}"
 		        ${quoteExists.quoteExistsId == b.quoteExistsId ? 'selected="selected"' : ''}>${quoteExists.quoteExists}</option>
@@ -284,7 +286,7 @@ var projectdurationCount=document.getElementById("projectduration").value;
        function Add() {
 
     	   var dlId1 = document.getElementById("mydealid").value;
-    	   alert(dlId1);
+    	  // alert(dlId1);
     	   var creationDate1 = document.getElementById("creationDate").value;
 			var createdBy1 = document.getElementById("createdBy").value;
    	       var timestamp1=document.getElementById("timestamp").value;
@@ -299,11 +301,11 @@ var projectdurationCount=document.getElementById("projectduration").value;
 	   var otherTotal  = "myTotal2" +row;
 	   
    			var addMoreString = '<tr id="myrow_'+ row +'">';
-			alert(addMoreString);
-          
+			//alert(addMoreString);
+ 
 	    addMoreString += '<td align="left"><select name="boughtOuts['+row+'].towerId">'
 	       	
-			  +document.getElementById("towerId").innerHTML+' </select></td>';
+			              +document.getElementById("towerId").innerHTML+' </select></td>';
 
         addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].vendor" value="" ><input type="hidden" name="boughtOuts['+row+'].time_stamp" value="'+timestamp1+'"></td>';
 
