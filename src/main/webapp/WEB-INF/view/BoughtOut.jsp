@@ -26,7 +26,6 @@ table.table-bordered > tbody > tr > td{
     border:1px solid black;
 }
 th {
-    background-color:#66b3ff;
     color: white;
     text-align: center;
 }
@@ -40,7 +39,7 @@ th {
 	
 			<div class="btn-group pull-left " style="width:1080px">
 			<div class="text-right">
-			<a href="/bidview?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Deal Specs</a>
+			<a href="/bidview/dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Deal Specs</a>
 			 <a href="/RLS?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">RLS</a>
 			 <a href="/ProjectCosts?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Project Cost</a>
 			 </div>
@@ -168,11 +167,11 @@ th {
 		  <td class="s3" align="left"><Input type="text" class="s sty3" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear3" id="supportYear3" value="${b.supportYear3}"></td>
 		  <td class="s4" align="left"><Input type="text" class="s sty4" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear4" id="supportYear4" value="${b.supportYear4}"></td>
 		  <td class="s5" align="left"><Input type="text" class="s sty5" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear5" id="supportYear5" value="${b.supportYear5}"></td>
-		  <td class="s6" align="left"><Input type="text" class="s sty6" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear6" id="licenceYear6" value="${b.licenceYear6}"></td>
-		  <td class="s7" align="left"><Input type="text" class="s sty7" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear7" id="licenceYear7" value="${b.licenceYear7}"></td>
-		  <td class="s8" align="left"><Input type="text" class="s sty8" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear8" id="licenceYear8" value="${b.licenceYear8}"></td>
-		  <td class="s9" align="left"><Input type="text" class="s sty9" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear9" id="licenceYear9" value="${b.licenceYear9}"></td>
-		  <td class="s10" align="left"><Input type="text" class="s sty10" size=10 name="boughtOuts[${loop.index}].supportYear10" id="supportYear10}" value="${b.supportYear10}"></td>
+		  <td class="s6" align="left"><Input type="text" class="s sty6" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear6" id="supportYear6" value="${b.supportYear6}"></td>
+		  <td class="s7" align="left"><Input type="text" class="s sty7" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear7" id="supportYear7" value="${b.supportYear7}"></td>
+		  <td class="s8" align="left"><Input type="text" class="s sty8" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear8" id="supportYear8" value="${b.supportYear8}"></td>
+		  <td class="s9" align="left"><Input type="text" class="s sty9" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear9" id="supportYear9" value="${b.supportYear9}"></td>
+		  <td class="s10" align="left"><Input type="text" class="s sty10" pattern="\d*" size=10 title="Please Enter Number" name="boughtOuts[${loop.index}].supportYear10" id="supportYear10" value="${b.supportYear10}"></td>
 		  <td align="left"><Input type="text" class="myTotal1" readonly="readonly" size=10 name="boughtOuts[${loop.index}].supportTotal" id="supportTotal" value="${b.supportTotal}"></td>
 		  
 		  <td align="left"><Input type="text" pattern="\d*" title=" Please Enter Number" size=10 name="boughtOuts[${loop.index}].professionalService" id="professionalService" value="${b.professionalService}"></td>
@@ -277,6 +276,13 @@ th {
 
 var projectdurationCount=document.getElementById("projectduration").value; 
 
+var dlId1 = document.getElementById("mydealid").value;
+
+var creationDate1 = document.getElementById("creationDate").value;
+var createdBy1 = document.getElementById("createdBy").value;
+var timestamp1=document.getElementById("timestamp").value;
+
+
        function DeleteRow(objId){
        	   var rowT = document.getElementById("myrow_" + objId);
     	   rowT.parentNode.removeChild(rowT);
@@ -284,28 +290,19 @@ var projectdurationCount=document.getElementById("projectduration").value;
       
        var row = document.getElementById("listCount").value;
        function Add() {
-
-    	   var dlId1 = document.getElementById("mydealid").value;
-    	  // alert(dlId1);
-    	   var creationDate1 = document.getElementById("creationDate").value;
-			var createdBy1 = document.getElementById("createdBy").value;
-   	       var timestamp1=document.getElementById("timestamp").value;
-   	  
-   	  
+ 	  
    	    var horizontalClass = "hh"+row;
    	    var horizontalClass1 = "ss"+row;
    	    var horizontalClass2 = "oo"+row;
 	    var verticalClass = "vv"+row;
 	    var licenceTotal  = "myTotal" +row;
 	    var supportTotal  = "myTotal1" +row;
-	   var otherTotal  = "myTotal2" +row;
+	    var otherTotal  = "myTotal2" +row;
 	   
-   			var addMoreString = '<tr id="myrow_'+ row +'">';
+   		var addMoreString = '<tr id="myrow_'+ row +'">';
 			//alert(addMoreString);
  
-	    addMoreString += '<td align="left"><select name="boughtOuts['+row+'].towerId">'
-	       	
-			              +document.getElementById("towerId").innerHTML+' </select></td>';
+	    addMoreString += '<td align="left"><select name="boughtOuts['+row+'].towerId">' +document.getElementById("towerId").innerHTML+ '</select></td>';
 
         addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].vendor" value="" ><input type="hidden" name="boughtOuts['+row+'].time_stamp" value="'+timestamp1+'"></td>';
 
@@ -1245,9 +1242,9 @@ function showHideCol(projectdurationCount){
 			<table class="table table-bordered table-sm">
 				<thead>
 					<tr>
-						<th align="left">Version Id</th>
-						<th align="left">Creation Date</th>
-						<th align="left">Created By</th>
+						<th align="left" bgcolor="#66b3ff">Version Id</th>
+						<th align="left" bgcolor="#66b3ff">Creation Date</th>
+						<th align="left" bgcolor="#66b3ff">Created By</th>
 					</tr>
 				</thead>
 				<c:forEach items="${boughtoutviewTimp}" var="e">

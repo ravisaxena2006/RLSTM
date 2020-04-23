@@ -508,7 +508,7 @@ function validate()
 						<tr>
 							<td><a href="/getRLSDetails1?trackingNo=${e.trackingNumber}&dsld=${dl_id_key}&durayear=${e.projectDuration}"><c:out value=" ${e.trackingNumber}" /></a></td>
 							<td><c:out value=" ${e.creationDate}" /></td>
-							<td><c:out value=" ${sessionScope.name}" /></td>
+							<td><c:out value=" ${e.createdBy}" /></td>
 							
 						</tr>
 		  </c:forEach>

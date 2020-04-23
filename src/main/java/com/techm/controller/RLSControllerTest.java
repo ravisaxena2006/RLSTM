@@ -57,11 +57,12 @@ public class RLSControllerTest {
 		//String location=request.getParameter("location");
 		String trackingNumber=getTimestampNumber();
 		String creationDate=getCurrentDateTime();
-		String createdBy="Daya";
+		
 		List<RLS> rlsListLatest= rlsDao.getRLSDetailsLatest(dsId1);
 		int count=rlsListLatest.size();
 		List<RLS> rlsListSorted= rlsDao.getRLSDetailsSorted(dsId1);
 		HttpSession session=request.getSession(false);
+		String createdBy= (String) session.getAttribute("name");
 		session.setAttribute("Bid_ID",dsId);
 		session.setAttribute("duryr", project_duration);
 		if(rlsListLatest.isEmpty())

@@ -26,7 +26,6 @@ table.table-bordered > tbody > tr > td{
     border:1px solid black;
 }
  th {
-    background-color:#66b3ff;
     color: white;
     text-align: center;
 }
@@ -42,7 +41,7 @@ table.table-bordered > tbody > tr > td{
 	
 			<div class="btn-group pull-left " style="width:1080px">
 			<div class="text-right">
-			<a href="/bidview?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Deal Specs</a>
+			<a href="/bidview/${sessionScope.Bid_ID}" class="btn btn-info">Deal Specs</a>
 			 <a href="/RLS?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">RLS</a>
 			 <a href="/ProjectCosts?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Project Cost</a>
 			 
@@ -348,7 +347,7 @@ var projectdurationCount=document.getElementById("projectduration").value;
         addMoreString +=  '<td align="left"><Input type="text" size =10 name="boughtOuts['+row+'].description" value="" ></td>';
         
         addMoreString +=  '<td align="left" class="o1"><Input type="text" size =10 class="'+horizontalClass2+' oty1" name="boughtOuts['+row+'].otherYear1" value="" ></td>';
-        addMoreString +=  '<td align="left" class="o2"><Input type="text"  size =10class="'+horizontalClass2+' oty2" name="boughtOuts['+row+'].otherYear2" value="" ></td>';
+        addMoreString +=  '<td align="left" class="o2"><Input type="text" size =10 class="'+horizontalClass2+' oty2" name="boughtOuts['+row+'].otherYear2" value="" ></td>';
         addMoreString +=  '<td align="left" class="o3"><Input type="text" size =10 class="'+horizontalClass2+' oty3" name="boughtOuts['+row+'].otherYear3" value="" ></td>';
         addMoreString +=  '<td align="left" class="o4"><Input type="text" size =10 class="'+horizontalClass2+' oty4" name="boughtOuts['+row+'].otherYear4" value="" ></td>';
         addMoreString +=  '<td align="left" class="o5"><Input type="text" size =10 class="'+horizontalClass2+' oty5" name="boughtOuts['+row+'].otherYear5" value="" ></td>';
@@ -1242,9 +1241,9 @@ $("#oth").attr("colspan",parseInt(projectdurationCount) + 2);
 			<table class="table table-bordered table-sm">
 				<thead>
 					<tr>
-						<th align="left">Version Id</th>
-						<th align="left">Creation Date</th>
-						<th align="left">Created By</th>
+						<th align="left" bgcolor="#66b3ff">Version Id</th>
+						<th align="left" bgcolor="#66b3ff">Creation Date</th>
+						<th align="left" bgcolor="#66b3ff">Created By</th>
 					</tr>
 				</thead>
 				<c:forEach items="${boughtoutviewTimp}" var="e">
@@ -1253,7 +1252,7 @@ $("#oth").attr("colspan",parseInt(projectdurationCount) + 2);
 							href="${pageContext.request.contextPath}/BoughtOutsView?timestampId=${e.time_stamp}&dsld=${e.dl_id}">
 							<c:out value=" ${e.time_stamp}" /></a></td>
 						<td><c:out value=" ${e.creationDate}" /></td>
-						<td><c:out value=" ${sessionScope.name}" /></td>
+						<td><c:out value=" ${e.createdBy}" /></td>
 
 					</tr>
 				</c:forEach>

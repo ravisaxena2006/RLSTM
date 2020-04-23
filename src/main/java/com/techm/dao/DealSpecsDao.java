@@ -6,6 +6,8 @@ import java.util.List;
 
 import java.util.Optional;
 
+import javax.persistence.OrderBy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Repository;
@@ -49,6 +51,7 @@ public class DealSpecsDao {
 	@Autowired
 	VerticalMappingRepository vmaprepo;
 	
+	@OrderBy("BID_DETAILS_ID DESC")
 	public List<DealSpecs> findAll() {
 		return dealdao.findAll();
 	}

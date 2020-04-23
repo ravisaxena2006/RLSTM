@@ -606,7 +606,7 @@ th {
 <td><a href="${pageContext.request.contextPath}/ProjectCostsView?timestampId=${e.time_stamp}&dsld=${e.dl_id}&durayear=${e.project_duration}">
 		<c:out value=" ${e.time_stamp}" /></a></td>
 		<td><c:out value=" ${e.creationDate}" /></td>
-		<td><c:out value=" ${sessionScope.name}" /></td>
+		<td><c:out value=" ${e.createdBy}" /></td>
 		<td><a href="/uploads/RLS_DB_MAPPING_V1.1.xlsx">  <c:out value="Download file" /></a></td>
 		</tr>
 </c:forEach>

@@ -19,6 +19,9 @@ public class CostType {
 	private String costType;
 	@Column(name="record_status")
 	private String recordStatus;
+	
+	
+	
 	public int getCostTypeId() {
 		return costTypeId;
 	}

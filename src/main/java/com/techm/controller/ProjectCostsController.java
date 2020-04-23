@@ -182,7 +182,7 @@ public class ProjectCostsController {
 		HttpSession session=request.getSession(true);
 		String createdBy= (String) session.getAttribute("name");
 		session.setAttribute("Bid_ID",dlId);
-		session.setAttribute("duryr", project_duration2);
+		session.setAttribute("duryr", project_duration);
 		
 		Integer count=1;
 		if(count!=0) {

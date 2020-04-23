@@ -91,6 +91,7 @@ public class ProjectCosts {
 	public void setCostItemId(int costItemId) {
 		this.costItemId = costItemId;
 	}
+	
 	public int getCostTypeId() {
 		return costTypeId;
 	}
