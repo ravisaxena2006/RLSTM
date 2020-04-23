@@ -114,7 +114,7 @@ th {
   <tbody id="myTableObj">
     <c:forEach items="${boughtoutview}" var="b" varStatus="loop">
 						<tr>
-							<td><select name="towerId" name="boughtOuts[${loop.index}].towerId" disabled="disabled">
+							<td><select id="towerId" name="towerId" name="boughtOuts[${loop.index}].towerId" disabled="disabled">
 							<c:forEach items="${towerList}" var="tower">
 		        <option value="${tower.towerId}"
 		        ${tower.towerId == b.towerId ? 'selected="selected"' : ''}>${tower.tower}</option>
@@ -131,17 +131,17 @@ th {
 	 	  <td align="left"><Input type="text" size=11 name="boughtOuts[${loop.index}].productDescription" readonly="readonly" id="productDescription" value="${b.productDescription}"></td>
 											
 							
-							<td><select name="amortizeId" name="boughtOuts[${loop.index}].amortizeId" disabled="disabled">
+							<td><select name="amortizeId" id="amortizeId" name="boughtOuts[${loop.index}].amortizeId" disabled="disabled">
 							<c:forEach items="${amortizeList}" var="amortize">
 		        <option value="${amortize.amortizeId}"
 		        ${amortize.amortizeId == b.amortizeId ? 'selected="selected"' : ''}>${amortize.amortize}</option>
 		    </c:forEach></select></td>
-							<td><select name="quoteCurrencyId" name="boughtOuts[${loop.index}].quoteCurrencyId" disabled="disabled">
+							<td><select name="quoteCurrencyId" id="quoteCurrencyId" name="boughtOuts[${loop.index}].quoteCurrencyId" disabled="disabled">
 							<c:forEach items="${quoteCurrencyList}" var="quoteCurrency">
 		        <option value="${quoteCurrency.quoteCurrencyId}"
 		        ${quoteCurrency.quoteCurrencyId == b.quoteCurrencyId ? 'selected="selected"' : ''}>${quoteCurrency.quoteCurrency}</option>
 		    </c:forEach></select></td>
-							<td><select name="quoteExistsId" name="boughtOuts[${loop.index}].quoteExistsId" disabled="disabled">
+							<td><select name="quoteExistsId" name="boughtOuts[${loop.index}].quoteExistsId" id="quoteExistsId" disabled="disabled">
 							<c:forEach items="${quoteExistsList}" var="quoteExists">
 		        <option value="${quoteExists.quoteExistsId}"
 		        ${quoteExists.quoteExistsId == b.quoteExistsId ? 'selected="selected"' : ''}>${quoteExists.quoteExists}</option>
@@ -304,9 +304,9 @@ var timestamp1=document.getElementById("timestamp").value;
  
 	    addMoreString += '<td align="left"><select name="boughtOuts['+row+'].towerId">' +document.getElementById("towerId").innerHTML+ '</select></td>';
 
-        addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].vendor" value="" ><input type="hidden" name="boughtOuts['+row+'].time_stamp" value="'+timestamp1+'"></td>';
+        addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].vendor" size=6 value="" ><input type="hidden" name="boughtOuts['+row+'].time_stamp" value="'+timestamp1+'"></td>';
 
-        addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].productDescription" value="" ><Input type="hidden" name="boughtOuts['+row+'].dl_id" value="'+dlId1+'"></td>';
+        addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].productDescription" size =11 value="" ><Input type="hidden" name="boughtOuts['+row+'].dl_id" value="'+dlId1+'"></td>';
 
      	addMoreString += '<td align="left"><select name="boughtOuts['+row+'].amortizeId">'
 		 					 +document.getElementById("amortizeId").innerHTML+' </select><input type="hidden" name="boughtOuts['+row+'].creationDate" value="'+creationDate1+'"></td>';
@@ -317,56 +317,49 @@ var timestamp1=document.getElementById("timestamp").value;
 	    addMoreString += '<td align="left"><select name="boughtOuts['+row+'].quoteExistsId">'
 		 				    +document.getElementById("quoteExistsId").innerHTML+' </select><input type="hidden" name="boughtOuts['+row+'].createdBy" value="'+createdBy1+'"></td>';
   
-        addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].priceTotal" value="" ><Input type="hidden" name="boughtOuts['+row+'].project_duration" value="'+projectdurationCount+'"></td>';
+        addMoreString +=  '<td align="left"><Input type="text" size =11 name="boughtOuts['+row+'].priceTotal" value="" ><Input type="hidden" name="boughtOuts['+row+'].project_duration" value="'+projectdurationCount+'"></td>';
 
-        addMoreString +=  '<td align="left" class="y1"><Input type="text" class="'+horizontalClass+' ty1"  name="boughtOuts['+row+'].licenceYear1" value="" ></td>';
-        addMoreString +=  '<td align="left" class="y2"><Input type="text" class="'+horizontalClass+' ty2"  name="boughtOuts['+row+'].licenceYear2" value="" ></td>';
-        addMoreString +=  '<td align="left" class="y3"><Input type="text" class="'+horizontalClass+' ty3"  name="boughtOuts['+row+'].licenceYear3" value="" ></td>';
-        addMoreString +=  '<td align="left" class="y4"><Input type="text" class="'+horizontalClass+' ty4"  name="boughtOuts['+row+'].licenceYear4" value="" ></td>';
-        addMoreString +=  '<td align="left" class="y5"><Input type="text" class="'+horizontalClass+' ty5"  name="boughtOuts['+row+'].licenceYear5" value="" ></td>';
-        addMoreString +=  '<td align="left" class="y6"><Input type="text" class="'+horizontalClass+' ty6"  name="boughtOuts['+row+'].licenceYear6" value="" ></td>';
-        addMoreString +=  '<td align="left" class="y7"><Input type="text" class="'+horizontalClass+' ty7"  name="boughtOuts['+row+'].licenceYear7" value="" ></td>';
-        addMoreString +=  '<td align="left" class="y8"><Input type="text" class="'+horizontalClass+' ty8"  name="boughtOuts['+row+'].licenceYear8" value="" ></td>';
-        addMoreString +=  '<td align="left" class="y9"><Input type="text" class="'+horizontalClass+' ty9"  name="boughtOuts['+row+'].licenceYear9" value="" ></td>';
-        addMoreString +=  '<td align="left" class="y10"><Input type="text" class="'+horizontalClass+' ty10"  name="boughtOuts['+row+'].licenceYear10" value="" ></td>';
-        addMoreString +=  '<td align="left"><Input type="text" class="myTotal" name="boughtOuts['+row+'].licenceTotal" value="" id="'+licenceTotal+'" ></td>';
+        addMoreString +=  '<td align="left" class="y1"><Input type="text" class="'+horizontalClass+' ty1"  name="boughtOuts['+row+'].licenceYear1" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="y2"><Input type="text" class="'+horizontalClass+' ty2"  name="boughtOuts['+row+'].licenceYear2" value="" size =10></td>';
+        addMoreString +=  '<td align="left" class="y3"><Input type="text" class="'+horizontalClass+' ty3"  name="boughtOuts['+row+'].licenceYear3" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="y4"><Input type="text" class="'+horizontalClass+' ty4"  name="boughtOuts['+row+'].licenceYear4" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="y5"><Input type="text" class="'+horizontalClass+' ty5"  name="boughtOuts['+row+'].licenceYear5" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="y6"><Input type="text" class="'+horizontalClass+' ty6"  name="boughtOuts['+row+'].licenceYear6" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="y7"><Input type="text" class="'+horizontalClass+' ty7"  name="boughtOuts['+row+'].licenceYear7" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="y8"><Input type="text" class="'+horizontalClass+' ty8"  name="boughtOuts['+row+'].licenceYear8" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="y9"><Input type="text" class="'+horizontalClass+' ty9"  name="boughtOuts['+row+'].licenceYear9" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="y10"><Input type="text" class="'+horizontalClass+' ty10"  name="boughtOuts['+row+'].licenceYear10" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left"><Input type="text" class="myTotal" name="boughtOuts['+row+'].licenceTotal" value="" id="'+licenceTotal+'" size =10 ></td>';
         
-        addMoreString +=  '<td align="left" class="s1"><Input type="text" class="'+horizontalClass1+' sty1" name="boughtOuts['+row+'].supportYear1" value="" ></td>';
-        addMoreString +=  '<td align="left" class="s2"><Input type="text" class="'+horizontalClass1+' sty2" name="boughtOuts['+row+'].supportYear2" value="" ></td>';
-        addMoreString +=  '<td align="left" class="s3"><Input type="text" class="'+horizontalClass1+' sty3" name="boughtOuts['+row+'].supportYear3" value="" ></td>';
-        addMoreString +=  '<td align="left" class="s4"><Input type="text" class="'+horizontalClass1+' sty4" name="boughtOuts['+row+'].supportYear4" value="" ></td>';
-        addMoreString +=  '<td align="left" class="s5"><Input type="text" class="'+horizontalClass1+' sty5" name="boughtOuts['+row+'].supportYear5" value="" ></td>';
-        addMoreString +=  '<td align="left" class="s6"><Input type="text" class="'+horizontalClass1+' sty6" name="boughtOuts['+row+'].supportYear6" value="" ></td>';
-        addMoreString +=  '<td align="left" class="s7"><Input type="text" class="'+horizontalClass1+' sty7" name="boughtOuts['+row+'].supportYear7" value="" ></td>';
-        addMoreString +=  '<td align="left" class="s8"><Input type="text" class="'+horizontalClass1+' sty8" name="boughtOuts['+row+'].supportYear8" value="" ></td>';
-        addMoreString +=  '<td align="left" class="s9"><Input type="text" class="'+horizontalClass1+' sty9" name="boughtOuts['+row+'].supportYear9" value="" ></td>';
-        addMoreString +=  '<td align="left" class="s10"><Input type="text" class="'+horizontalClass1+' sty10" name="boughtOuts['+row+'].supportYear10" value="" ></td>';
-        addMoreString +=  '<td align="left"><Input type="text" class="myTotal1" name="boughtOuts['+row+'].supportTotal" value="" id="'+supportTotal+'" ></td>';
+        addMoreString +=  '<td align="left" class="s1"><Input type="text" class="'+horizontalClass1+' sty1" name="boughtOuts['+row+'].supportYear1" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="s2"><Input type="text" class="'+horizontalClass1+' sty2" name="boughtOuts['+row+'].supportYear2" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="s3"><Input type="text" class="'+horizontalClass1+' sty3" name="boughtOuts['+row+'].supportYear3" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="s4"><Input type="text" class="'+horizontalClass1+' sty4" name="boughtOuts['+row+'].supportYear4" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="s5"><Input type="text" class="'+horizontalClass1+' sty5" name="boughtOuts['+row+'].supportYear5" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="s6"><Input type="text" class="'+horizontalClass1+' sty6" name="boughtOuts['+row+'].supportYear6" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="s7"><Input type="text" class="'+horizontalClass1+' sty7" name="boughtOuts['+row+'].supportYear7" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="s8"><Input type="text" class="'+horizontalClass1+' sty8" name="boughtOuts['+row+'].supportYear8" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="s9"><Input type="text" class="'+horizontalClass1+' sty9" name="boughtOuts['+row+'].supportYear9" value="" size =10 ></td>';
+        addMoreString +=  '<td align="left" class="s10"><Input type="text" class="'+horizontalClass1+' sty10" name="boughtOuts['+row+'].supportYear10" value="" size =10></td>';
+        addMoreString +=  '<td align="left"><Input type="text" class="myTotal1" name="boughtOuts['+row+'].supportTotal" value="" id="'+supportTotal+'" size =10></td>';
         
-        addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].professionalService" value="" ></td>';
+        addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].professionalService" value="" size =10></td>';
         
-        addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].training" value="" ></td>';
+        addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].training" value="" size =10></td>';
         
-        addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].description" value="" ></td>';
+        addMoreString +=  '<td align="left"><Input type="text" name="boughtOuts['+row+'].description" value="" size =10></td>';
         
-        addMoreString +=  '<td align="left" class="o1"><Input type="text" class="'+horizontalClass2+' oty1" name="boughtOuts['+row+'].otherYear1" value="" ></td>';
-        addMoreString +=  '<td align="left" class="o2"><Input type="text" class="'+horizontalClass2+' oty2" name="boughtOuts['+row+'].otherYear2" value="" ></td>';
-        addMoreString +=  '<td align="left" class="o3"><Input type="text" class="'+horizontalClass2+' oty3" name="boughtOuts['+row+'].otherYear3" value="" ></td>';
-        addMoreString +=  '<td align="left" class="o4"><Input type="text" class="'+horizontalClass2+' oty4" name="boughtOuts['+row+'].otherYear4" value="" ></td>';
-        addMoreString +=  '<td align="left" class="o5"><Input type="text" class="'+horizontalClass2+' oty5" name="boughtOuts['+row+'].otherYear5" value="" ></td>';
-        addMoreString +=  '<td align="left" class="o6"><Input type="text" class="'+horizontalClass2+' oty6" name="boughtOuts['+row+'].otherYear6" value="" ></td>';
-        addMoreString +=  '<td align="left" class="o7"><Input type="text" class="'+horizontalClass2+' oty7" name="boughtOuts['+row+'].otherYear7" value="" ></td>';
-        addMoreString +=  '<td align="left" class="o8"><Input type="text" class="'+horizontalClass2+' oty8" name="boughtOuts['+row+'].otherYear8" value="" ></td>';
-        addMoreString +=  '<td align="left" class="o9"><Input type="text" class="'+horizontalClass2+' oty9" name="boughtOuts['+row+'].otherYear9" value="" ></td>';
-        addMoreString +=  '<td align="left" class="o10"><Input type="text" class="'+horizontalClass2+' oty10" name="boughtOuts['+row+'].otherYear10" value="" ></td>';
-        addMoreString +=  '<td align="left"><Input type="text" class="myTotal2" name="boughtOuts['+row+'].otherTotal" value="" id="'+otherTotal+'" ></td>';
-
-       					  
-       /* 	addMoreString += '<td align="left"><Input type="hidden" name="boughtOuts['+row+'].dl_id" value="'+dlId1+'">'
-    					+ '<input type="hidden" name="boughtOuts['+row+'].time_stamp" value="'+timestamp1+'">'
-    					+ '<input type="hidden" name="boughtOuts['+row+'].creationDate" value="'+creationDate1+'">'
-    					+ '<input type="hidden" name="boughtOuts['+row+'].createdBy" value="'+createdBy1+'">'
-    					+ '<Input type="hidden" name="boughtOuts['+row+'].project_duration" value="'+projectdurationCount+'"></td>';			   */
+        addMoreString +=  '<td align="left" class="o1"><Input type="text" class="'+horizontalClass2+' oty1" name="boughtOuts['+row+'].otherYear1" value="" size =10></td>';
+        addMoreString +=  '<td align="left" class="o2"><Input type="text" class="'+horizontalClass2+' oty2" name="boughtOuts['+row+'].otherYear2" value="" size =10></td>';
+        addMoreString +=  '<td align="left" class="o3"><Input type="text" class="'+horizontalClass2+' oty3" name="boughtOuts['+row+'].otherYear3" value="" size =10></td>';
+        addMoreString +=  '<td align="left" class="o4"><Input type="text" class="'+horizontalClass2+' oty4" name="boughtOuts['+row+'].otherYear4" value="" size =10></td>';
+        addMoreString +=  '<td align="left" class="o5"><Input type="text" class="'+horizontalClass2+' oty5" name="boughtOuts['+row+'].otherYear5" value="" size =10></td>';
+        addMoreString +=  '<td align="left" class="o6"><Input type="text" class="'+horizontalClass2+' oty6" name="boughtOuts['+row+'].otherYear6" value="" size =10></td>';
+        addMoreString +=  '<td align="left" class="o7"><Input type="text" class="'+horizontalClass2+' oty7" name="boughtOuts['+row+'].otherYear7" value="" size =10></td>';
+        addMoreString +=  '<td align="left" class="o8"><Input type="text" class="'+horizontalClass2+' oty8" name="boughtOuts['+row+'].otherYear8" value="" size =10></td>';
+        addMoreString +=  '<td align="left" class="o9"><Input type="text" class="'+horizontalClass2+' oty9" name="boughtOuts['+row+'].otherYear9" value="" size =10></td>';
+        addMoreString +=  '<td align="left" class="o10"><Input type="text" class="'+horizontalClass2+' oty10" name="boughtOuts['+row+'].otherYear10" value="" size =10></td>';
+        addMoreString +=  '<td align="left"><Input type="text" class="myTotal2" name="boughtOuts['+row+'].otherTotal" value="" id="'+otherTotal+'" size =10></td>';
        	
         addMoreString +=  '<td align="left"><button type="button" class="btn btn-info mr-1" name="remove" value="Remove" onclick="DeleteRow('+row+')">Remove</button></td>';
        	addMoreString +=  '</tr>'; 
