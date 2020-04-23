@@ -174,7 +174,8 @@ public class RLSControllerTest {
 		  	ModelAndView mav = new ModelAndView("RLSTest1");
 		  	String trackingNumber=getTimestampNumber();
 			String creationDate=getCurrentDateTime();
-			String createdBy="Daya";
+			HttpSession session=request.getSession(false);
+			String createdBy= (String) session.getAttribute("name");
 		  	int dsId1=Integer.parseInt(request.getParameter("dsld"));
 			String trackingNo=request.getParameter("trackingNo");
 			System.out.println(request.getParameter("dsld"));
