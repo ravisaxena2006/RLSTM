@@ -121,7 +121,7 @@ th {
 		    </c:forEach>  
 		    </select>
 		    <input type="hidden"  id="listCount" name="listCount" value="${count}"/>
-		   <input type="hidden"  id="projectduration2" name="project_duration" value="${project_duration2}"/>
+		   <input type="hidden"  id="projectduration" name="project_duration" value="${project_duration}"/>
 		    </td>
 		    
 		   
@@ -313,7 +313,7 @@ var timestamp1=document.getElementById("timestamp").value;
 		 					 +document.getElementById("amortizeId").innerHTML+' </select><input type="hidden" name="boughtOuts['+row+'].creationDate" value="'+creationDate1+'"></td>';
 
 	    addMoreString += '<td align="left"><select name="boughtOuts['+row+'].quoteCurrencyId">'
-		  					+document.getElementById("quoteCurrencyId").innerHTML+' </select><input type="hidden" name="boughtOuts['+row+'].creationDate" value="'+creationDate1+'"></td>';
+		  					+document.getElementById("quoteCurrencyId").innerHTML+' </select></td>';
 
 	    addMoreString += '<td align="left"><select name="boughtOuts['+row+'].quoteExistsId">'
 		 				    +document.getElementById("quoteExistsId").innerHTML+' </select><input type="hidden" name="boughtOuts['+row+'].createdBy" value="'+createdBy1+'"></td>';
