@@ -1249,7 +1249,7 @@ $("#oth").attr("colspan",parseInt(projectdurationCount) + 2);
 				<c:forEach items="${boughtoutviewTimp}" var="e">
 					<tr>
 						<td><a
-							href="${pageContext.request.contextPath}/BoughtOutsView?timestampId=${e.time_stamp}&dsld=${e.dl_id}">
+							href="${pageContext.request.contextPath}/BoughtOutsView?timestampId=${e.time_stamp}&dsld=${e.dl_id}&durayear=${e.project_duration}">
 							<c:out value=" ${e.time_stamp}" /></a></td>
 						<td><c:out value=" ${e.creationDate}" /></td>
 						<td><c:out value=" ${e.createdBy}" /></td>

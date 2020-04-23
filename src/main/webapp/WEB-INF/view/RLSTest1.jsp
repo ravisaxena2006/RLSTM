@@ -47,7 +47,7 @@ th {
 	
 			<div class="btn-group pull-left " style="width:1080px">
 			<div class="text-right">
-			 <a href="/bidview?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Deal Specs</a>
+			 <a href="/bidview/${sessionScope.Bid_ID}" class="btn btn-info">Deal Specs</a>
 			<a href="/ProjectCosts?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Project Cost</a>
 			<a href="/BoughtOuts?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Bought-Out</a> 
 			 </div>

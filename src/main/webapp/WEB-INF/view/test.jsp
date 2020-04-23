@@ -41,7 +41,7 @@ th {
 	
 			<div class="btn-group pull-left " style="width:1080px">
 			<div class="text-right">
-			<a href="/bidview?dsld=${Bid_ID}&durayear=${sessionScope.duryr}" class="btn btn-info">Deal Specs</a>
+			<a href="/bidview/${sessionScope.Bid_ID}" class="btn btn-info">Deal Specs</a>
 			 <a href="/RLS?dsld=${Bid_ID}&durayear=${sessionScope.duryr}" class="btn btn-info">RLS</a>
 			 <a href="/BoughtOuts?dsld=${Bid_ID}&durayear=${sessionScope.duryr}" class="btn btn-info">Bought-Out</a>
 			 </div>
@@ -106,6 +106,7 @@ th {
 		    </c:forEach>
 		  </select>
 		  <input type="hidden"  id="mydealid" name="projectCost[${loop.index}].dl_id" value="${allEmp.dl_id}"/>
+			<input type="hidden" name="dlidkey" value="${allEmp.dl_id}"/>
 			<input type="hidden"  id="timestamp" name="projectCost[${loop.index}].time_stamp" value="${timestamp_key}"/>
 			 <input type="hidden" id="creationDate" name="projectCost[${loop.index}].creationDate" value="${creationDate}" /> 
 		 <input type="hidden"  id="createdBy" name="projectCost[${loop.index}].createdBy" value="${createdBy}" />
@@ -184,7 +185,7 @@ th {
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()" disabled>Add More</button>
 		<div class="file btn btn-info mr-1"><input type="file" name="file" id="filepath" accept=".xls,.xlsx" required="required" disabled/>	</div>
 		<br> <br>
-		<button type="submit" class="btn btn-info" name="submit" id="submit" disabled>Submit</button>\
+		<button type="submit" class="btn btn-info" name="submit" id="submit" disabled>Submit</button>
 		</c:when>
 		
 		<c:otherwise>

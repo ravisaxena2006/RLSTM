@@ -150,13 +150,14 @@ public class BoughtOutsController {
 		List<BoughtOuts> boughtoutview = boughtOutsDao.findByboughtOutsId(dlId,timestmp);
 		
 		List<BoughtOuts> boughtoutviewTimp = boughtOutsDao.findByboughTimptList(dl_id);
-		String project_duration2=request.getParameter("durayear");
-		String project_duration=request.getParameter("project_duration");
+		String project_duration=request.getParameter("durayear");
+		//String project_duration=request.getParameter("project_duration");
 		
 		HttpSession session=request.getSession(true);
 		String createdBy= (String) session.getAttribute("name");
-		session.setAttribute("Bid_ID",dl_id);
-		session.setAttribute("duryr", project_duration2);
+		
+		  session.setAttribute("Bid_ID",dl_id); session.setAttribute("duryr", project_duration);
+		 
 		Integer count=1;
 		if(count!=0) {
 			count=boughtoutview.size();
@@ -182,7 +183,7 @@ public class BoughtOutsController {
 		mav.addObject("count", count);
 		mav.addObject("boughtoutviewTimp", boughtoutviewTimp);
 		mav.addObject("project_duration", project_duration);
-		mav.addObject("project_duration2", project_duration2);
+		
 		return mav;
 
 	}

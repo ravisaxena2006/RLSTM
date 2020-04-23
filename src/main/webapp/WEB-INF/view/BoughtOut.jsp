@@ -39,7 +39,7 @@ th {
 	
 			<div class="btn-group pull-left " style="width:1080px">
 			<div class="text-right">
-			<a href="/bidview/dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Deal Specs</a>
+			 <a href="/bidview/${sessionScope.Bid_ID}" class="btn btn-info">Deal Specs</a>
 			 <a href="/RLS?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">RLS</a>
 			 <a href="/ProjectCosts?dsld=${Bid_ID}&durayear=${duryr}" class="btn btn-info">Project Cost</a>
 			 </div>
@@ -193,6 +193,7 @@ th {
 		  
 		  
 		 <input type="hidden"  id="mydealid" name="boughtOuts[${loop.index}].dl_id" value="${b.dl_id}"/>
+		 <input type="hidden"  name="dlidkey" value="${b.dl_id}"/>
 			<input type="hidden"  id="timestamp" name="boughtOuts[${loop.index}].time_stamp" value="${timestamp_key}"/>
 			<input type="hidden"  id="creationDate" name="boughtOuts[${loop.index}].creationDate" value="${creationDate}"/>
 			<input type="hidden"  id="createdBy" name="boughtOuts[${loop.index}].createdBy" value="${createdBy}"/>
@@ -1243,7 +1244,7 @@ function showHideCol(projectdurationCount){
 				<c:forEach items="${boughtoutviewTimp}" var="e">
 					<tr>
 						<td><a
-							href="${pageContext.request.contextPath}/BoughtOutsView?timestampId=${e.time_stamp}&dsld=${e.dl_id}">
+							href="${pageContext.request.contextPath}/BoughtOutsView?timestampId=${e.time_stamp}&dsld=${e.dl_id}&durayear=${e.project_duration}">
 							<c:out value=" ${e.time_stamp}" /></a></td>
 						<td><c:out value=" ${e.creationDate}" /></td>
 						<td><c:out value=" ${e.createdBy}" /></td>

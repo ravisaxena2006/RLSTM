@@ -121,7 +121,9 @@ public class HomeController {
 		HttpSession session=request.getSession();
 		 session.setAttribute("Bid_ID",bID_DETAILS_ID);
 		 session.setAttribute("duryr", project_duration);
+		 
 		mav.addObject("deal", dealobj);
+		mav.addObject("duryr", project_duration);
 		mav.addObject("creationDate",creationDate);
 		return mav;
 	}
