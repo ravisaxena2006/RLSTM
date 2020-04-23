@@ -110,7 +110,7 @@ public class BoughtOutsController {
 			System.out.println("Inside addBoughtOutsDetails method");
 			String dlId=request.getParameter("dlidkey");
 			String timestamp=getTimestampNumber();
-			String project_duration=request.getParameter("durayear");
+			String project_duration=request.getParameter("project_duration");
 			String creationDate=getCurrentDateTime(); 
 			HttpSession session=request.getSession(true);
 			String createdBy= (String) session.getAttribute("name");
@@ -156,7 +156,8 @@ public class BoughtOutsController {
 		HttpSession session=request.getSession(true);
 		String createdBy= (String) session.getAttribute("name");
 		
-		  session.setAttribute("Bid_ID",dl_id); session.setAttribute("duryr", project_duration);
+		  session.setAttribute("Bid_ID",dl_id); 
+		  session.setAttribute("duryr", project_duration);
 		 
 		Integer count=1;
 		if(count!=0) {
