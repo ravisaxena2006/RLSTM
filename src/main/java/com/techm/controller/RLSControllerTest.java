@@ -68,40 +68,30 @@ public class RLSControllerTest {
 				if(dsId1 != 0) {
 					ds_id1 = Integer.toString(dsId1);
 				}
-				String review = null;		
-				review = request.getParameter("review");
-			String freeze = null;
-				freeze = request.getParameter("freeze");
-			
-			if(review != null && review.equalsIgnoreCase("y") ) {
-				
-				rlsdao.updateRLSReview(review,ds_id1, project_duration);
-				}
-				
-				if(freeze != null && freeze.equalsIgnoreCase("f")) {
-					rlsdao.updateRLSFreeze( freeze,ds_id1, project_duration);
-				}
-	
+						String review = null;		
+						review = request.getParameter("review");
+					String freeze = null;
+						freeze = request.getParameter("freeze");
+					
+					if(review != null && review.equalsIgnoreCase("y") ) {
+						
+						rlsdao.updateRLSReview(review,ds_id1, project_duration);
+						}
+						
+						if(freeze != null && freeze.equalsIgnoreCase("f")) {
+							rlsdao.updateRLSFreeze(freeze,ds_id1, project_duration );
+						}
 		
 		List<RLS> rlsListLatest= rlsDao.getRLSDetailsLatest(dsId1);
 		int count=rlsListLatest.size();
-		
-		if(rlsListLatest.size()!=0) {
-			
-			for(RLS ct:rlsListLatest) {
-				dsId1=ct.getDsId();
-				trackingNumber=ct.getTrackingNumber();
-				  project_duration=ct.getProjectDuration();
-			}
-			
-		}
-		
-				
+						
 		List<RLS> rlsListSorted= rlsDao.getRLSDetailsSorted(dsId1);
 		HttpSession session=request.getSession(false);
 		String createdBy= (String) session.getAttribute("name");
-		session.setAttribute("Bid_ID",dsId);
-		session.setAttribute("duryr", project_duration);
+		
+		  session.setAttribute("Bid_ID",dsId); 
+		  session.setAttribute("duryr",project_duration);
+		 
 		if(rlsListLatest.isEmpty())
 		{
 		mav1.addObject("trackingNumber", trackingNumber);
@@ -121,6 +111,8 @@ public class RLSControllerTest {
 		mav2.addObject("rlsDetailsSorted", rlsListSorted);
 		mav2.addObject("rlsDetailsSize",count);
 		mav2.addObject("project_duration", project_duration);
+		mav2.addObject("review", review);
+        mav2.addObject("freeze", freeze);
 		return mav2;
 		}
 	}
