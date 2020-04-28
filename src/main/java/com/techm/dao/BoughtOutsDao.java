@@ -11,11 +11,13 @@ import org.springframework.stereotype.Repository;
 
 import com.techm.entity.Amortize;
 import com.techm.entity.BoughtOuts;
+import com.techm.entity.ProjectCosts;
 import com.techm.entity.QuoteCurrency;
 import com.techm.entity.QuoteExists;
 import com.techm.entity.Tower;
 import com.techm.entity.TowerMapping;
 import com.techm.repository.AmortizeRepository;
+import com.techm.repository.BoughtOutReviewRepo;
 import com.techm.repository.BoughtOutsRepository;
 import com.techm.repository.BoughtSearchRepositroy;
 import com.techm.repository.QuoteCurrencyRepository;
@@ -42,6 +44,7 @@ public class BoughtOutsDao {
 	@Autowired
 	TowerMappingRepository repo5;
 	
+	
 	 public void add(List<BoughtOuts> boughtOuts) {
 	    	System.out.println("Inside add method ");
 			repo.saveAll(boughtOuts);
@@ -50,7 +53,14 @@ public class BoughtOutsDao {
 			return repo.findAll();
 		}
 	
-	 
+	 public List<BoughtOuts> findCurrentDate() {
+			
+		 List<BoughtOuts> bc =  brepo.searchTrack();
+			
+				
+			return bc;
+		  
+	}
 	 public List<BoughtOuts> findByboughtOutsId(String dl_id, String time_stamp) {
 			// TODO Auto-generated method stub
 			return brepo.search(dl_id,time_stamp);
@@ -92,6 +102,7 @@ public class BoughtOutsDao {
 	      	 List<QuoteExists> quoteExistsList=repo4.findAll();
 	    	 return quoteExistsList;
 	    }
+	
 	
 	
 }

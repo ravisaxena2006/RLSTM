@@ -235,8 +235,21 @@ th {
 		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" disabled>Submit</button>
 		</c:when>
 		<c:otherwise>
+		
+        <c:choose>
+		<c:when test="${sessionScope.roleName=='Solution Architect' && review=='y'}">
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		</c:when>
+		<c:when test="${sessionScope.roleName=='Solution Architect' && freeze=='f'}">
+		
+		</c:when>
+		
+		<c:otherwise>
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()">Add More</button>
 		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		</c:otherwise>
+		
+		</c:choose>
 		</c:otherwise>
 		</c:choose>
 		</td>

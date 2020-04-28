@@ -114,7 +114,7 @@ th {
   <tbody id="myTableObj">
     <c:forEach items="${boughtoutview}" var="b" varStatus="loop">
 						<tr>
-							<td><select id="towerId" name="towerId" name="boughtOuts[${loop.index}].towerId" disabled="disabled">
+							<td><select id="towerId" name="towerId" name="boughtOuts[${loop.index}].towerId">
 							<c:forEach items="${towerList}" var="tower">
 		        <option value="${tower.towerId}"
 		        ${tower.towerId == b.towerId ? 'selected="selected"' : ''}>${tower.tower}</option>
@@ -131,17 +131,17 @@ th {
 	 	  <td align="left"><Input type="text" size=11 name="boughtOuts[${loop.index}].productDescription" readonly="readonly" id="productDescription" value="${b.productDescription}"></td>
 											
 							
-							<td><select name="amortizeId" id="amortizeId" name="boughtOuts[${loop.index}].amortizeId" disabled="disabled">
+							<td><select name="amortizeId" id="amortizeId" name="boughtOuts[${loop.index}].amortizeId">
 							<c:forEach items="${amortizeList}" var="amortize">
 		        <option value="${amortize.amortizeId}"
 		        ${amortize.amortizeId == b.amortizeId ? 'selected="selected"' : ''}>${amortize.amortize}</option>
 		    </c:forEach></select></td>
-							<td><select name="quoteCurrencyId" id="quoteCurrencyId" name="boughtOuts[${loop.index}].quoteCurrencyId" disabled="disabled">
+							<td><select name="quoteCurrencyId" id="quoteCurrencyId" name="boughtOuts[${loop.index}].quoteCurrencyId">
 							<c:forEach items="${quoteCurrencyList}" var="quoteCurrency">
 		        <option value="${quoteCurrency.quoteCurrencyId}"
 		        ${quoteCurrency.quoteCurrencyId == b.quoteCurrencyId ? 'selected="selected"' : ''}>${quoteCurrency.quoteCurrency}</option>
 		    </c:forEach></select></td>
-							<td><select name="quoteExistsId" name="boughtOuts[${loop.index}].quoteExistsId" id="quoteExistsId" disabled="disabled">
+							<td><select name="quoteExistsId" name="boughtOuts[${loop.index}].quoteExistsId" id="quoteExistsId">
 							<c:forEach items="${quoteExistsList}" var="quoteExists">
 		        <option value="${quoteExists.quoteExistsId}"
 		        ${quoteExists.quoteExistsId == b.quoteExistsId ? 'selected="selected"' : ''}>${quoteExists.quoteExists}</option>
@@ -264,8 +264,20 @@ th {
 		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" disabled>Submit</button>
 		</c:when>
 		<c:otherwise>
+		
+        <c:choose>
+		<c:when test="${sessionScope.roleName=='Solution Architect' && review=='y'}">
+		<br>
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		</c:when>
+		<c:when test="${sessionScope.roleName=='Solution Architect' && freeze=='f'}">
+		
+		</c:when>
+		<c:otherwise>
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()">Add More</button>
 		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		</c:otherwise>
+		</c:choose>
 		</c:otherwise>
 		</c:choose>
 		</td>

@@ -43,7 +43,8 @@ public class RLS {
      private String creationDate;
      private String createdBy;
      private String projectDuration;
-     
+     private String review;
+ 	private String freeze;
  	public RLS() {
 		
  	}
@@ -296,6 +297,22 @@ public class RLS {
 
 	public void setProjectDuration(String projectDuration) {
 		this.projectDuration = projectDuration;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+
+	public String getFreeze() {
+		return freeze;
+	}
+
+	public void setFreeze(String freeze) {
+		this.freeze = freeze;
 	}
      
 	

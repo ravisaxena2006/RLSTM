@@ -23,11 +23,13 @@ import com.google.gson.Gson;
 import com.techm.bean.RLSList;
 //import com.techm.dao.DealSpecsDao;
 import com.techm.dao.RLSDao;
+import com.techm.dao.RLSDao2;
 import com.techm.entity.Band;
 import com.techm.entity.Billable;
 import com.techm.entity.City;
 import com.techm.entity.Location;
 import com.techm.entity.Premises;
+import com.techm.entity.ProjectCosts;
 import com.techm.entity.ProjectPhase;
 import com.techm.entity.RLS;
 import com.techm.entity.ResourceType;
@@ -45,6 +47,8 @@ public class RLSControllerTest {
 	@Autowired
 	RLSDao rlsDao;
 	
+	@Autowired
+	RLSDao2 rlsdao;
 		
 	@RequestMapping("/RLS")
 	public ModelAndView getRLSForm(HttpServletRequest request, HttpServletResponse res)
@@ -58,8 +62,41 @@ public class RLSControllerTest {
 		String trackingNumber=getTimestampNumber();
 		String creationDate=getCurrentDateTime();
 		
+		// code for Review and freeze
+		
+				String ds_id1 = null;
+				if(dsId1 != 0) {
+					ds_id1 = Integer.toString(dsId1);
+				}
+				String review = null;		
+				review = request.getParameter("review");
+			String freeze = null;
+				freeze = request.getParameter("freeze");
+			
+			if(review != null && review.equalsIgnoreCase("y") ) {
+				
+				rlsdao.updateRLSReview(review,ds_id1, project_duration);
+				}
+				
+				if(freeze != null && freeze.equalsIgnoreCase("f")) {
+					rlsdao.updateRLSFreeze( freeze,ds_id1, project_duration);
+				}
+	
+		
 		List<RLS> rlsListLatest= rlsDao.getRLSDetailsLatest(dsId1);
 		int count=rlsListLatest.size();
+		
+		if(rlsListLatest.size()!=0) {
+			
+			for(RLS ct:rlsListLatest) {
+				dsId1=ct.getDsId();
+				trackingNumber=ct.getTrackingNumber();
+				  project_duration=ct.getProjectDuration();
+			}
+			
+		}
+		
+				
 		List<RLS> rlsListSorted= rlsDao.getRLSDetailsSorted(dsId1);
 		HttpSession session=request.getSession(false);
 		String createdBy= (String) session.getAttribute("name");
