@@ -258,6 +258,7 @@
  </div>
  </div>
  </div>
+ <c:if test="${sessionScope.roleName=='Solution Architect'}">
  <div class="row">
 
 		  <div class="col-md-6">
@@ -278,7 +279,7 @@
 	 	  </select>
 				</div>
 </div>	
-
+</c:if>
 			<label>Any other information critical for pricing</label><br> <input
 				type="text" name="ANY_OTHER_INFO_FOR_PRICING" class="form-control">
 			

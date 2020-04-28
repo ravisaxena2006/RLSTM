@@ -57,6 +57,9 @@ public class ProjectCosts {
  
      private String filepath;
      
+
+ 	private String review;
+ 	private String freeze;
      
      private String project_duration;
      public String getProject_duration() {
@@ -209,6 +212,18 @@ public class ProjectCosts {
 	}
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
+	}
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
+	}
+	public String getFreeze() {
+		return freeze;
+	}
+	public void setFreeze(String freeze) {
+		this.freeze = freeze;
 	}
      
      

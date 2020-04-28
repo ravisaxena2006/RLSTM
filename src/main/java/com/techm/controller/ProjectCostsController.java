@@ -65,15 +65,17 @@ public class ProjectCostsController {
 	// View project cost form in RLS Tool
 	@RequestMapping("/ProjectCosts")
 	public ModelAndView getProjectCosts(HttpServletRequest request, HttpServletResponse res ) {
-		ModelAndView mav = new ModelAndView("ProjectCosts3");
-		
+		ModelAndView mav = new ModelAndView("test");
+		ModelAndView mav1 = new ModelAndView("ProjectCosts3");
 		HttpSession session=request.getSession(true);
 		String loginId=(String) session.getAttribute("name");
 		String dl_id=request.getParameter("dsld");	
 		String timestamp=getTimestampNumber();
 		String creationDate=getCurrentDateTime(); 
 		String createdBy= (String) session.getAttribute("name");
-		String project_duration=request.getParameter("durayear");
+		String project_duration=null;
+		  project_duration=request.getParameter("durayear");
+		
 		//List<ProjectCosts> uniqeList= new ArrayList<ProjectCosts>();	
 	     List<ProjectCosts> projectCostsviewTimp = projectCostsDao2.findByprojecTimptList(dl_id);
 		
@@ -90,6 +92,77 @@ public class ProjectCostsController {
 				System.out.println(mappingRole.getRole());
 			}
 			
+			 String review = null;		
+				review = request.getParameter("review");
+			String freeze = null;
+				freeze = request.getParameter("freeze");
+			
+			if(review != null && review.equalsIgnoreCase("y") ) {
+				
+				projectCostsDao2.updateProjectCostReview(review,dl_id, project_duration);
+				}
+				
+				if(freeze != null && freeze.equalsIgnoreCase("f")) {
+					projectCostsDao2.updateProjectCostFreeze(freeze,dl_id, project_duration);
+				}
+				
+			String dlId=null;
+			String timestmp=null;
+			List<ProjectCosts> timeStCurrent = projectCostsDao2.findCurrentDate();
+			if(timeStCurrent.size()!=0) {
+				
+				for(ProjectCosts ct:timeStCurrent) {
+					dlId=ct.getDl_id();
+					timestmp=ct.getTime_stamp();
+					  project_duration=ct.getProject_duration();
+				}
+				
+			}
+			  
+			 
+			List<ProjectCosts> projectCostsview = projectCostsDao2.findByprojectCostId(dlId,timestmp);
+			
+			if(projectCostsview.isEmpty()) {
+				session.setAttribute("Bid_ID",dl_id);
+				session.setAttribute("duryr", project_duration);
+		       
+				mav.addObject("timestamp_key", timestamp);
+				mav.addObject("creationDate",creationDate);
+			    mav.addObject("createdBy",createdBy);
+				mav.addObject("dl_id_key", dl_id);
+				mav.addObject("project_duration", project_duration);
+				mav.addObject("project_duration2", project_duration);
+				mav.addObject("projectCostsviewTimp", projectCostsviewTimp);
+				mav.addObject("roleMapping", role);
+				mav.addObject("projectCostsview", projectCostsview);
+				//mav.addObject("count", count);
+				return mav1;
+			}
+			
+			Integer count=1;
+			if(count!=0) {
+				count=projectCostsview.size();
+			
+			}
+			if(projectCostsview == null) {
+				//throw new RuntimeException("not found"+dl_id);
+				return mav1;
+			}
+			else {
+				
+				
+				for(ProjectCosts pc:projectCostsview) {
+					
+					System.out.println(pc.getTowerId());
+					System.out.println(pc.getDescription());	
+					System.out.println(pc.getDaysYear1());
+								
+				}
+				
+			}
+			 
+			
+			
 		session.setAttribute("Bid_ID",dl_id);
 		session.setAttribute("duryr", project_duration);
        
@@ -100,7 +173,13 @@ public class ProjectCostsController {
 		mav.addObject("project_duration", project_duration);
 		mav.addObject("projectCostsviewTimp", projectCostsviewTimp);
 		mav.addObject("roleMapping", role);
+		mav.addObject("projectCostsview", projectCostsview);
+		mav.addObject("project_duration2", project_duration);
+		mav.addObject("count", count);
+		mav.addObject("review", review);
+        mav.addObject("freeze", freeze);
 		return mav;
+		//return new ModelAndView("/ProjectCostsView");
 
 	}
 	
@@ -109,12 +188,15 @@ public class ProjectCostsController {
 	{
 		System.out.println("Inside addProjectCostsDetails method ");
 		
-		ModelAndView mav = new ModelAndView("ProjectCosts3");
+		//ModelAndView mav = new ModelAndView("ProjectCosts3");test
+		ModelAndView mav = new ModelAndView("test");
+		//ModelAndView mav = new ModelAndView("test");
 		
-		String project_duration=request.getParameter("project_duration");
-		
+		String project_duration=null;
+		request.getParameter("project_duration");
+		String dlId=null;
 		String timestamp=getTimestampNumber();
-		String dlId=request.getParameter("dlidkey");
+		  dlId=request.getParameter("dlidkey");
 		String creationDate=getCurrentDateTime(); 
 		
 		HttpSession session=request.getSession(true);
@@ -128,17 +210,28 @@ public class ProjectCostsController {
 
 		try {
 			List<ProjectCosts> projectCosts = projectCostList.getProjectCost();
+            
+			int arr=file.getBytes().length;
 
-			// read and write the file to the selected location-
-			byte[] bytes = file.getBytes();
-			Path path = Paths.get(uploadDirectory , file.getOriginalFilename());
-			
-			Files.write(path, bytes);
-			System.out.println(path);
-			for (ProjectCosts pc : projectCosts) {
-				pc.setFilepath(uploadDirectory);
-			}
+            if(arr!=0) {
 
+            byte[] bytes = file.getBytes();
+
+            Path path = Paths.get(uploadDirectory , file.getOriginalFilename());
+
+           
+
+            Files.write(path, bytes);
+
+            System.out.println(path);
+
+            for (ProjectCosts pc : projectCosts) {
+
+                  pc.setFilepath(uploadDirectory);
+
+            }
+
+            }
 			projectCostsDao.add(projectCosts);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -150,13 +243,54 @@ public class ProjectCostsController {
 		
 				
 		List<ProjectCosts> projectCostsviewTimp = projectCostsDao2.findByprojecTimptList(dlId);
+		
+		
+		
+		
+		
+		
+		
+		String timestmp=null;
+		List<ProjectCosts> timeStCurrent = projectCostsDao2.findCurrentDate();
+		if(timeStCurrent.size()!=0) {
+			
+			for(ProjectCosts ct:timeStCurrent) {
+				dlId=ct.getDl_id();
+				timestmp=ct.getTime_stamp();
+				 project_duration=ct.getProject_duration();
+			}
+			
+		}
+		
+		List<ProjectCosts> projectCostsview = projectCostsDao2.findByprojectCostId(dlId,timestmp);
+		
+		
+		
+		Integer count=1;
+		if(count!=0) {
+			count=projectCostsview.size();
+		
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 		mav.addObject("projectCostsviewTimp", projectCostsviewTimp);
 		mav.addObject("timestamp_key", timestamp);
 		mav.addObject("dl_id_key", dlId);
 		mav.addObject("project_duration", project_duration);
 		mav.addObject("creationDate",creationDate);
 	    mav.addObject("createdBy",createdBy);
+	    mav.addObject("projectCostsview",projectCostsview);
+	    mav.addObject("project_duration2", project_duration);
+	    mav.addObject("count", count);
 		return mav;
+	    
+	    
 	
 	}
 	
@@ -165,11 +299,24 @@ public class ProjectCostsController {
 	public ModelAndView getProjectCostsView(HttpServletRequest request, HttpServletResponse res,MultipartFile file ) throws IOException {
 		ModelAndView mav = new ModelAndView("test");
 		
-		String dl_id=request.getParameter("dsld");	
-		String timestmp=request.getParameter("timestampId");
-		String dlId=request.getParameter("dsld");
+		String dl_id=null;
+		dl_id=request.getParameter("dsld");	
+		String timestmp=null;
+		timestmp=request.getParameter("timestampId");
+		String dlId=null;
+		dlId=request.getParameter("dsld");
 		String creationDate=getCurrentDateTime(); 
 		
+		
+		/*List<ProjectCosts> timeStCurrent = projectCostsDao2.findCurrentDate();
+		if(timeStCurrent.size()!=0) {
+			
+			for(ProjectCosts ct:timeStCurrent) {
+				dlId=ct.getDl_id();
+				timestmp=ct.getTime_stamp();
+			}
+			
+		}*/
 		
 		List<ProjectCosts> projectCostsview = projectCostsDao2.findByprojectCostId(dlId,timestmp);
 		

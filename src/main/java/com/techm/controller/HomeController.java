@@ -83,7 +83,7 @@ public class HomeController {
 
 	@RequestMapping(value ="/view", method = RequestMethod.GET,headers = "Accept=application/json")
 	public ModelAndView bidview(@ModelAttribute("deal") DealSpecs dealobj ,HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("bidmanager");
+		ModelAndView mav = new ModelAndView("bidmanager1");
 		HttpSession session=request.getSession(true);
 		String roleName=null;
 		String loginId=(String) session.getAttribute("name");

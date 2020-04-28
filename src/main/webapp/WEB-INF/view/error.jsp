@@ -8,7 +8,7 @@
 <div class="container-fluid">
 <div class="row">
                     <div class="col-md-12" style ="margin-top:20px;">
-<h1>Error in upload ${message}</h1>
+<h1>Exception : ${message}</h1>
 </div>
 </div>
 </div>

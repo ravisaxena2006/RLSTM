@@ -321,6 +321,7 @@
 					</div>
 				</div>
 			</div>
+			<c:if test="${sessionScope.roleName=='Solution Architect'}">
 <div class="row">
 				<div class="col-md-6">
 				<label>Select Towers</label><br>
@@ -340,7 +341,7 @@
 		         </select>
 				</div>
 </div>	
-
+</c:if>
 			<label>Any other information critical for pricing</label>
 			<br>
 			<input type="text" name="ANY_OTHER_INFO_FOR_PRICING"
@@ -359,7 +360,8 @@
 			<br>
            
            <div align="right">
-					 <a href="/view" class="btn btn-info" style="width:100px">Back</a>
+           <button type="submit" class="btn btn-info mr-1" name="submit" id="submit" >Submit</button>
+					 <a href="/view" class="btn btn-info mr-1">Back</a>
 				</div>
 				
 		</form:form>

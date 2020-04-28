@@ -1,5 +1,6 @@
 package com.techm.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Optional;
@@ -12,11 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.techm.entity.DealSpecs;
 
 import com.techm.entity.ProjectCosts;
+import com.techm.entity.RLS;
 import com.techm.repository.CostCategoryRepository;
 import com.techm.repository.CostItemRepository;
 import com.techm.repository.CostTypeRepository;
 
 import com.techm.repository.ProductSearchRepositroy;
+import com.techm.repository.ProjectCostReviewRepo;
 import com.techm.repository.ProjectCostsRepository;
 import com.techm.repository.TowerRepository;
 
@@ -37,6 +40,8 @@ public class ProjectCostsDao2 {
 	CostItemRepository costItemRepository;
 	@Autowired
 	CostTypeRepository costTypeRepository;
+	@Autowired
+	ProjectCostReviewRepo preview;
 	
  
 	 
@@ -51,7 +56,19 @@ public class ProjectCostsDao2 {
 					
 					
 		}
+
+	public List<ProjectCosts> findCurrentDate() {		
+		 List<ProjectCosts> pc =  productSearchRepositroy.searchTrack();			
+			return pc;		  
+	}
+
+	
+	public void updateProjectCostReview(String review,String dl_id, String project_duration ) {
+		preview.projectCostReview(review,dl_id, project_duration);
+	}
+	 
+	public void updateProjectCostFreeze( String freeze ,String dl_id, String project_duration) {
+		preview.projectCostFreeze(freeze,dl_id, project_duration);
+	}
 	  
-	 
-	 
 }

@@ -189,11 +189,26 @@ th {
 		</c:when>
 		
 		<c:otherwise>
+		
+        <c:choose>
+		<c:when test="${sessionScope.roleName=='Solution Architect' && review=='y'}">
+		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()" disabled>Add More</button>
+		<div class="file btn btn-info mr-1"><input type="file" name="file" id="filepath" accept=".xls,.xlsx" readonly="readonly"/>	</div>
+		<br> <br>
+		<button type="submit" class="btn btn-info" name="submit" id="submit">Submit</button>
+		</c:when>
+		<c:when test="${sessionScope.roleName=='Solution Architect' && freeze=='f'}">
+		
+		</c:when>
+		<c:otherwise>
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()">Add More</button>
 		<div class="file btn btn-info mr-1"><input type="file" name="file" id="filepath" accept=".xls,.xlsx" required="required" />	</div>
 		<br> <br>
-		<button type="submit" class="btn btn-info" name="submit" id="submit" >Submit</button>
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" >Submit</button>
 		</c:otherwise>
+		</c:choose>
+		</c:otherwise>
+
 		</c:choose>
 		</td>
 	</tr>
