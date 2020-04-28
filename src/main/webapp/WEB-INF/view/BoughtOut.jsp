@@ -114,7 +114,7 @@ th {
   <tbody id="myTableObj">
     <c:forEach items="${boughtoutview}" var="b" varStatus="loop">
 						<tr>
-							<td><select id="towerId" name="towerId" name="boughtOuts[${loop.index}].towerId">
+							<td><select id="towerId" name="boughtOuts[${loop.index}].towerId">
 							<c:forEach items="${towerList}" var="tower">
 		        <option value="${tower.towerId}"
 		        ${tower.towerId == b.towerId ? 'selected="selected"' : ''}>${tower.tower}</option>
@@ -131,17 +131,17 @@ th {
 	 	  <td align="left"><Input type="text" size=11 name="boughtOuts[${loop.index}].productDescription" readonly="readonly" id="productDescription" value="${b.productDescription}"></td>
 											
 							
-							<td><select name="amortizeId" id="amortizeId" name="boughtOuts[${loop.index}].amortizeId">
+							<td><select id="amortizeId" name="boughtOuts[${loop.index}].amortizeId">
 							<c:forEach items="${amortizeList}" var="amortize">
 		        <option value="${amortize.amortizeId}"
 		        ${amortize.amortizeId == b.amortizeId ? 'selected="selected"' : ''}>${amortize.amortize}</option>
 		    </c:forEach></select></td>
-							<td><select name="quoteCurrencyId" id="quoteCurrencyId" name="boughtOuts[${loop.index}].quoteCurrencyId">
+							<td><select id="quoteCurrencyId" name="boughtOuts[${loop.index}].quoteCurrencyId">
 							<c:forEach items="${quoteCurrencyList}" var="quoteCurrency">
 		        <option value="${quoteCurrency.quoteCurrencyId}"
 		        ${quoteCurrency.quoteCurrencyId == b.quoteCurrencyId ? 'selected="selected"' : ''}>${quoteCurrency.quoteCurrency}</option>
 		    </c:forEach></select></td>
-							<td><select name="quoteExistsId" name="boughtOuts[${loop.index}].quoteExistsId" id="quoteExistsId">
+							<td><select name="boughtOuts[${loop.index}].quoteExistsId" id="quoteExistsId">
 							<c:forEach items="${quoteExistsList}" var="quoteExists">
 		        <option value="${quoteExists.quoteExistsId}"
 		        ${quoteExists.quoteExistsId == b.quoteExistsId ? 'selected="selected"' : ''}>${quoteExists.quoteExists}</option>
@@ -197,7 +197,7 @@ th {
 			<input type="hidden"  id="timestamp" name="boughtOuts[${loop.index}].time_stamp" value="${timestamp_key}"/>
 			<input type="hidden"  id="creationDate" name="boughtOuts[${loop.index}].creationDate" value="${creationDate}"/>
 			<input type="hidden"  id="createdBy" name="boughtOuts[${loop.index}].createdBy" value="${createdBy}"/>
-			<input type="hidden"  id="projectduration" name="boughtOuts[0].project_duration" value="${b.project_duration}"/>
+			<input type="hidden"  id="projectduration" name="boughtOuts[${loop.index}].project_duration" value="${b.project_duration}"/>
 		  </td>
 	
     </tr>
