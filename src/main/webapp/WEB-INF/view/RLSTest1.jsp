@@ -157,7 +157,7 @@ th {
 			
 			<td align="left"><Input type="text" name="RLSDetails[${loop.index}].remarks" id="remarks" value="${e.remarks}"></td>
 			
-			<td align="left" class="y1"><Input type="text" class="h v1" name="RLSDetails[${loop.index}].daysYear1" value="${e.daysYear1}" pattern="[0-9]+" title="Please enter digits" >
+			<td align="left" class="y1"><Input type="text" class="r${loop.index} v1" name="RLSDetails[${loop.index}].daysYear1" value="${e.daysYear1}" pattern="[0-9]+" title="Please enter digits" >
 		
 			<input type="hidden"  id="mydealid" name="RLSDetails[${loop.index}].dsId" value="${e.dsId}"/>
 			<input type="hidden"  id="timestamp" name="RLSDetails[${loop.index}].trackingNumber" value="${trackingNumber}"/>
@@ -167,25 +167,25 @@ th {
 			</td>
 		   
      
-         <td align="left" class="y2"><Input type="text" class="h v2" name="RLSDetails[${loop.index}].daysYear2" id="daysYear2" value="${e.daysYear2}" pattern="[0-9]+" title="Please enter digits"></td>
+         <td align="left" class="y2"><Input type="text" class="r${loop.index} v2" name="RLSDetails[${loop.index}].daysYear2" id="daysYear2" value="${e.daysYear2}" pattern="[0-9]+" title="Please enter digits"></td>
 	    
-	    <td align="left" class="y3"><Input type="text" class="h v3" name="RLSDetails[${loop.index}].daysYear3" id="daysYear3" value="${e.daysYear3}" pattern="[0-9]+" title="Please enter digits"></td>
+	    <td align="left" class="y3"><Input type="text" class="r${loop.index} v3" name="RLSDetails[${loop.index}].daysYear3" id="daysYear3" value="${e.daysYear3}" pattern="[0-9]+" title="Please enter digits"></td>
 	    
-	    <td align="left" class="y4"><Input type="text" class="h v4" name="RLSDetails[${loop.index}].daysYear4" id="daysYear4" value="${e.daysYear4}" pattern="[0-9]+" title="Please enter digits"></td>
+	    <td align="left" class="y4"><Input type="text" class="r${loop.index} v4" name="RLSDetails[${loop.index}].daysYear4" id="daysYear4" value="${e.daysYear4}" pattern="[0-9]+" title="Please enter digits"></td>
 	    
-	    <td align="left" class="y5"><Input type="text" class="h v5" name="RLSDetails[${loop.index}].daysYear5" id="daysYear5" value="${e.daysYear5}" pattern="[0-9]+" title="Please enter digits"></td>
+	    <td align="left" class="y5"><Input type="text" class="r${loop.index} v5" name="RLSDetails[${loop.index}].daysYear5" id="daysYear5" value="${e.daysYear5}" pattern="[0-9]+" title="Please enter digits"></td>
 	    
-	    <td align="left" class="y6"><Input type="text" class="h v6" name="RLSDetails[${loop.index}].daysYear6" id="daysYear6" value="${e.daysYear6}" pattern="[0-9]+" title="Please enter digits"></td>
+	    <td align="left" class="y6"><Input type="text" class="r${loop.index} v6" name="RLSDetails[${loop.index}].daysYear6" id="daysYear6" value="${e.daysYear6}" pattern="[0-9]+" title="Please enter digits"></td>
 	    
-	    <td align="left" class="y7"><Input type="text" class="h v7" name="RLSDetails[${loop.index}].daysYear7" id="daysYear7" value="${e.daysYear7}" pattern="[0-9]+" title="Please enter digits"></td>
+	    <td align="left" class="y7"><Input type="text" class="r${loop.index} v7" name="RLSDetails[${loop.index}].daysYear7" id="daysYear7" value="${e.daysYear7}" pattern="[0-9]+" title="Please enter digits"></td>
 	    
-		<td align="left" class="y8"><Input type="text" class="h v8" name="RLSDetails[${loop.index}].daysYear8" id="daysYear8" value="${e.daysYear8}" pattern="[0-9]+" title="Please enter digits"></td>
+		<td align="left" class="y8"><Input type="text" class="r${loop.index} v8" name="RLSDetails[${loop.index}].daysYear8" id="daysYear8" value="${e.daysYear8}" pattern="[0-9]+" title="Please enter digits"></td>
 		
-		<td align="left" class="y9"><Input type="text" class="h v9" name="RLSDetails[${loop.index}].daysYear9" id="daysYear9" value="${e.daysYear9}" pattern="[0-9]+" title="Please enter digits"></td>
+		<td align="left" class="y9"><Input type="text" class="r${loop.index} v9" name="RLSDetails[${loop.index}].daysYear9" id="daysYear9" value="${e.daysYear9}" pattern="[0-9]+" title="Please enter digits"></td>
 		
-		<td align="left" class="y10"><Input type="text" class="h v10" name="RLSDetails[${loop.index}].daysYear10" id="daysYear10" value="${e.daysYear10}" pattern="[0-9]+" title="Please enter digits"></td>
+		<td align="left" class="y10"><Input type="text" class="r${loop.index} v10" name="RLSDetails[${loop.index}].daysYear10" id="daysYear10" value="${e.daysYear10}" pattern="[0-9]+" title="Please enter digits"></td>
 		
-		<td align="left" ><Input type="text" class="myTotal" name="RLSDetails[${loop.index}].total" id="total" value="${e.total}"></td>
+		<td align="left" ><Input type="text" class="myTotal" name="RLSDetails[${loop.index}].total" id="total${loop.index}" value="${e.total}"></td>
 		<td align="left"><Button type="button" class="btn btn-info mr-1" name="remove" value="Remove" onclick="DeleteRow(${loop.index})">Remove</Button></td>
 						</tr>
 		  </c:forEach>
@@ -399,18 +399,7 @@ th {
 				});
 			});
 	//End
- 		
-			
-        //Calling function for horizontal total
-		$(".h").each(function() {
-
-			$(this).keyup(function(){
-				calculateSum('h','total');
-			});
-		});
-
-		
-		
+ 		   	
 	});
 	//document.ready end
 
@@ -454,14 +443,13 @@ th {
 	});
 	
 
-	//Function to calculate vertical totals
+	//Function to calculate vertical and horizontal totals
 	function totCalc(){
-		 //alert("hello");
-		var mySum = 0,mySum1=0;
+		var mySum = 0,mySum1=0,mySum2=0;
+		
 		//iterate through each textboxes and add the values
 		$(".myTotal").each(function() {
 
-			// alert('class' + className);
 			//add only if the value is number
 			if(!isNaN(this.value) && this.value.length!=0) {
 				mySum += parseFloat(this.value);
@@ -481,9 +469,24 @@ th {
 			});
 			$("#YearTotal"+i).html(mySum1);
 		}
+
+		//For horizontal totals
+		var row = document.getElementById("listCount").value;
 		
+       for(i=0;i<row;i++)
+         {	
+           mySum2=0;
+		$(".r"+i).each(function() {
+			
+			if(!isNaN(this.value) && this.value.length!=0) {
+				mySum2 += parseFloat(this.value);
+			}
+		});
+		document.getElementById("total"+i).value = mySum2;
+         }
+       //End horizontal totals
 	}
- //End
+ 
 </script>
 
 <script>
