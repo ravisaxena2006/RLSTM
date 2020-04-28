@@ -187,7 +187,7 @@ th {
 		
 		<td align="left" ><Input type="text" class="myTotal" name="RLSDetails[${loop.index}].total" id="total${loop.index}" value="${e.total}"></td>
 		<td align="left"><Button type="button" class="btn btn-info mr-1" name="remove" value="Remove" onclick="DeleteRow(${loop.index})">Remove</Button></td>
-						</tr>
+		</tr>
 		  </c:forEach>
    </tbody>
    	<tfoot>
