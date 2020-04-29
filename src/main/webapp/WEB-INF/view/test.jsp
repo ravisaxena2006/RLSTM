@@ -118,32 +118,32 @@ th {
 	    
 	    </td>
 		 
-		<td align="left" class="y1" ><Input class="h v ty1" size =10 type="text" name="projectCost[${loop.index}].daysYear1" value="${allEmp.daysYear1}" >
+		<td align="left" class="y1" ><Input class="r${loop.index} v ty1" size =10 type="text" name="projectCost[${loop.index}].daysYear1" value="${allEmp.daysYear1}" >
 		
 			
 		</td>
 		
 	    
      
-         <td align="left" class="y2" ><Input class="h v ty2" size =10 type="text" name="projectCost[${loop.index}].daysYear2" id="daysYear2" value="${allEmp.daysYear2}"></td>
+         <td align="left" class="y2" ><Input class="r${loop.index} v ty2" size =10 type="text" name="projectCost[${loop.index}].daysYear2" id="daysYear2" value="${allEmp.daysYear2}"></td>
 	    
-	   <td align="left" class="y3" ><Input class="h v ty3" type="text" size =10 name="projectCost[${loop.index}].daysYear3" id="daysYear3" value="${allEmp.daysYear3}"></td>
+	   <td align="left" class="y3" ><Input class="r${loop.index} v ty3" type="text" size =10 name="projectCost[${loop.index}].daysYear3" id="daysYear3" value="${allEmp.daysYear3}"></td>
 	    
-	    <td align="left" class="y4" ><Input class="h v ty4" type="text" size =10 name="projectCost[${loop.index}].daysYear4" id="daysYear4" value="${allEmp.daysYear4}"></td>
+	    <td align="left" class="y4" ><Input class="r${loop.index} v ty4" type="text" size =10 name="projectCost[${loop.index}].daysYear4" id="daysYear4" value="${allEmp.daysYear4}"></td>
 	    
-	    <td align="left" class="y5" ><Input class="h v ty5" type="text" size =10 name="projectCost[${loop.index}].daysYear5" id="daysYear5" value="${allEmp.daysYear5}"></td>
+	    <td align="left" class="y5" ><Input class="r${loop.index} v ty5" type="text" size =10 name="projectCost[${loop.index}].daysYear5" id="daysYear5" value="${allEmp.daysYear5}"></td>
 	    
-	    <td align="left" class="y6" ><Input class="h v ty6" type="text" size =10 name="projectCost[${loop.index}].daysYear6" id="daysYear6" value="${allEmp.daysYear6}"></td>
+	    <td align="left" class="y6" ><Input class="r${loop.index} v ty6" type="text" size =10 name="projectCost[${loop.index}].daysYear6" id="daysYear6" value="${allEmp.daysYear6}"></td>
 	    
-	   <td align="left" class="y7" ><Input class="h v ty7" type="text" size =10 name="projectCost[${loop.index}].daysYear7" id="daysYear7" value="${allEmp.daysYear7}"></td>
+	   <td align="left" class="y7" ><Input class="r${loop.index} v ty7" type="text" size =10 name="projectCost[${loop.index}].daysYear7" id="daysYear7" value="${allEmp.daysYear7}"></td>
 	    
-		<td align="left" class="y8" ><Input class="h v ty8" type="text" size =10 name="projectCost[${loop.index}].daysYear8" id="daysYear8" value="${allEmp.daysYear8}"></td>
+		<td align="left" class="y8" ><Input class="r${loop.index} v ty8" type="text" size =10 name="projectCost[${loop.index}].daysYear8" id="daysYear8" value="${allEmp.daysYear8}"></td>
 		
-		<td align="left" class="y9" ><Input class="h v ty9" type="text" size =10 name="projectCost[${loop.index}].daysYear9" id="daysYear9" value="${allEmp.daysYear9}"></td>
+		<td align="left" class="y9" ><Input class="r${loop.index} v ty9" type="text" size =10 name="projectCost[${loop.index}].daysYear9" id="daysYear9" value="${allEmp.daysYear9}"></td>
 		
-		<td align="left" class="y10" ><Input class="h v ty10" type="text" size =10 name="projectCost[${loop.index}].daysYear10" id="daysYear10" value="${allEmp.daysYear10}"></td>
+		<td align="left" class="y10" ><Input class="r${loop.index} v ty10" type="text" size =10 name="projectCost[${loop.index}].daysYear10" id="daysYear10" value="${allEmp.daysYear10}"></td>
 		
-		<td align="left"><Input class="myTotal" type="text" size =10 name="projectCost[${loop.index}].total" id="total" value="${allEmp.total}"></td>
+		<td align="left"><Input class="myTotal" type="text" size =10 name="projectCost[${loop.index}].total" id="total${loop.index}" value="${allEmp.total}"></td>
 		
 	 
 	  
@@ -398,7 +398,7 @@ th {
 	
 	function totCalc(){
 		 //alert("hello");
-		var mySum = 0;
+		var mySum = 0,mySum2=0;
 		//iterate through each textboxes and add the values
 		$(".myTotal").each(function() {
 
@@ -411,6 +411,22 @@ th {
 		});
 		
 		$("#grandTotal").html(mySum);
+
+		//For horizontal totals
+		var row = document.getElementById("listCount").value;
+		
+       for(i=0;i<row;i++)
+         {	
+           mySum2=0;
+		$(".r"+i).each(function() {
+			
+			if(!isNaN(this.value) && this.value.length!=0) {
+				mySum2 += parseFloat(this.value);
+			}
+		});
+		document.getElementById("total"+i).value = mySum2;
+         }
+       //End horizontal totals
 		
 	}
 
