@@ -162,46 +162,46 @@ th {
 		  <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}">
 		  <td align="left"><Input type="text" pattern="\d*" title="Please Enter Number" size=10 name="boughtOuts[${loop.index}].priceTotal" id="priceTotal" value="${b.priceTotal}"></td>
 		  
-		  <td class="y1" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty1" name="boughtOuts[${loop.index}].licenceYear1" id="licenceYear1" value="${b.licenceYear1}"></td>
-		  <td class="y2" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty2" name="boughtOuts[${loop.index}].licenceYear2" id="licenceYear2" value="${b.licenceYear2}"></td>
-		  <td class="y3" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty3" name="boughtOuts[${loop.index}].licenceYear3" id="licenceYear3" value="${b.licenceYear3}"></td>
-		  <td class="y4" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty4" name="boughtOuts[${loop.index}].licenceYear4" id="licenceYear4" value="${b.licenceYear4}"></td>
-		  <td class="y5" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty5" name="boughtOuts[${loop.index}].licenceYear5" id="licenceYear5" value="${b.licenceYear5}"></td>
-		  <td class="y6" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty6" name="boughtOuts[${loop.index}].licenceYear6" id="licenceYear6" value="${b.licenceYear6}"></td>
-		  <td class="y7" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty7" name="boughtOuts[${loop.index}].licenceYear7" id="licenceYear7" value="${b.licenceYear7}"></td>
-		  <td class="y8" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty8" name="boughtOuts[${loop.index}].licenceYear8" id="licenceYear8" value="${b.licenceYear8}"></td>
-		  <td class="y9" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty9" name="boughtOuts[${loop.index}].licenceYear9" id="licenceYear9" value="${b.licenceYear9}"></td>
-		  <td class="y10" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty10" name="boughtOuts[${loop.index}].licenceYear10" id="licenceYear10" value="${b.licenceYear10}"></td>
-		  <td align="left"><Input type="text" class="myTotal" readonly="readonly" size=10 name="boughtOuts[${loop.index}].licenceTotal" id="licenceTotal" value="${b.licenceTotal}"></td>
+		  <td class="y1" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="r${loop.index} ty1" name="boughtOuts[${loop.index}].licenceYear1" id="licenceYear1" value="${b.licenceYear1}"></td>
+		  <td class="y2" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="r${loop.index} ty2" name="boughtOuts[${loop.index}].licenceYear2" id="licenceYear2" value="${b.licenceYear2}"></td>
+		  <td class="y3" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="r${loop.index} ty3" name="boughtOuts[${loop.index}].licenceYear3" id="licenceYear3" value="${b.licenceYear3}"></td>
+		  <td class="y4" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="r${loop.index} ty4" name="boughtOuts[${loop.index}].licenceYear4" id="licenceYear4" value="${b.licenceYear4}"></td>
+		  <td class="y5" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="r${loop.index} ty5" name="boughtOuts[${loop.index}].licenceYear5" id="licenceYear5" value="${b.licenceYear5}"></td>
+		  <td class="y6" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="r${loop.index} ty6" name="boughtOuts[${loop.index}].licenceYear6" id="licenceYear6" value="${b.licenceYear6}"></td>
+		  <td class="y7" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="r${loop.index} ty7" name="boughtOuts[${loop.index}].licenceYear7" id="licenceYear7" value="${b.licenceYear7}"></td>
+		  <td class="y8" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="r${loop.index} ty8" name="boughtOuts[${loop.index}].licenceYear8" id="licenceYear8" value="${b.licenceYear8}"></td>
+		  <td class="y9" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="r${loop.index} ty9" name="boughtOuts[${loop.index}].licenceYear9" id="licenceYear9" value="${b.licenceYear9}"></td>
+		  <td class="y10" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="r${loop.index} ty10" name="boughtOuts[${loop.index}].licenceYear10" id="licenceYear10" value="${b.licenceYear10}"></td>
+		  <td align="left"><Input type="text" class="myTotal" readonly="readonly" size=10 name="boughtOuts[${loop.index}].licenceTotal" id="licenceTotal${loop.index}" value="${b.licenceTotal}"></td>
 			
-		  <td class="s1" align="left"><Input type="text" class="s sty1" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear1" id="supportYear1" value="${b.supportYear1}"></td>
-		  <td class="s2" align="left"><Input type="text" class="s sty2" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear2" id="supportYear2" value="${b.supportYear2}"></td>
-		  <td class="s3" align="left"><Input type="text" class="s sty3" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear3" id="supportYear3" value="${b.supportYear3}"></td>
-		  <td class="s4" align="left"><Input type="text" class="s sty4" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear4" id="supportYear4" value="${b.supportYear4}"></td>
-		  <td class="s5" align="left"><Input type="text" class="s sty5" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear5" id="supportYear5" value="${b.supportYear5}"></td>
-		  <td class="s6" align="left"><Input type="text" class="s sty6" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear6" id="supportYear6" value="${b.supportYear6}"></td>
-		  <td class="s7" align="left"><Input type="text" class="s sty7" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear7" id="supportYear7" value="${b.supportYear7}"></td>
-		  <td class="s8" align="left"><Input type="text" class="s sty8" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear8" id="supportYear8" value="${b.supportYear8}"></td>
-		  <td class="s9" align="left"><Input type="text" class="s sty9" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear9" id="supportYear9" value="${b.supportYear9}"></td>
-		  <td class="s10" align="left"><Input type="text" class="s sty10" pattern="\d*" size=10 title="Please Enter Number" name="boughtOuts[${loop.index}].supportYear10" id="supportYear10" value="${b.supportYear10}"></td>
-		  <td align="left"><Input type="text" class="myTotal1" readonly="readonly" size=10 name="boughtOuts[${loop.index}].supportTotal" id="supportTotal" value="${b.supportTotal}"></td>
+		  <td class="s1" align="left"><Input type="text" class="s${loop.index} sty1" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear1" id="supportYear1" value="${b.supportYear1}"></td>
+		  <td class="s2" align="left"><Input type="text" class="s${loop.index} sty2" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear2" id="supportYear2" value="${b.supportYear2}"></td>
+		  <td class="s3" align="left"><Input type="text" class="s${loop.index} sty3" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear3" id="supportYear3" value="${b.supportYear3}"></td>
+		  <td class="s4" align="left"><Input type="text" class="s${loop.index} sty4" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear4" id="supportYear4" value="${b.supportYear4}"></td>
+		  <td class="s5" align="left"><Input type="text" class="s${loop.index} sty5" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear5" id="supportYear5" value="${b.supportYear5}"></td>
+		  <td class="s6" align="left"><Input type="text" class="s${loop.index} sty6" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear6" id="supportYear6" value="${b.supportYear6}"></td>
+		  <td class="s7" align="left"><Input type="text" class="s${loop.index} sty7" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear7" id="supportYear7" value="${b.supportYear7}"></td>
+		  <td class="s8" align="left"><Input type="text" class="s${loop.index} sty8" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear8" id="supportYear8" value="${b.supportYear8}"></td>
+		  <td class="s9" align="left"><Input type="text" class="s${loop.index} sty9" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].supportYear9" id="supportYear9" value="${b.supportYear9}"></td>
+		  <td class="s10" align="left"><Input type="text" class="s${loop.index} sty10" pattern="\d*" size=10 title="Please Enter Number" name="boughtOuts[${loop.index}].supportYear10" id="supportYear10" value="${b.supportYear10}"></td>
+		  <td align="left"><Input type="text" class="myTotal1" readonly="readonly" size=10 name="boughtOuts[${loop.index}].supportTotal" id="supportTotal${loop.index}" value="${b.supportTotal}"></td>
 		  
 		  <td align="left"><Input type="text" pattern="\d*" title=" Please Enter Number" size=10 name="boughtOuts[${loop.index}].professionalService" id="professionalService" value="${b.professionalService}"></td>
 	 	  	 	  
 	 	  <td align="left"><Input type="text" pattern="\d*" title=" Please Enter Number" size=10 name="boughtOuts[${loop.index}].Training" id="training" value="${b.training}"></td>
 	 	  
 		  <td align="left"><Input type="text" name="boughtOuts[${loop.index}].description" size=10 id="description" value="${b.description}"></td>
-		  <td align="left" class="o1"><Input type="text" class="o oty1" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear1" id="otherYear1" value="${b.otherYear1}"></td>
-		  <td align="left" class="o2"><Input type="text" class="o oty2" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear2" id="otherYear2" value="${b.otherYear2}"></td>
-		  <td align="left" class="o3"><Input type="text" class="o oty3" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear3" id="otherYear3" value="${b.otherYear3}"></td>
-		  <td align="left" class="o4"><Input type="text" class="o oty4" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear4" id="otherYear4" value="${b.otherYear4}"></td>
-		  <td align="left" class="o5"><Input type="text" class="o oty5" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear5" id="otherYear5" value="${b.otherYear5}"></td>
-		  <td align="left" class="o6"><Input type="text" class="o oty6" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear6" id="otherYear6" value="${b.otherYear6}"></td>
-		  <td align="left" class="o7"><Input type="text" class="o oty7" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear7" id="otherYear7" value="${b.otherYear7}"></td>
-		  <td align="left" class="o8"><Input type="text" class="o oty8" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear8" id="otherYear8" value="${b.otherYear8}"></td>
-		  <td align="left" class="o9"><Input type="text" class="o oty9" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear9" id="otherYear9" value="${b.otherYear9}"></td>
-		  <td align="left" class="o10"><Input type="text" class="o oty10" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear10" id="otherYear10" value="${b.otherYear10}"></td>
-		  <td align="left"><Input type="text" class="myTotal2" readonly="readonly" size=10 name="boughtOuts[${loop.index}].otherTotal" id="otherTotal" value="${b.otherTotal}">
+		  <td align="left" class="o1"><Input type="text" class="o${loop.index} oty1" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear1" id="otherYear1" value="${b.otherYear1}"></td>
+		  <td align="left" class="o2"><Input type="text" class="o${loop.index} oty2" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear2" id="otherYear2" value="${b.otherYear2}"></td>
+		  <td align="left" class="o3"><Input type="text" class="o${loop.index} oty3" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear3" id="otherYear3" value="${b.otherYear3}"></td>
+		  <td align="left" class="o4"><Input type="text" class="o${loop.index} oty4" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear4" id="otherYear4" value="${b.otherYear4}"></td>
+		  <td align="left" class="o5"><Input type="text" class="o${loop.index} oty5" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear5" id="otherYear5" value="${b.otherYear5}"></td>
+		  <td align="left" class="o6"><Input type="text" class="o${loop.index} oty6" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear6" id="otherYear6" value="${b.otherYear6}"></td>
+		  <td align="left" class="o7"><Input type="text" class="o${loop.index} oty7" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear7" id="otherYear7" value="${b.otherYear7}"></td>
+		  <td align="left" class="o8"><Input type="text" class="o${loop.index} oty8" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear8" id="otherYear8" value="${b.otherYear8}"></td>
+		  <td align="left" class="o9"><Input type="text" class="o${loop.index} oty9" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear9" id="otherYear9" value="${b.otherYear9}"></td>
+		  <td align="left" class="o10"><Input type="text" class="o${loop.index} oty10" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear10" id="otherYear10" value="${b.otherYear10}"></td>
+		  <td align="left"><Input type="text" class="myTotal2" readonly="readonly" size=10 name="boughtOuts[${loop.index}].otherTotal" id="otherTotal${loop.index}" value="${b.otherTotal}">
 		  </td>
 	</c:if>
     </tr>
@@ -550,6 +550,45 @@ function showHideCol(projectdurationCount){
 		
 		$("#grandTotal").html(mySum);
 
+		//For horizontal totals
+		var row = document.getElementById("listCount").value;
+		
+       for(i=0;i<row;i++)
+         {	
+           mySum1=0;
+		$(".r"+i).each(function() {
+			
+			if(!isNaN(this.value) && this.value.length!=0) {
+				mySum1 += parseFloat(this.value);
+			}
+		});
+		document.getElementById("licenceTotal"+i).value = mySum1;
+         }
+
+       for(i=0;i<row;i++)
+       {	
+         mySum2=0;
+		$(".s"+i).each(function() {
+			
+			if(!isNaN(this.value) && this.value.length!=0) {
+				mySum2 += parseFloat(this.value);
+			}
+		});
+		document.getElementById("supportTotal"+i).value = mySum2;
+       }
+
+       for(i=0;i<row;i++)
+       {	
+         mySum3=0;
+		$(".o"+i).each(function() {
+			
+			if(!isNaN(this.value) && this.value.length!=0) {
+				mySum3 += parseFloat(this.value);
+			}
+		});
+		document.getElementById("otherTotal"+i).value = mySum3;
+       }
+       //End horizontal totals
 		
 		
 	}
