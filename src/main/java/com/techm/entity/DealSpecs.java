@@ -20,8 +20,8 @@ public class DealSpecs {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long BID_DETAILS_ID;
-	@Temporal(TemporalType.DATE)
-	private Date BID_CREATION_DATE;
+	
+	private String BID_CREATION_DATE;
 
 	private String BID_MANAGER;
 	private String DELIVERY_MANAGER;
@@ -46,11 +46,11 @@ public class DealSpecs {
 	
 	private int PROJECT_DURATION;
 	
-	@Temporal(TemporalType.DATE)
-	private Date BID_SUBMISSION_DATE;
 	
-	@Temporal(TemporalType.DATE)
-	private Date PROJECT_STATRT_DATE;
+	private String BID_SUBMISSION_DATE;
+	
+	
+	private String PROJECT_START_DATE;
 
 	//Intelligence
 	
@@ -113,6 +113,8 @@ public class DealSpecs {
 	@Temporal(TemporalType.DATE)
 	private Date RECEIVED_DATE;
 	
+	private String review;
+ 	private String freeze;
 	// table mapping
 	
 		@ElementCollection
@@ -132,17 +134,7 @@ public class DealSpecs {
 		BID_DETAILS_ID = bID_DETAILS_ID;
 	}
 	
-	public Date getBID_CREATION_DATE() {
-		return BID_CREATION_DATE;
-	}
-	public void setBID_CREATION_DATE(Date bID_CREATION_DATE) {
-		if(bID_CREATION_DATE != null) {
-			this.BID_CREATION_DATE = new Date(bID_CREATION_DATE.getTime());
-			}
-			else {
-				this.BID_CREATION_DATE = null;
-			}
-	}
+	
 	
 	public String getBID_MANAGER() {
 		return BID_MANAGER;
@@ -223,27 +215,25 @@ public class DealSpecs {
 	public void setPROJECT_DURATION(int pROJECT_DURATION) {
 		PROJECT_DURATION = pROJECT_DURATION;
 	}
-	public Date getBID_SUBMISSION_DATE() {
+	
+	
+	public String getBID_CREATION_DATE() {
+		return BID_CREATION_DATE;
+	}
+	public void setBID_CREATION_DATE(String bID_CREATION_DATE) {
+		BID_CREATION_DATE = bID_CREATION_DATE;
+	}
+	public String getBID_SUBMISSION_DATE() {
 		return BID_SUBMISSION_DATE;
 	}
-	public void setBID_SUBMISSION_DATE(Date bID_SUBMISSION_DATE) {
-		if(bID_SUBMISSION_DATE != null) {
-			this.BID_SUBMISSION_DATE = new Date(bID_SUBMISSION_DATE.getTime());
-			}
-			else {
-				this.BID_SUBMISSION_DATE = null;
-			}
+	public void setBID_SUBMISSION_DATE(String bID_SUBMISSION_DATE) {
+		BID_SUBMISSION_DATE = bID_SUBMISSION_DATE;
 	}
-	public Date getPROJECT_STATRT_DATE() {
-		return PROJECT_STATRT_DATE;
+	public String getPROJECT_START_DATE() {
+		return PROJECT_START_DATE;
 	}
-	public void setPROJECT_STATRT_DATE(Date pROJECT_STATRT_DATE) {
-		if(pROJECT_STATRT_DATE != null) {
-			this.PROJECT_STATRT_DATE = new Date(pROJECT_STATRT_DATE.getTime());
-			}
-			else {
-				this.PROJECT_STATRT_DATE = null;
-			}
+	public void setPROJECT_START_DATE(String pROJECT_START_DATE) {
+		PROJECT_START_DATE = pROJECT_START_DATE;
 	}
 	public String getBIDDING_COMPETITORS() {
 		return BIDDING_COMPETITORS;
@@ -431,6 +421,18 @@ public class DealSpecs {
 	}
 	public void setVerticals(Set<Integer> verticals) {
 		this.verticals = verticals;
+	}
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
+	}
+	public String getFreeze() {
+		return freeze;
+	}
+	public void setFreeze(String freeze) {
+		this.freeze = freeze;
 	}
 	
 	

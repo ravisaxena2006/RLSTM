@@ -10,10 +10,10 @@ import com.techm.entity.RLS;
 public interface RLSReviewRepo extends JpaRepository<RLS, Integer> {
 
 	@Modifying
-	@Query(value="update rls r set r.review =:keyword WHERE ds_id=:keyword1 and project_duration=:keyword2",nativeQuery = true)
-	void rlsReview(@Param("keyword") String keyword, String keyword1,String keyword2);
+	@Query(value="update t_dealspecs r set r.review =:keyword WHERE BID_DETAILS_ID=:keyword1 ",nativeQuery = true)
+	void rlsReview(@Param("keyword") String keyword, String keyword1);
 	
 	@Modifying
-	@Query(value="update rls r set r.freeze =:keyword WHERE ds_id=:keyword1 and project_duration=:keyword2",nativeQuery = true)
-	void rlsFreeze(@Param("keyword") String keyword, String keyword1,String keyword2);
+	@Query(value="update t_dealspecs r set r.freeze =:keyword WHERE BID_DETAILS_ID=:keyword1 ",nativeQuery = true)
+	void rlsFreeze(@Param("keyword") String keyword, String keyword1);
 }

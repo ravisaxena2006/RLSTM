@@ -62,25 +62,20 @@ public class RLSControllerTest {
 		String trackingNumber=getTimestampNumber();
 		String creationDate=getCurrentDateTime();
 		
-		// code for Review and freeze
-		
-				String ds_id1 = null;
-				if(dsId1 != 0) {
-					ds_id1 = Integer.toString(dsId1);
-				}
-						String review = null;		
-						review = request.getParameter("review");
-					String freeze = null;
-						freeze = request.getParameter("freeze");
-					
-					if(review != null && review.equalsIgnoreCase("y") ) {
-						
-						rlsdao.updateRLSReview(review,ds_id1, project_duration);
-						}
-						
-						if(freeze != null && freeze.equalsIgnoreCase("f")) {
-							rlsdao.updateRLSFreeze(freeze,ds_id1, project_duration );
-						}
+		/*
+		 * // code for Review and freeze
+		 * 
+		 * String ds_id1 = null; if(dsId1 != 0) { ds_id1 = Integer.toString(dsId1); }
+		 * String review = null; review = request.getParameter("review"); String freeze
+		 * = null; freeze = request.getParameter("freeze");
+		 * 
+		 * if(review != null && review.equalsIgnoreCase("y") ) {
+		 * 
+		 * rlsdao.updateRLSReview(review,ds_id1); }
+		 * 
+		 * if(freeze != null && freeze.equalsIgnoreCase("f")) {
+		 * rlsdao.updateRLSFreeze(freeze,ds_id1); }
+		 */
 		
 		List<RLS> rlsListLatest= rlsDao.getRLSDetailsLatest(dsId1);
 		int count=rlsListLatest.size();
@@ -111,8 +106,9 @@ public class RLSControllerTest {
 		mav2.addObject("rlsDetailsSorted", rlsListSorted);
 		mav2.addObject("rlsDetailsSize",count);
 		mav2.addObject("project_duration", project_duration);
-		mav2.addObject("review", review);
-        mav2.addObject("freeze", freeze);
+			/*
+			 * mav2.addObject("review", review); mav2.addObject("freeze", freeze);
+			 */
 		return mav2;
 		}
 	}

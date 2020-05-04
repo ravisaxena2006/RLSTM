@@ -107,8 +107,20 @@
                                 aria-hidden="true"></i>Deal Specs</a>
                     </li>
                     </c:if>
- 
-                    
+                    <c:choose>
+		 	<c:when test="${sessionScope.roleName=='Bid Manager'}">
+                         <li>
+                        <a href="/access" class="disabled waves-effect"><i class="disabled fa fa-columns fa-fw"
+                                aria-hidden="true"></i>Access Manager</a>
+                    </li>
+                    </c:when>
+			 <c:otherwise>
+			 <li>
+                        <a href="/access" class="waves-effect"><i class="fa fa-columns fa-fw"
+                                aria-hidden="true"></i>Access Manager</a>
+                    </li>
+                    </c:otherwise>
+			 </c:choose>
                 </ul>
                
             </div>

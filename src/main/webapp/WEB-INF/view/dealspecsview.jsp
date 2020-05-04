@@ -13,7 +13,7 @@
 
 <div class="container-fluid">
 	
-		<form:form action="/bidview" method="get" modelattribute="deal">
+		<form:form action="/save" method="post" modelattribute="deal">
 
 
 			<h2 class="text-center">
@@ -99,8 +99,8 @@
 										readonly="readonly"> <label>RFP \ Bid
 										Submission Date*</label><br> <input type="text"
 										name="BID_SUBMISSION_DATE"
-										value="${deal.BID_SUBMISSION_DATE }" class="form-control"
-										readonly="readonly" required>
+										value="${deal.BID_SUBMISSION_DATE }" class="form-control datepicker"
+										readonly="readonly">
 
 								</div>
 								<div class="col-md-6">
@@ -114,16 +114,16 @@
 										value="${deal.ANNUAL_IT_SPEND_OF_CUSTOMER }"
 										class="form-control" readonly="readonly"> <label
 										id="CONTRACT_SIGNED_STATUS">Contract (MSSA) signed
-										(Y/N) </label><br> <input type="text" name="PROJECT_STATRT_DATE"
+										(Y/N) </label><br> <input type="text" name="CONTRACT_SIGNED_STATUS"
 										value="${deal.CONTRACT_SIGNED_STATUS }" class="form-control"
 										readonly="readonly"> <label>Project Duration(
 										Yrs)*</label><br> <input type="text" name="PROJECT_DURATION"
-										value="${deal.PROJECT_DURATION }" class="form-control"
-										readonly="readonly" required> <label>Project
+										value="${deal.PROJECT_DURATION}" class="form-control"
+										readonly="readonly"> <label>Project
 										Start Date / Month</label><br> <input type="text"
-										name="PROJECT_STATRT_DATE"
-										value="${deal.PROJECT_STATRT_DATE }" class="form-control"
-										readonly="readonly">
+										name="PROJECT_START_DATE"
+										value="${deal.PROJECT_START_DATE }" class="form-control datepicker"
+										>
 								</div>
 							</div>
 						</div>
@@ -164,7 +164,7 @@
 										class="form-control" readonly="readonly" required> <label>Any
 										other business intelligence</label><br> <input type="text"
 										name="ANY_OTHER_BUSSINESS_INTL"
-										value="${deal.ANY_OTHER_BUSSINESS_INTL }" class="form-control"
+										value="${deal.ANY_OTHER_BUSSINESS_INTL}" class="form-control"
 										readonly="readonly">
 								</div>
 							</div>
@@ -325,20 +325,43 @@
 <div class="row">
 				<div class="col-md-6">
 				<label>Select Towers</label><br>
+					  <c:if test="${towerCount != 0}">
 				<select name="towers" id="towers" class="form-control" multiple disabled="disabled" >
-				  <c:forEach items="${towerList}" var="tower">
+				  <c:forEach items="${towerList}" var="tower">			
 		          <option value="${tower.towerId}">${tower.tower}</option>
 		          </c:forEach>
-	 	        </select>
+		           </select>
+		          </c:if>
+		          
+		          <c:if test="${towerCount == 0}">
+		          <select name="towers" id="towers" class="form-control" multiple >		
+		    <c:forEach items="${towerList}" var="tower">
+		        <option value="${tower.towerId}">${tower.tower}</option>
+		    </c:forEach>
+	 	  </select>
+		          </c:if>
+		          
+	 	       
 	 	        </div>
 	 	        
 				<div class="col-md-6">
 	 	        <label>Select Vertical</label><br>
+	 	        <c:if test="${verticalCount != 0}">
                  <select id="verticals" name="verticals" class="form-control" multiple disabled="disabled">
 		         <c:forEach items="${verticals}" var="vertical">
 		         <option value="${vertical.verticalId}">${vertical.vertical}</option>	        
 		         </c:forEach>	    
 		         </select>
+		         </c:if>
+		         
+		         <c:if test="${verticalCount == 0}">
+		         <label>Select Vertical</label><br>
+   <select id="verticals" name="verticals" class="form-control" multiple  >
+		  <c:forEach items="${verticals}" var="vertical">
+		        <option value="${vertical.verticalId}">${vertical.vertical}</option>
+		    </c:forEach>
+	 	  </select>
+		         </c:if>
 				</div>
 </div>	
 </c:if>
@@ -352,9 +375,9 @@
 				<div class="col-md-6">
 					<label>Received From:</label> <input type="text"
 						name="RECEIVED_FROM" value="${deal.RECEIVED_FROM}"
-						class="form-control" readonly="readonly"> <label>Received
-						Date*:</label> <input type="text" name="RECEIVED_DATE"
-						value="${deal.RECEIVED_DATE}" class="form-control">
+						class="form-control" readonly="readonly">
+						 <label>Received Date*:</label> <input type="text" name="RECEIVED_DATE"
+						value="${deal.RECEIVED_DATE}" class="form-control datepicker">
 				</div>
 			</div>
 			<br>
@@ -385,4 +408,12 @@ var verticalSelect = [];
   		      </c:forEach>
     
     $('#verticals').val(verticalSelect);
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script>
+$(function() {  
+    $( ".datepicker" ).datepicker();  
+ }); 
 </script>

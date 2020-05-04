@@ -22,11 +22,11 @@ public class RLSDao2 {
 	@Autowired
 	RLSReviewRepo repore;
 	
-	public void updateRLSReview(String review ,String dl_id, String projectDuration) {
-		 repore.rlsReview(review,dl_id, projectDuration);
+	public void updateRLSReview(String review ,String dl_id) {
+		 repore.rlsReview(review,dl_id);
 		}
 		 
-		public void updateRLSFreeze(String freeze,String dl_id, String projectDuration) {
-			repore.rlsFreeze(freeze,dl_id, projectDuration);
+		public void updateRLSFreeze(String freeze,String dl_id) {
+			repore.rlsFreeze(freeze,dl_id);
 		}
 }

@@ -338,7 +338,7 @@ public class BoughtOutsController {
 	 * }
 	 */
 	@RequestMapping("/BoughtOutsView")
-	public ModelAndView getProjectCostsView(HttpServletRequest request, HttpServletResponse res ) {
+	public ModelAndView getBoughtOutsView(HttpServletRequest request, HttpServletResponse res ) {
 		ModelAndView mav = new ModelAndView("BoughtOut");
 		System.out.println("Inside View Bought Count");
 		String dl_id=request.getParameter("dsld");

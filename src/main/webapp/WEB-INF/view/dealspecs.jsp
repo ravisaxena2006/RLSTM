@@ -83,7 +83,7 @@
 					</select> <label>Project Duration( Yrs)*</label><br> <input type="text"
 						name="PROJECT_DURATION" class="form-control" required> <label>Project
 						Start Date / Month</label><br> <input type="text"
-						name="PROJECT_STATRT_DATE" class="form-control datepicker">
+						name="PROJECT_START_DATE" class="form-control datepicker">
 				</div>
 			</div>
 			</div>

@@ -58,23 +58,23 @@ th {
   	<th rowspan=2 align="center" bgcolor="#66b3ff">Amortize</th>
  	<th rowspan=2 align="center" bgcolor="#66b3ff">Quote Currency</th>
  	<th rowspan=2 align="center" bgcolor="#66b3ff">Quote Exists?</th>
- 	 	<!-- change by DC -->
- 	  <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}">
+ 	 	<%-- <!-- change by DC -->
+ 	  <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}"> --%>
  	<th rowspan=2 align="center" bgcolor="#66b3ff"> Price Total</th>
    	 <th id="l1" colspan="auto" align="center" bgcolor="#66b3ff">Licence\Equipments</th> 
   	 <th id="sm" colspan="auto" align="center" bgcolor="#66b3ff">Support & Maintenance</th>
   	<th rowspan=2 align="center" bgcolor="#66b3ff">Professional Service</th>
  	<th rowspan=2 align="center" bgcolor="#66b3ff">Training</th>
   	 <th id="oth" colspan="auto" align="center" bgcolor="#66b3ff">Other</th>
-  	</c:if>
+  	<%-- </c:if> --%>
   	
   	</tr>
     <tr>
    		<th align="center" bgcolor="#99CCFF">Tower</th>
 		<th align="center" bgcolor="#99CCFF">Vendor</th>
      	<th align="center" bgcolor="#99CCFF">Product Description</th>
-     	 	<!-- change by DC -->
-       <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}">
+     	<%--  	<!-- change by DC -->
+       <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}"> --%>
        	<th class="y1" align="center" bgcolor="#99CCFF">Y1</th>
  		<th class="y2" align="center" bgcolor="#99CCFF">Y2</th>
  		<th class="y3" align="center" bgcolor="#99CCFF">Y3</th>
@@ -110,7 +110,7 @@ th {
      	<th class="o9" align="center" bgcolor="#99CCFF">Y9</th>
 		<th class="o10" align="center" bgcolor="#99CCFF">Y10</th>
 		<th align="center" bgcolor="#99CCFF">Other Total</th>
-	</c:if>
+	<%-- </c:if> --%>
 		 
 		 
     </tr>
@@ -158,8 +158,8 @@ th {
 		        ${quoteExists.quoteExistsId == b.quoteExistsId ? 'selected="selected"' : ''}>${quoteExists.quoteExists}</option>
 		    </c:forEach></select>
 		    
-  	 	<!-- change by DC -->
-		  <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}">
+  	 	<%-- <!-- change by DC -->
+		  <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}"> --%>
 		  <td align="left"><Input type="text" pattern="\d*" title="Please Enter Number" size=10 name="boughtOuts[${loop.index}].priceTotal" id="priceTotal" value="${b.priceTotal}"></td>
 		  
 		  <td class="y1" align="left"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="r${loop.index} ty1" name="boughtOuts[${loop.index}].licenceYear1" id="licenceYear1" value="${b.licenceYear1}"></td>
@@ -203,11 +203,11 @@ th {
 		  <td align="left" class="o10"><Input type="text" class="o${loop.index} oty10" pattern="\d*" size=10 title=" Please Enter Number" name="boughtOuts[${loop.index}].otherYear10" id="otherYear10" value="${b.otherYear10}"></td>
 		  <td align="left"><Input type="text" class="myTotal2" readonly="readonly" size=10 name="boughtOuts[${loop.index}].otherTotal" id="otherTotal${loop.index}" value="${b.otherTotal}">
 		  </td>
-	</c:if>
+	<%-- </c:if> --%>
     </tr>
     </c:forEach>
     </tbody>
-   <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}">
+  <%--  <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}"> --%>
     <tfoot>
 	<tr>
 	<td><span></span></td>
@@ -258,20 +258,35 @@ th {
 	<span style="color:blue;font-weight:bold" id="grandTotal2"></span></td>
 	</tr>
 	</tfoot>
-	</c:if>
+	<%-- </c:if> --%>
    </table>
  </div>
   <table>
-   <tr>
+    <tr>
 		<td align="left">
 		<c:choose>
-		 <c:when test="${sessionScope.roleName=='CMC SPOC' || sessionScope.roleName=='PreSales Head'}">
-		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()" disabled>Add More</button>
-		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" disabled>Submit</button>
+		 <c:when test="${sessionScope.roleName=='Competency SPOCs'}">
+		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()">Add More</button>
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		</c:when>
+		<c:otherwise>
+		
+        <c:choose>
+		<c:when test="${sessionScope.roleName=='CMC SPOC' || sessionScope.roleName=='Solution Architect' && sessionScope.review=='y'}">
+		<br>
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		<marquee width="70%" direction="left" height="100px">
+           Review is on
+         </marquee>
+		</c:when>
+		<c:when test="${sessionScope.roleName=='Solution Architect' || sessionScope.roleName=='PreSales Head' && sessionScope.freeze=='y'}">
+		
 		</c:when>
 		<c:otherwise>
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()">Add More</button>
 		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		</c:otherwise>
+		</c:choose>
 		</c:otherwise>
 		</c:choose>
 		</td>
@@ -325,9 +340,9 @@ var user=document.getElementById("user").value;
 	    addMoreString += '<td align="left"><select name="boughtOuts['+row+'].quoteExistsId">'
 		 				    +document.getElementById("quoteExistsId").innerHTML+' </select><input type="hidden" name="boughtOuts['+row+'].createdBy" value="'+createdBy1+'"></td>';
 
-		 //change by DC
+		 /* //change by DC
 		 if(user=="Sales SPOC" || user=="PreSales Head")
-		 	{
+		 	{ */
         addMoreString +=  '<td align="left"><Input type="text" size =11 name="boughtOuts['+row+'].priceTotal" value="" ></td>';
 
         addMoreString +=  '<td align="left" class="y1"><Input type="text" class="'+horizontalClass+' ty1"  name="boughtOuts['+row+'].licenceYear1" value="" size =10 ></td>';
@@ -371,7 +386,7 @@ var user=document.getElementById("user").value;
         addMoreString +=  '<td align="left" class="o9"><Input type="text" class="'+horizontalClass2+' oty9" name="boughtOuts['+row+'].otherYear9" value="" size =10></td>';
         addMoreString +=  '<td align="left" class="o10"><Input type="text" class="'+horizontalClass2+' oty10" name="boughtOuts['+row+'].otherYear10" value="" size =10></td>';
         addMoreString +=  '<td align="left"><Input type="text" class="myTotal2" name="boughtOuts['+row+'].otherTotal" value="" id="'+otherTotal+'" size =10></td>';
-		 	}
+		 	
         addMoreString +=  '<td align="left"><button type="button" class="btn btn-info mr-1" name="remove" value="Remove" onclick="DeleteRow('+row+')">Remove</button></td>';
 
 		

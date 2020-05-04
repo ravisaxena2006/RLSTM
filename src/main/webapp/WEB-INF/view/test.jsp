@@ -181,7 +181,7 @@ th {
      <tr>
 		<td align="left">
 		<c:choose>
-		<c:when test="${sessionScope.roleName=='CMC SPOC' || sessionScope.roleName=='PreSales Head'}">
+		<c:when test="${sessionScope.roleName=='PreSales Head'}">
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()" disabled>Add More</button>
 		<div class="file btn btn-info mr-1"><input type="file" name="file" id="filepath" accept=".xls,.xlsx" required="required" disabled/>	</div>
 		<br> <br>
@@ -191,13 +191,16 @@ th {
 		<c:otherwise>
 		
         <c:choose>
-		<c:when test="${sessionScope.roleName=='Solution Architect' && review=='y'}">
+		<c:when test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='CMC SPOC' || sessionScope.roleName=='Delivery SPOCS' || sessionScope.roleName=='Solution Architect' && sessionScope.review=='y'}">
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()" disabled>Add More</button>
 		<div class="file btn btn-info mr-1"><input type="file" name="file" id="filepath" accept=".xls,.xlsx" readonly="readonly"/>	</div>
 		<br> <br>
 		<button type="submit" class="btn btn-info" name="submit" id="submit">Submit</button>
+		<marquee width="70%" direction="left" height="100px">
+         Review is on
+       </marquee>
 		</c:when>
-		<c:when test="${sessionScope.roleName=='Solution Architect' && freeze=='f'}">
+		<c:when test="${sessionScope.roleName=='Solution Architect' && sessionScope.freeze=='y'}">
 		
 		</c:when>
 		<c:otherwise>

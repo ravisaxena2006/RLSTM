@@ -29,7 +29,7 @@ th {
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12" style="margin-top: 15px;">
-			<h1 align="center">BIDING LIST</h1>
+			<h1 align="center">BIDDING LIST</h1>
 			<form:form action="/view" method="get" modelAttribute="deal">
 			<div class ="table-responsive">
 				<table class="table table-bordered" >

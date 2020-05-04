@@ -58,6 +58,7 @@ public class DealSpecsDao {
 
 	public void add(DealSpecs deals) {
 		dealdao.save(deals);
+		
 	}
 
 	public DealSpecs findByBidId(Long bID_DETAILS_ID) {
@@ -100,5 +101,7 @@ public class DealSpecsDao {
     	 return verticalList;
     }
 
-   
+    public void updatedeal(String received_date, String project_start_date, String project_id) {
+    	dealdao.updatedeal(received_date, project_start_date, project_id);
+	}
 }
