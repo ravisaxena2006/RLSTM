@@ -30,7 +30,8 @@ public class DealSpecs {
 	private String PRE_SALES_CONTACT_NAME ;
 	private String EFFORT_APPROVED_BY;
 
-	//Basics	
+	//Basics
+	@Column(unique = true)
 	private String PROJECT_ID;	
 	private String INTIMATION_TO_BID_AUDIT_TEAM;
 	
