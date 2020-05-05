@@ -70,6 +70,7 @@ public class HomeController {
 		return mav;
 	}
 
+	/*
 	@RequestMapping("/save")
 	public ModelAndView save(@ModelAttribute("deal") DealSpecs dealobj) {
 		ModelAndView mav = new ModelAndView("save");
@@ -84,7 +85,7 @@ public class HomeController {
 		return mav;
 
 	}
-
+*/
 	@RequestMapping(value ="/view", method = RequestMethod.GET,headers = "Accept=application/json")
 	public ModelAndView bidview(@ModelAttribute("deal") DealSpecs dealobj ,HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("bidmanager");

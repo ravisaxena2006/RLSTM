@@ -121,6 +121,10 @@
                     </li>
                     </c:otherwise>
 			 </c:choose>
+			  <li >
+                        <a href="/userRole" class="waves-effect" ><i class="fa fa-columns fa-fw"
+                                aria-hidden="true"></i>Role Mapping Manager</a>
+                    </li>
                 </ul>
                
             </div>
