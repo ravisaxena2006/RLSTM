@@ -4,6 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<jsp:include page="header.jsp" />
 
 
 <html>
@@ -38,32 +39,110 @@ th {
 </style>
 </head>
 <body>
-<h1>User Role Mapping</h1>
+<div class="container-fluid">
+<h2 class="text-center">
+				<b>User Role Mapping</b>
+			</h2>
+<br>
+<div class="row">
+                    <div class="col-md-12" style ="margin-top:20px;">
 
-<form:form action="" method="post">
+<form:form action="saveRoles" method="post">
+<div style="overflow-x:auto;">
    <table class="table table-bordered" id="tblRLS">
-   <tr>	
-   		<td>
-   		Users<select id="user" name="user">
-					<c:forEach items="${usersList}" var="user">
-		       	   <option value="${user.usersnum}">${user.loginId}</option>
-		    		</c:forEach></select>
-		 </td>
-		 <td>
-   		Roles<select id="role" name="role">
-					<c:forEach items="${rolesList}" var="role">
-		       	   <option value="${role.roleId}">${role.role}</option>
-		    		</c:forEach></select>
-
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<button type="submit" name="submit" id="submit">Submit</button>
-</td>
+    	<thead>
+		   <tr>	
+		   		<th>Users</th>
+		   		<th>Roles</th>
+		   	</tr>
+		</thead>
+		<tbody>
+		   	<tr>
+		   		<td><select id="user" name="userId">
+		   					<option value=0>select</option>
+							<c:forEach items="${usersList}" var="user">
+				       	   <option value="${user.usersnum}">${user.loginId}</option>
+				    		</c:forEach></select>
+				 </td>
+				
+		   		 <td><select id="role" name="roleId" multiple>
+							<c:forEach items="${rolesList}" var="role">
+				       	   <option value="${role.roleId}">${role.role}</option>
+				    		</c:forEach></select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+				</td>
+			</tr>
+	  </tbody>
 </table>
+</div>
 </form:form>
 
+
+
+<br><br><br>
+<div style="overflow-x:auto;">
+  <table class="table table-bordered table-sm" id="tblRLS">
+  	<thead>
+   	 <tr>
+   		<th align="left">User</th>
+		<th align="left">Roles Assigned</th>
+	 </tr>
+    </thead>
+    <tbody id="roles">
+   
+    </tbody>
+	
+ </table>
+ </div>
+
+
+
+ <script>
+    //document.ready start
+	$(document).ready(function(){
+		
+				// For 
+			 $('#user').on('change', function(){
+
+				//alert("Hello");
+				var userId = $(this).val();
+				$.ajax({
+					type: 'GET',
+                    url: '/getRoles',
+                    data:{ user: userId}, 
+                   
+					success: function(result) {
+						//alert("Hello2"+result);
+						var result = JSON.parse(result);
+						
+						//alert("Hello3"+result);
+						var s = '';
+						for(var i = 0; i < result.length; i++) {
+							s += '<tr><td>' + result[i].loginId + '</td><td>'+result[i].role+ '</td></tr>';
+							
+						} 
+						//alert("Hello4"+s);
+						$('#roles').html(s); 
+					},
+					error: function () {
+	                    alert("error");
+	                }
+				});
+			});
+	//End
+ 		   	
+	});
+	//document.ready end
+</script>
+
+</div>
+</div>
+</div>
+<jsp:include page="footer.jsp" />
 
 </body>
 </html>
