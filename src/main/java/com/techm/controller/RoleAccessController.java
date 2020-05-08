@@ -97,42 +97,36 @@ public class RoleAccessController {
 	*/
 	
  	 
- 	 @RequestMapping("/saveGrig")
-		public ModelAndView save(@ModelAttribute("userRoleAccess") UserRoleAccess userRoleAccess,HttpServletRequest request, HttpServletResponse res ) {
-			ModelAndView mav = new ModelAndView("roleaccess");
-			
-			String role=request.getParameter("role");
-			String module=request.getParameter("module");
-			String accessRight=request.getParameter("accessRight");
-			// String accessRight[]=request.getParameterValues("accessRight");
-			Integer  roleInt=Integer.parseInt(role);
-			Integer  moduleInt=Integer.parseInt(module);
-			Integer  accessRightInt=Integer.parseInt(accessRight);
-			int flag=0;
-			
-			try {
-				
-				
-			 
-					 System.out.println("Role: "+role);
-					 mappingDao.addRoleAccess(accessRightInt,roleInt,moduleInt);
-					 flag=1;
-				 
-			
-			}catch (Exception e) {
-		           e.printStackTrace();
-		           mav.addObject("message", "Error");
-		           return new ModelAndView("error");
-		           
-		       }
-			
-			 if(flag==1)
-			 {
-			 mav.addObject("success","Save SuccessFully");
-			 }
-			return mav;
-
-		}
+	/*
+	 * @RequestMapping("/saveGrig") public ModelAndView
+	 * save(@ModelAttribute("userRoleAccess") UserRoleAccess
+	 * userRoleAccess,HttpServletRequest request, HttpServletResponse res ) {
+	 * ModelAndView mav = new ModelAndView("roleaccess");
+	 * 
+	 * String role=request.getParameter("role"); String
+	 * module=request.getParameter("module"); String
+	 * accessRight=request.getParameter("accessRight"); // String
+	 * accessRight[]=request.getParameterValues("accessRight"); Integer
+	 * roleInt=Integer.parseInt(role); Integer moduleInt=Integer.parseInt(module);
+	 * Integer accessRightInt=Integer.parseInt(accessRight); int flag=0;
+	 * 
+	 * try {
+	 * 
+	 * 
+	 * 
+	 * System.out.println("Role: "+role);
+	 * mappingDao.addRoleAccess(accessRightInt,roleInt,moduleInt); flag=1;
+	 * 
+	 * 
+	 * }catch (Exception e) { e.printStackTrace(); mav.addObject("message",
+	 * "Error"); return new ModelAndView("error");
+	 * 
+	 * }
+	 * 
+	 * if(flag==1) { mav.addObject("success","Save SuccessFully"); } return mav;
+	 * 
+	 * }
+	 */
 	 
  	 
  	 
@@ -143,7 +137,7 @@ public class RoleAccessController {
  	 
 	 
 	 
-	/* @RequestMapping("/saveGrig")
+	 @RequestMapping("/saveGrig")
 		public ModelAndView save(@ModelAttribute("userRoleAccess") UserRoleAccess userRoleAccess,HttpServletRequest request, HttpServletResponse res ) {
 			ModelAndView mav = new ModelAndView("roleaccess");
 			
@@ -178,11 +172,13 @@ public class RoleAccessController {
 			 if(flag==1)
 			 {
 			 mav.addObject("success","Save SuccessFully");
+			 List<RoleAccess>  roleAccess =mappingDao.getRoleAccessById(role);
+			 mav.addObject("roleAccess", roleAccess);
 			 }
 			return mav;
 
 		}
-	 */
+	 
 	
 	@ModelAttribute
     public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res){

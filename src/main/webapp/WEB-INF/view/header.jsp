@@ -125,6 +125,10 @@
                         <a href="/userRole" class="waves-effect" ><i class="fa fa-columns fa-fw"
                                 aria-hidden="true"></i>Role Mapping Manager</a>
                     </li>
+              <li >
+                        <a href="/roleaccess" class="waves-effect" ><i class="fa fa-columns fa-fw"
+                                aria-hidden="true"></i>Role Access Manager</a>
+                    </li>
                 </ul>
                
             </div>

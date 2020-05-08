@@ -46,7 +46,7 @@ public class DealSpecs {
 	private String OPPORTUNITY_DESCRIPTION;
 	
 	private int PROJECT_DURATION;
-	
+	private int optional_duration;
 	
 	private String BID_SUBMISSION_DATE;
 	
@@ -111,8 +111,7 @@ public class DealSpecs {
 	private String BA_COMMISSION;
 	
 	private String RECEIVED_FROM;
-	@Temporal(TemporalType.DATE)
-	private Date RECEIVED_DATE;
+	private String RECEIVED_DATE;
 	
 	private String review;
  	private String freeze;
@@ -382,19 +381,22 @@ public class DealSpecs {
 	public void setRECEIVED_FROM(String rECEIVED_FROM) {
 		RECEIVED_FROM = rECEIVED_FROM;
 	}
-	public Date getRECEIVED_DATE() {
-		return RECEIVED_DATE;
-	}
-	public void setRECEIVED_DATE(Date rECEIVED_DATE) {
-		if(rECEIVED_DATE != null) {
-		this.RECEIVED_DATE = new Date(rECEIVED_DATE.getTime());
-		}
-		else {
-			this.RECEIVED_DATE = null;
-		}
-	}
+
+	/*
+	 * public Date getRECEIVED_DATE() { return RECEIVED_DATE; } public void
+	 * setRECEIVED_DATE(Date rECEIVED_DATE) { if(rECEIVED_DATE != null) {
+	 * this.RECEIVED_DATE = new Date(rECEIVED_DATE.getTime()); } else {
+	 * this.RECEIVED_DATE = null; } }
+	 */
+	
 	public Long getPROJECT_ID_STATUS() {
 		return PROJECT_ID_STATUS;
+	}
+	public String getRECEIVED_DATE() {
+		return RECEIVED_DATE;
+	}
+	public void setRECEIVED_DATE(String rECEIVED_DATE) {
+		RECEIVED_DATE = rECEIVED_DATE;
 	}
 	public void setPROJECT_ID_STATUS(Long pROJECT_ID_STATUS) {
 		PROJECT_ID_STATUS = pROJECT_ID_STATUS;
@@ -434,6 +436,12 @@ public class DealSpecs {
 	}
 	public void setFreeze(String freeze) {
 		this.freeze = freeze;
+	}
+	public int getOptional_duration() {
+		return optional_duration;
+	}
+	public void setOptional_duration(int optional_duration) {
+		this.optional_duration = optional_duration;
 	}
 	
 	

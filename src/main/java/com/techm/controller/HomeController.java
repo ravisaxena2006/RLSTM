@@ -2,6 +2,7 @@ package com.techm.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.techm.bean.MappingRole;
@@ -70,12 +72,12 @@ public class HomeController {
 		return mav;
 	}
 
-	/*
 	@RequestMapping("/save")
 	public ModelAndView save(@ModelAttribute("deal") DealSpecs dealobj) {
 		ModelAndView mav = new ModelAndView("save");
 		try {
 		dao.add(dealobj);
+		System.out.println(dealobj.getBID_DETAILS_ID());
 		}catch (Exception e) {
 	           e.printStackTrace();
 	           mav.addObject("message", "Error");
@@ -85,7 +87,7 @@ public class HomeController {
 		return mav;
 
 	}
-*/
+
 	@RequestMapping(value ="/view", method = RequestMethod.GET,headers = "Accept=application/json")
 	public ModelAndView bidview(@ModelAttribute("deal") DealSpecs dealobj ,HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("bidmanager");
@@ -115,7 +117,9 @@ public class HomeController {
 		DealSpecs dealobj = dao.findByBidId(bID_DETAILS_ID);
 		String creationDate=getCurrentDateTime();
 		Integer project_duration=   dealobj.getPROJECT_DURATION();
-		System.out.println(project_duration);
+		Integer optional_duration = dealobj.getOptional_duration();
+		Integer total_duration = project_duration+optional_duration ;
+		System.out.println(total_duration);
 		Set<Integer> towerselected = dealobj.getTowers();
 		System.out.println(towerselected);
 		request.setAttribute("towerselected", towerselected);
@@ -126,39 +130,22 @@ public class HomeController {
 		Integer verticalCount = verticalselected.size();
 		HttpSession session=request.getSession();
 		 session.setAttribute("Bid_ID",bID_DETAILS_ID);
-		 session.setAttribute("duryr", project_duration);
+		 session.setAttribute("duryr", total_duration);
 		 mav.addObject("verticalCount", verticalCount) ;
 		 System.out.println("vertical count:" +verticalCount);
 		 mav.addObject("towerCount", towerCount) ;
 		 System.out.println("tower count:" +towerCount);
 		mav.addObject("deal", dealobj);
-		mav.addObject("duryr", project_duration);
+		mav.addObject("duryr", total_duration);
 		mav.addObject("creationDate",creationDate);
+		mav.addObject("bID_DETAILS_ID",bID_DETAILS_ID);
 		return mav;
-	}
-	
-	@RequestMapping("/save")
-	public ModelAndView update(@ModelAttribute("deal") DealSpecs dealobj,HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("save");
-		try {
-			String received_date = request.getParameter("received_date");
-			String project_start_date = request.getParameter("project_start_date");;
-			String project_id = request.getParameter("project_id");;
-		dao.updatedeal(received_date, project_start_date, project_id);
-		}catch (Exception e) {
-	           e.printStackTrace();
-	           mav.addObject("message", "Error");
-	           return new ModelAndView("error");
-	           
-	       }
-		
-		return mav;
-
-	}
+	}	
+	 
 	
 	@RequestMapping(value ="/access", method = RequestMethod.GET,headers = "Accept=application/json")
 	public ModelAndView access(@ModelAttribute("deal") DealSpecs dealobj ,HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("bidmanager1");
+		ModelAndView mav = new ModelAndView("accessManager");
 		HttpSession session=request.getSession(true);
 		String roleName=null;
 		String loginId=(String) session.getAttribute("name");
@@ -221,15 +208,12 @@ public class HomeController {
         model.addAttribute("projectIdList", projectIdList) ; 
         
         List <Tower> towerList = dao.getTower();
-       // Integer towerCount = towerList.size();
         model.addAttribute("towerList", towerList);
        
 
         List<Vertical> verticals = dao.getVertical();
-      //  Integer verticalCount = verticals.size();
         model.addAttribute("verticals", verticals) ;
-      //  model.addAttribute("verticalCount", verticalCount) ;
-        //System.out.println(verticalCount);
+    
     }
 	
 	public String getCurrentDateTime(){

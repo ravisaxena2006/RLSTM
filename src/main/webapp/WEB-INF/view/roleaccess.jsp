@@ -7,10 +7,7 @@
 
 
 
-<head>
-
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<jsp:include page="header.jsp" />
  <script src="/js/jquery.min.js"></script> 
 
 <style>
@@ -38,9 +35,11 @@ th {
         cursor: default;
     }
 </style>
-</head>
-<body>
-<h1>User Role Access Mapping</h1>
+<div class="container-fluid">
+<h2 class="text-center">
+				<b>User Role Access Mapping</b>
+			</h2>
+<br>
 
 
 <form:form  action="/getGrid" method="get">
@@ -49,16 +48,16 @@ th {
  
    <tr>	
    		
-		 <td>
-   		Roles<select id="role1" name="role">
+		 <td><label>Roles</label>
+   		<select id="role1" name="role">
 					<c:forEach items="${rolesList}" var="role">
 		       	   <option value="${role.roleId}">${role.role}</option>
 		    		</c:forEach></select>
 
 </td>
 
-	 <td colspan="2">
-<button type="submit" name="submit" id="submit">Submit</button>
+	 <td>
+<button type="submit" name="submit" id="submit">Search</button>
 </td>
 
 </tr>
@@ -124,37 +123,37 @@ th {
    <table class="table table-bordered" id="tblRLS">
    <tr>	
    		
-		 <td>
-   		Roles<select id="roleID1" name="role" >
+		 <td><label>Roles</label><br>
+   		<select id="roleID1" name="role" >
 					<c:forEach items="${rolesList}" var="role">
 		       	   <option value="${role.roleId}">${role.role}</option>
 		    		</c:forEach></select>
 
 </td>
 
-	 <td>
-   		Modules<select id="moduleID1" name="module" >
+	 <td><label>Modules</label><br>
+   		<select id="moduleID1" name="module" >
 					<c:forEach items="${moduleList}" var="module">
 		       	   <option value="${module.moduleId}">${module.module}</option>
 		    		</c:forEach></select>
 
 </td>
 
- <td>
+<%--  <td>
    		Access Right<select id="accessRightID1" name="accessRight">
 					<c:forEach items="${accessRightList}" var="access">
 		       	   <option value="${access.accessRightId}">${access.accessRight}</option>
 		    		</c:forEach></select>
 
-</td>
+</td> --%>
 
-<%--  <td>
-   		Access Right<select id="accessRightID1" name="accessRight" multiple>
+ <td><label>Access Right</label><br>
+   		<select id="accessRightID1" name="accessRight" multiple>
 					<c:forEach items="${accessRightList}" var="access">
 		       	   <option value="${access.accessRightId}">${access.accessRight}</option>
 		    		</c:forEach></select>
 
-</td> --%> 
+</td> 
 
 </tr>
 <tr>
@@ -245,4 +244,5 @@ $('#role1').on('change', function(){
 }); */
 </script>
 </body>
-  
+</div>
+<jsp:include page="footer.jsp" />
