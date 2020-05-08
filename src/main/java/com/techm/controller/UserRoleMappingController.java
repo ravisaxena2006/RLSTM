@@ -70,7 +70,9 @@ public class UserRoleMappingController {
 		 }
 		 if(flag==1)
 		 {
-		 mav.addObject("success",msg);
+			 List<UserRoleMap> userRolesList=userRoledao.getRoles(userId);
+			 mav.addObject("userRolesList",userRolesList);
+			 mav.addObject("success",msg);
 		 }
 		 return mav;
 		}
