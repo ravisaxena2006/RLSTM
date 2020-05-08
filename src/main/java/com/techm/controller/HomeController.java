@@ -57,7 +57,7 @@ public class HomeController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/dealspecs", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "/dealspecs", method = RequestMethod.GET)
 	public ModelAndView adddealspecs() {
       
 		ModelAndView mav = new ModelAndView("dealspecs");
@@ -77,7 +77,6 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("save");
 		try {
 		dao.add(dealobj);
-		System.out.println(dealobj.getBID_DETAILS_ID());
 		}catch (Exception e) {
 	           e.printStackTrace();
 	           mav.addObject("message", "Error");
