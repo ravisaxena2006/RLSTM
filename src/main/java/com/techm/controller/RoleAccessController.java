@@ -142,22 +142,26 @@ public class RoleAccessController {
 			ModelAndView mav = new ModelAndView("roleaccess");
 			
 			String role=request.getParameter("role");
-			String module=request.getParameter("module");
+			//String module=request.getParameter("module");
 			//String accessRight=request.getParameter("accessRight");
 			 String accessRight[]=request.getParameterValues("accessRight");
-			Integer  roleInt=Integer.parseInt(role);
-			Integer  moduleInt=Integer.parseInt(module);
+			 String modules[]=request.getParameterValues("module");
+			//Integer  roleInt=Integer.parseInt(role);
+			//Integer  moduleInt=Integer.parseInt(module);
 			//Integer  accessRightInt=Integer.parseInt(accessRight);
 			int flag=0;
 			
 			try {
 				//roleAccessMappingDao.add(userRoleAccess);
 				
+				for(String module:modules)
+				 {
 				for(String access:accessRight)
 				 {
 					 System.out.println("Role: "+role);
-					 mappingDao.addRoleAccess(Integer.parseInt(access),roleInt,moduleInt);
+					 mappingDao.addRoleAccess(access,role,module);
 					 flag=1;
+				 }
 				 }
 			
 				

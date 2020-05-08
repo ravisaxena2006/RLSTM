@@ -132,7 +132,7 @@ th {
 </td>
 
 	 <td><label>Modules</label><br>
-   		<select id="moduleID1" name="module" >
+   		<select id="moduleID1" name="module" multiple>
 					<c:forEach items="${moduleList}" var="module">
 		       	   <option value="${module.moduleId}">${module.module}</option>
 		    		</c:forEach></select>

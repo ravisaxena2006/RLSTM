@@ -40,7 +40,7 @@ public class MappingDao {
 		
 	}
 	
-	public int addRoleAccess(int accessRight,int role,int module) {
+	public int addRoleAccess(String accessRight,String role,String module) {
 	    return jdbcTemplate.update(
 	      "INSERT INTO t_user_role_access (ROLE_ACCESS_ID, ROLE_ID,RECORD_STATUS,Module_id) VALUES (?, ?, ?, ?)", accessRight, role, "C", module);
 	}
