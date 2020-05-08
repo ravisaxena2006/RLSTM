@@ -149,6 +149,7 @@ public class RoleAccessController {
 			//Integer  roleInt=Integer.parseInt(role);
 			//Integer  moduleInt=Integer.parseInt(module);
 			//Integer  accessRightInt=Integer.parseInt(accessRight);
+			 mappingDao.update(role);
 			int flag=0;
 			
 			try {

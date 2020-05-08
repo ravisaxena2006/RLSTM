@@ -5,6 +5,9 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +24,7 @@ public class MappingDao {
 	
 	private final String SQL_role_access="SELECT mr.role,mm.module,mar.access_right,tura.role_access_id,tura.module_id,tura.`ROLE_ID` FROM `t_user_role_access` tura INNER JOIN `m_roles` mr ON mr.role_id=tura.role_id AND mr.record_status<>'D' INNER JOIN `m_module` mm ON mm.module_id=tura.module_id AND mm.record_status<>'D' INNER JOIN `m_access_right` mar ON mar. access_right_id=tura.role_access_id AND mar.record_status<>'D'  WHERE tura.record_status<>'D' AND tura.`ROLE_ID`=?";
 	
+	private final String SQL_update_role_access="update t_user_role_access set record_status='d' where role_id=?";
 	@Autowired
 	public MappingDao(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
@@ -44,6 +48,14 @@ public class MappingDao {
 	    return jdbcTemplate.update(
 	      "INSERT INTO t_user_role_access (ROLE_ACCESS_ID, ROLE_ID,RECORD_STATUS,Module_id) VALUES (?, ?, ?, ?)", accessRight, role, "C", module);
 	}
+	
+	public void update(String role) {
+		if(role!=null)
+		{
+			int roleId=Integer.parseInt(role);
+			jdbcTemplate.update(SQL_update_role_access,roleId);
+		}
+    }
 	
 	
 }
