@@ -96,39 +96,50 @@
                     <!-- <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span
                             class="hide-menu">RLS AUTOMATION Tool</span></h3> -->
                 </div>
-                <ul class="nav" id="side-menu">
-                 <li style="padding: 70px 0 0;">
-                        <a href="/view" class="waves-effect"><i class="fa fa-clock-o fa-fw"
-                                aria-hidden="true"></i>Bid Manager</a>
-                    </li>
-                    <c:if test="${sessionScope.roleName=='Bid Manager' || sessionScope.roleName=='Solution Architect' }">
-                	 <li >
-                        <a href="/dealspecs" class="waves-effect" ><i class="fa fa-columns fa-fw"
-                                aria-hidden="true"></i>Deal Specs</a>
-                    </li>
-                    </c:if>
-                    <c:choose>
-		 	<c:when test="${sessionScope.roleName=='Bid Manager'}">
-                         <li>
-                        <a href="/access" class="disabled waves-effect"><i class="disabled fa fa-columns fa-fw"
-                                aria-hidden="true"></i>Access Manager</a>
-                    </li>
-                    </c:when>
-			 <c:otherwise>
-			 <li>
-                        <a href="/access" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                aria-hidden="true"></i>Access Manager</a>
-                    </li>
-                    </c:otherwise>
-			 </c:choose>
-			  <li >
-                        <a href="/userRole" class="waves-effect" ><i class="fa fa-columns fa-fw"
-                                aria-hidden="true"></i>Role Mapping Manager</a>
-                    </li>
-              <li >
-                        <a href="/roleaccess" class="waves-effect" ><i class="fa fa-columns fa-fw"
-                                aria-hidden="true"></i>Role Access Manager</a>
-                    </li>
+            <ul class="nav" id="side-menu">
+               
+		 			        
+		                     
+		                   <li style="padding: 70px 0 0;">
+		                        <a href="/view" class="waves-effect"><i class="fa fa-clock-o fa-fw"
+		                                aria-hidden="true"></i>Bid Manager</a>
+		                    </li>
+		                    <c:if test="${sessionScope.roleName=='Bid Manager' || sessionScope.roleName=='Solution Architect' }">
+		                	 <li>
+		                        <a href="/dealspecs" class="waves-effect" ><i class="fa fa-columns fa-fw"
+		                                aria-hidden="true"></i>Deal Specs</a>
+		                    </li>
+		                    </c:if>
+		                    <c:choose>
+				 				<c:when test="${sessionScope.roleName=='Bid Manager'}">
+		                         <li>
+		                      	  <a href="/access" class="disabled waves-effect"><i class="disabled fa fa-columns fa-fw"
+		                                aria-hidden="true"></i>Access Manager</a>
+		                   		 </li>
+		                   		 </c:when>
+								 <c:otherwise>
+								 <li>
+		                        <a href="/access" class="waves-effect"><i class="fa fa-columns fa-fw"
+		                    	            aria-hidden="true"></i>Access Manager</a>
+		                	    </li>
+		               		    </c:otherwise>
+							 </c:choose>
+							 
+					<c:if test="${sessionScope.name=='Admin' || sessionScope.name=='admin'}">
+					
+		          		 <li>
+		                        <a href="userRole" class="waves-effect" ><i class="fa fa-columns fa-fw"
+		                                aria-hidden="true"></i>User Role Mapping </a>
+		                  </li>
+		                  <li>
+		                        <a href="/roleaccess" class="waves-effect" ><i class="fa fa-columns fa-fw"
+		                                aria-hidden="true"></i>Role Access Mapping </a>
+		                  </li>
+		                 
+		            	 
+		             </c:if>
+		              
+				
                 </ul>
                
             </div>
