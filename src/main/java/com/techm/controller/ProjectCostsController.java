@@ -1,18 +1,13 @@
 package com.techm.controller;
 
-
-
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -27,10 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -73,8 +66,8 @@ public class ProjectCostsController {
 		String timestamp=getTimestampNumber();
 		String creationDate=getCurrentDateTime(); 
 		String createdBy= (String) session.getAttribute("name");
-		String project_duration=null;
-		  project_duration=request.getParameter("durayear");
+		//String project_duration1=null;
+		String  project_duration1=request.getParameter("durayear");
 		
 		//List<ProjectCosts> uniqeList= new ArrayList<ProjectCosts>();	
 	     List<ProjectCosts> projectCostsviewTimp = projectCostsDao2.findByprojecTimptList(dl_id);
@@ -92,29 +85,22 @@ public class ProjectCostsController {
 				System.out.println(mappingRole.getRole());
 			}
 			
-			 String review = null;		
-				review = request.getParameter("review");
-			String freeze = null;
-				freeze = request.getParameter("freeze");
-			
-			if(review != null && review.equalsIgnoreCase("y") ) {
-				
-				projectCostsDao2.updateProjectCostReview(review,dl_id, project_duration);
-				}
-				
-				if(freeze != null && freeze.equalsIgnoreCase("f")) {
-					projectCostsDao2.updateProjectCostFreeze(freeze,dl_id, project_duration);
-				}
 				
 			String dlId=null;
 			String timestmp=null;
+			String project_duration=null;
 			List<ProjectCosts> timeStCurrent = projectCostsDao2.findCurrentDate();
 			if(timeStCurrent.size()!=0) {
 				
 				for(ProjectCosts ct:timeStCurrent) {
 					dlId=ct.getDl_id();
 					timestmp=ct.getTime_stamp();
+					
 					  project_duration=ct.getProject_duration();
+					  if(project_duration ==null) {
+						  project_duration=project_duration1;
+						 
+					  }
 				}
 				
 			}
@@ -131,6 +117,7 @@ public class ProjectCostsController {
 			    mav.addObject("createdBy",createdBy);
 				mav.addObject("dl_id_key", dl_id);
 				mav.addObject("project_duration", project_duration);
+				 mav.addObject("project_duration", project_duration1);
 				mav.addObject("project_duration2", project_duration);
 				mav.addObject("projectCostsviewTimp", projectCostsviewTimp);
 				mav.addObject("roleMapping", role);
@@ -171,13 +158,13 @@ public class ProjectCostsController {
 	    mav.addObject("createdBy",createdBy);
 		mav.addObject("dl_id_key", dl_id);
 		mav.addObject("project_duration", project_duration);
+		mav.addObject("project_duration", project_duration1);
 		mav.addObject("projectCostsviewTimp", projectCostsviewTimp);
 		mav.addObject("roleMapping", role);
 		mav.addObject("projectCostsview", projectCostsview);
 		mav.addObject("project_duration2", project_duration);
 		mav.addObject("count", count);
-		mav.addObject("review", review);
-        mav.addObject("freeze", freeze);
+		
 		return mav;
 		//return new ModelAndView("/ProjectCostsView");
 
@@ -271,13 +258,6 @@ public class ProjectCostsController {
 			count=projectCostsview.size();
 		
 		}
-		
-		
-		
-		
-		
-		
-		
 		
 		mav.addObject("projectCostsviewTimp", projectCostsviewTimp);
 		mav.addObject("timestamp_key", timestamp);

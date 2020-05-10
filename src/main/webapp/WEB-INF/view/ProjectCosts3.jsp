@@ -187,7 +187,7 @@ th {
 		<div class="file btn btn-info mr-1"><input type="file" name="file" id="filepath" accept=".xls,.xlsx" required="required" />	</div>
 		<br> <br>
 		<button type="submit" class="btn btn-info" name="submit" id="submit" >Submit</button>
-		<button type="submit" class="btn btn-info" name="review" id="review" >Review</button>
+		
 		</c:otherwise>
 		</c:choose>
 		</td>

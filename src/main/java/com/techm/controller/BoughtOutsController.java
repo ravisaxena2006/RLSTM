@@ -1,6 +1,7 @@
 package com.techm.controller;
 
 import java.text.SimpleDateFormat;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.techm.bean.BoughtOutsList;
-import com.techm.dao.BoughtOutDao2;
 import com.techm.dao.BoughtOutsDao;
 import com.techm.entity.Amortize;
 import com.techm.entity.BoughtOuts;
@@ -37,137 +37,49 @@ public class BoughtOutsController {
 
 	@Autowired
 	BoughtOutsDao boughtOutsDao;
-
-	@Autowired
-	BoughtOutDao2 boughtOutsdao;
 	
-	@SuppressWarnings("unused")
 	@RequestMapping("/BoughtOuts")
 	public ModelAndView getBoughtOutsForm(HttpServletRequest request, HttpServletResponse res) {
 		ModelAndView mav1 = new ModelAndView("BoughtOuts2");
 		ModelAndView mav = new ModelAndView("BoughtOut");
 		try {
-			String dl_id = request.getParameter("dsld");
+			//int dl_id = Integer.parseInt(request.getParameter("dsld"));
 			String timestamp = getTimestampNumber();
 			String creationDate = getCurrentDateTime();
             String project_duration = request.getParameter("durayear");
-            
+            String dl_id = request.getParameter("dsld");
 			//List<BoughtOuts> uniqeList = new ArrayList<BoughtOuts>();
 			List<BoughtOuts> boughtoutviewTimp = boughtOutsDao.findByboughTimptList(dl_id);
-			Set<BoughtOuts> s = new LinkedHashSet<BoughtOuts>(boughtoutviewTimp);
-			for (BoughtOuts bo : s) {
-				System.out.println(bo.getTime_stamp());
-				System.out.println(bo.getDl_id());
-			}
+			int count = boughtoutviewTimp.size();
+			
+		List<BoughtOuts> boughtoutview = boughtOutsDao.findByboughtOutsId(dl_id);
+			
+			
 			HttpSession session = request.getSession(false);
 			String createdBy = (String) session.getAttribute("name");
+			session.setAttribute("Bid_ID", dl_id);
+			session.setAttribute("duryr", project_duration);
 			
-			
-			 String review = null;		
-				review = request.getParameter("review");
-			String freeze = null;
-				freeze = request.getParameter("freeze");
-			
-			if(review != null && review.equalsIgnoreCase("y") ) {
+			if (boughtoutviewTimp.isEmpty()) {
 				
-				boughtOutsdao.updateBoughtOutReview(review,dl_id, project_duration);
-				}
-				
-				if(freeze != null && freeze.equalsIgnoreCase("f")) {
-					boughtOutsdao.updateBoughtOutFreeze(freeze,dl_id, project_duration);
-				}
-
-				String dlId = null;
-
-				String timestmp = null;
-			List<BoughtOuts> timeStCurrent = boughtOutsDao.findCurrentDate();
-
-			if (timeStCurrent.size() != 0) {
-
-				for (BoughtOuts ct : timeStCurrent) {
-
-					dlId = ct.getDl_id();
-
-					timestmp = ct.getTime_stamp();
-
-					//project_duration = ct.getProject_duration();
-
-				}
-
-			}
-
-			
-				
-			List<BoughtOuts> boughtoutview = boughtOutsDao.findByboughtOutsId(dlId, timestmp);
-
-			if (boughtoutview.isEmpty()) {
-				session.setAttribute("Bid_ID", dl_id);
-				session.setAttribute("duryr", project_duration);
-
-				mav.addObject("timestamp_key", timestamp);
-
-				mav.addObject("creationDate", creationDate);
-
-				mav.addObject("createdBy", createdBy);
-
-				mav.addObject("dl_id_key", dl_id);
-
-				mav.addObject("project_duration", project_duration);
-
-				//mav.addObject("project_duration2", project_duration);
-
-				mav.addObject("boughtoutviewTimp", boughtoutviewTimp);
-
-				mav.addObject("boughtoutview", boughtoutview);
-
+				mav1.addObject("timestamp_key", timestamp);
+				mav1.addObject("creationDate", creationDate);
+				mav1.addObject("createdBy", createdBy);
+				mav1.addObject("dl_id_key", dl_id);
+				mav1.addObject("project_duration", project_duration);
 				return mav1;
 
 			}
-
-			Integer count = 1;
-
-			if (count != 0) {
-
-				count = boughtoutview.size();
-
-			}
-
-			if (boughtoutview == null) {return mav1;}
-
 			else {
-
-				for (BoughtOuts bo : boughtoutview) {
-
-					System.out.println(bo.getTowerId());
-
-					System.out.println(bo.getDescription());
-
-				}
-
-			}
-
-			
-			session.setAttribute("Bid_ID", dl_id);
-			session.setAttribute("duryr", project_duration);
 			mav.addObject("timestamp_key", timestamp);
-
 			mav.addObject("creationDate", creationDate);
-
 			mav.addObject("createdBy", createdBy);
-
 			mav.addObject("dl_id_key", dl_id);
-
 			mav.addObject("project_duration", project_duration);
-
 			mav.addObject("boughtoutviewTimp", boughtoutviewTimp);
-
 			mav.addObject("boughtoutview", boughtoutview);
 			mav.addObject("count", count);
-			mav.addObject("review", review);
-	        mav.addObject("freeze", freeze);
-
-			//mav.addObject("project_duration2", project_duration);
-
+			}
 			return mav;
 
 		
@@ -182,33 +94,6 @@ public class BoughtOutsController {
 
 	}
 	 
-	
-	/*
-	 * @RequestMapping("/BoughtOuts") public ModelAndView
-	 * getBoughtOutsForm(HttpServletRequest request, HttpServletResponse res) {
-	 * ModelAndView mav = new ModelAndView("BoughtOuts2"); try { String dl_id =
-	 * request.getParameter("dsld"); String timestamp = getTimestampNumber(); String
-	 * creationDate=getCurrentDateTime();
-	 * 
-	 * String project_duration=request.getParameter("durayear"); List<BoughtOuts>
-	 * uniqeList= new ArrayList<BoughtOuts>(); List<BoughtOuts> boughtoutviewTimp =
-	 * boughtOutsDao.findByboughTimptList(dl_id); Set<BoughtOuts> s = new
-	 * LinkedHashSet<BoughtOuts>(boughtoutviewTimp); for(BoughtOuts bo:s) {
-	 * System.out.println(bo.getTime_stamp()); System.out.println(bo.getDl_id()); }
-	 * HttpSession session=request.getSession(true); String createdBy= (String)
-	 * session.getAttribute("name"); session.setAttribute("Bid_ID",dl_id);
-	 * session.setAttribute("duryr", project_duration);
-	 * mav.addObject("boughtoutviewTimp", boughtoutviewTimp);
-	 * mav.addObject("timestamp_key",timestamp); mav.addObject("dl_id_key", dl_id);
-	 * mav.addObject("creationDate",creationDate);
-	 * mav.addObject("createdBy",createdBy); mav.addObject("project_duration",
-	 * project_duration); }catch (Exception e) { e.printStackTrace();
-	 * mav.addObject("message", "Error in"); return new ModelAndView("error");
-	 * 
-	 * } return mav;
-	 * 
-	 * }
-	 */
 	  @ModelAttribute
 		 public void setModelList(Model model, HttpServletRequest request, HttpServletResponse res){
 			
@@ -242,141 +127,31 @@ public class BoughtOutsController {
 	  @RequestMapping(value = "/BoughtOutsDetails")
 	  public ModelAndView addBoughtOutsDetails(@ModelAttribute("boughtOutsList") BoughtOutsList boughtOutsList,
 	  HttpServletRequest request,HttpServletResponse res) {
-	  			ModelAndView mav = new ModelAndView("BoughtOut");
-	  			System.out.println("Inside addBoughtOutsDetails method");
-	            // String dlId=null;
-	  			String dlId=request.getParameter("dlidkey");
-	  			String timestamp=getTimestampNumber();
-	              //            String project_duration=null;
-	  			String project_duration=request.getParameter("project_duration");
-	  			String creationDate=getCurrentDateTime(); 
-	  			HttpSession session=request.getSession(true);
-	  			String createdBy= (String) session.getAttribute("name");
-	  			
-		
-		  List<BoughtOuts> boughtOuts = boughtOutsList.getBoughtOuts(); for (BoughtOuts
-		  bo : boughtOutsList.getBoughtOuts()) {
-		  
-		  System.out.println(bo.getDescription());
-		  System.out.println(bo.getLicenceYear1());
-		  System.out.println(bo.getLicenceTotal());
-		  
-		  } boughtOutsDao.add(boughtOuts);
-		 
-	  			List<BoughtOuts> boughtoutviewTimp = boughtOutsDao.findByboughTimptList(dlId);
-	  			//String dlId = null;
-
-	  			String timestmp = null;
-	  			List<BoughtOuts> timeStCurrent = boughtOutsDao.findCurrentDate();
-
-	  			if (timeStCurrent.size() != 0) {
-
-	  				for (BoughtOuts ct : timeStCurrent) {
-
-	  					dlId = ct.getDl_id();
-
-	  					timestmp = ct.getTime_stamp();
-
-	  					//project_duration = ct.getProject_duration();
-
-	  				}
-
-	  			}
-
-	  			
-	  				
-	  			List<BoughtOuts> boughtoutview = boughtOutsDao.findByboughtOutsId(dlId, timestmp);
-	                          Integer count = 1;
-
-	  			if (count != 0) {
-
-	  				count = boughtoutview.size();
-
-	  			}
-
-	  			
-	  			mav.addObject("boughtoutviewTimp", boughtoutviewTimp);
-	            mav.addObject("boughtoutview", boughtoutview);
-	  			mav.addObject("timestamp_key", timestamp);
-	  			mav.addObject("dl_id_key", dlId);
-	  			mav.addObject("creationDate",creationDate);
-	  			mav.addObject("createdBy",createdBy);
-	  			mav.addObject("project_duration", project_duration);
-	            mav.addObject("count", count);
-	  			return mav;
-
+		  List<BoughtOuts> boughtOuts = boughtOutsList.getBoughtOuts(); 
+		  for (BoughtOuts bo : boughtOutsList.getBoughtOuts()) {	
+              System.out.println(bo.getTimeStamp());
+		  }
+		  boughtOutsDao.add(boughtOuts); 
+		  ModelAndView mav = getBoughtOutsForm(request, res);
+		  return mav;
 	  		}
 	 
-	/*
-	 * @RequestMapping(value = "/BoughtOutsDetails") public ModelAndView
-	 * addBoughtOutsDetails(@ModelAttribute("boughtOutsList") BoughtOutsList
-	 * boughtOutsList,HttpServletRequest request, HttpServletResponse res) {
-	 * ModelAndView mav = new ModelAndView("BoughtOuts2");
-	 * System.out.println("Inside addBoughtOutsDetails method"); String
-	 * dlId=request.getParameter("dlidkey"); String timestamp=getTimestampNumber();
-	 * String project_duration=request.getParameter("project_duration"); String
-	 * creationDate=getCurrentDateTime(); HttpSession
-	 * session=request.getSession(true); String createdBy= (String)
-	 * session.getAttribute("name"); session.setAttribute("Bid_ID",dlId);
-	 * session.setAttribute("duryr", project_duration); List<BoughtOuts> boughtOuts
-	 * = boughtOutsList.getBoughtOuts(); for (BoughtOuts bo :
-	 * boughtOutsList.getBoughtOuts()) {
-	 * 
-	 * System.out.println(bo.getDescription());
-	 * System.out.println(bo.getLicenceYear1());
-	 * System.out.println(bo.getLicenceTotal());
-	 * 
-	 * } boughtOutsDao.add(boughtOuts); List<BoughtOuts> boughtoutviewTimp =
-	 * boughtOutsDao.findByboughTimptList(dlId);
-	 * 
-	 * mav.addObject("boughtoutviewTimp", boughtoutviewTimp);
-	 * mav.addObject("timestamp_key", timestamp); mav.addObject("dl_id_key", dlId);
-	 * mav.addObject("creationDate",creationDate);
-	 * mav.addObject("createdBy",createdBy); mav.addObject("project_duration",
-	 * project_duration); return mav;
-	 * 
-	 * }
-	 */
 	@RequestMapping("/BoughtOutsView")
 	public ModelAndView getBoughtOutsView(HttpServletRequest request, HttpServletResponse res ) {
 		ModelAndView mav = new ModelAndView("BoughtOut");
 		System.out.println("Inside View Bought Count");
-		String dl_id=request.getParameter("dsld");
+		//int dl_id=Integer.parseInt(request.getParameter("dsld"));
 		String timestamp=getTimestampNumber();
 		String timestmp=request.getParameter("timestampId");
-		String dlId=request.getParameter("dsld");
-		String creationDate=getCurrentDateTime(); 
-		
-		List<BoughtOuts> boughtoutview = boughtOutsDao.findByboughtOutsId(dlId,timestmp);
-		
-		List<BoughtOuts> boughtoutviewTimp = boughtOutsDao.findByboughTimptList(dl_id);
 		String project_duration=request.getParameter("durayear");
-		//String project_duration=request.getParameter("project_duration");
-		
+		String dl_id=request.getParameter("dsld");
+		String creationDate=getCurrentDateTime(); 
 		HttpSession session=request.getSession(true);
 		String createdBy= (String) session.getAttribute("name");
+		List<BoughtOuts> boughtoutview = boughtOutsDao.getBoughtOutDetails(timestmp);
 		
-		  session.setAttribute("Bid_ID",dl_id); 
-		  session.setAttribute("duryr", project_duration);
-		 
-		Integer count=1;
-		if(count!=0) {
-			count=boughtoutview.size();
-		
-		}
-		if(boughtoutview == null) {
-			throw new RuntimeException("not found"+dl_id);
-		}
-		else {
-			
-			for(BoughtOuts bo:boughtoutview) {
-				
-				System.out.println(bo.getTowerId());
-				System.out.println(bo.getDescription());
-				
-			}
-			
-		}		
+		List<BoughtOuts> boughtoutviewTimp = boughtOutsDao.findByboughtOutsId(dl_id);
+		int count = boughtoutview.size();
 		mav.addObject("creationDate",creationDate);
 		mav.addObject("createdBy",createdBy);
 		mav.addObject("timestamp_key", timestamp);		
@@ -384,7 +159,7 @@ public class BoughtOutsController {
 		mav.addObject("count", count);
 		mav.addObject("boughtoutviewTimp", boughtoutviewTimp);
 		mav.addObject("project_duration", project_duration);
-		
+		mav.addObject("dl_id_key", dl_id);
 		return mav;
 
 	}

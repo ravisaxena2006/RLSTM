@@ -81,8 +81,9 @@
 
 								<div class="col-md-6">
 									<label>CRM ID/Project ID*</label><br> <input type="text"
-										name="PROJECT_ID" value="${deal.PROJECT_ID}"
+										name="projectId" value="${deal.projectId}"
 										class="form-control" readonly="readonly" required="required">
+										<input type="hidden"  id="bID_DETAILS_ID" name="BID_DETAILS_ID" value="${deal.BID_DETAILS_ID}"/>
 									<label>Customer Name*</label><br> <input type="text"
 										name="CUSTOMER_NAME" value="${deal.CUSTOMER_NAME }"
 										class="form-control" readonly="readonly" required> <label>CRM
@@ -119,6 +120,10 @@
 										readonly="readonly"> <label>Project Duration(
 										Yrs)*</label><br> <input type="text" name="PROJECT_DURATION"
 										value="${deal.PROJECT_DURATION}" class="form-control"
+										readonly="readonly">
+										<label>Optional Project Duration( Yrs)*</label><br>
+										<input type="text" name="optional_duration"
+										value="${deal.optional_duration}" class="form-control"
 										readonly="readonly"> <label>Project
 										Start Date / Month</label><br> <input type="text"
 										name="PROJECT_START_DATE"
@@ -354,12 +359,11 @@
 		         </select>
 		         </c:if>
 		         
-		         <c:if test="${verticalCount == 0}">
-		         <label>Select Vertical</label><br>
-   <select id="verticals" name="verticals" class="form-control" multiple  >
+		   <c:if test="${verticalCount == 0}">        
+           <select id="verticals" name="verticals" class="form-control" multiple  >
 		  <c:forEach items="${verticals}" var="vertical">
-		        <option value="${vertical.verticalId}">${vertical.vertical}</option>
-		    </c:forEach>
+		  <option value="${vertical.verticalId}">${vertical.vertical}</option>
+		  </c:forEach>
 	 	  </select>
 		         </c:if>
 				</div>

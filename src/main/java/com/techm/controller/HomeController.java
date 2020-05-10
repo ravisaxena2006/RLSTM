@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.techm.bean.MappingRole;
 import com.techm.dao.DealSpecsAcessDao;
 import com.techm.dao.DealSpecsDao;
@@ -73,10 +75,18 @@ public class HomeController {
 	}
 
 	@RequestMapping("/save")
-	public ModelAndView save(@ModelAttribute("deal") DealSpecs dealobj) {
+	public ModelAndView saveDeal(@ModelAttribute("deal") DealSpecs dealobj,@RequestParam("projectId") String projectId) {
 		ModelAndView mav = new ModelAndView("save");
+		DealSpecs  dealobj1 =dao.searchProject(dealobj.getProjectId());
+		
 		try {
+			
+			if(dealobj1 != null) {
+				mav.addObject("message", "message");
+				return new ModelAndView("duplicate");
+			}else {
 		dao.add(dealobj);
+		}
 		}catch (Exception e) {
 	           e.printStackTrace();
 	           mav.addObject("message", "Error");
@@ -129,13 +139,13 @@ public class HomeController {
 		Integer verticalCount = verticalselected.size();
 		HttpSession session=request.getSession();
 		 session.setAttribute("Bid_ID",bID_DETAILS_ID);
-		 session.setAttribute("duryr", total_duration);
+		 session.setAttribute("duryr", project_duration);
 		 mav.addObject("verticalCount", verticalCount) ;
 		 System.out.println("vertical count:" +verticalCount);
 		 mav.addObject("towerCount", towerCount) ;
 		 System.out.println("tower count:" +towerCount);
 		mav.addObject("deal", dealobj);
-		mav.addObject("duryr", total_duration);
+		mav.addObject("duryr", project_duration);
 		mav.addObject("creationDate",creationDate);
 		mav.addObject("bID_DETAILS_ID",bID_DETAILS_ID);
 		return mav;

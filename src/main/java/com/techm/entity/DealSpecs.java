@@ -32,7 +32,7 @@ public class DealSpecs {
 
 	//Basics
 	@Column(unique = true)
-	private String PROJECT_ID;	
+	private String projectId;	
 	private String INTIMATION_TO_BID_AUDIT_TEAM;
 	
 	private String CUSTOMER_NAME;
@@ -172,11 +172,12 @@ public class DealSpecs {
 	public void setEFFORT_APPROVED_BY(String eFFORT_APPROVED_BY) {
 		EFFORT_APPROVED_BY = eFFORT_APPROVED_BY;
 	}
-	public String getPROJECT_ID() {
-		return PROJECT_ID;
+	
+	public String getProjectId() {
+		return projectId;
 	}
-	public void setPROJECT_ID(String pROJECT_ID) {
-		PROJECT_ID = pROJECT_ID;
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
 	}
 	public String getINTIMATION_TO_BID_AUDIT_TEAM() {
 		return INTIMATION_TO_BID_AUDIT_TEAM;

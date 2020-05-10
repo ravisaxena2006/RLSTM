@@ -196,7 +196,7 @@ th {
 		<div class="file btn btn-info mr-1"><input type="file" name="file" id="filepath" accept=".xls,.xlsx" readonly="readonly"/>	</div>
 		<br> <br>
 		<button type="submit" class="btn btn-info" name="submit" id="submit">Submit</button>
-		<marquee width="70%" direction="left" height="100px">
+		<marquee bgcolor="#d9d9ff" hspace="50" vspace="20">
          Review is on
        </marquee>
 		</c:when>

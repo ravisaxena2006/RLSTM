@@ -61,7 +61,7 @@ table.table-bordered > tbody > tr > td{
   	<th rowspan=2 align="center" bgcolor="#66b3ff">Amortize</th>
  	<th rowspan=2 align="center" bgcolor="#66b3ff">Quote Currency</th>
  	<th rowspan=2 align="center" bgcolor="#66b3ff">Quote Exists?</th>
- 	<!-- change by DC -->
+ 	 <!-- change by DC -->
     <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}">
  	<th rowspan=2 align="center" bgcolor="#66b3ff"> Price Total</th>
    	 <th id="l1" colspan="auto" align="center" bgcolor="#66b3ff">Licence\Equipments</th> 
@@ -69,13 +69,13 @@ table.table-bordered > tbody > tr > td{
   	<th rowspan=2 align="center" bgcolor="#66b3ff">Professional Service</th>
  	<th rowspan=2 align="center" bgcolor="#66b3ff">Training</th>
   	 <th id="oth" colspan="auto" align="center" bgcolor="#66b3ff">Other</th>
-  	</c:if>
+  	 </c:if>
   	</tr>
     <tr>
    		<th align="center" bgcolor="#99CCFF">Tower</th>
 		<th align="center" bgcolor="#99CCFF">Vendor</th>
      	<th align="center" bgcolor="#99CCFF">Product Description</th>
-     	<!-- change by DC -->
+     	 <!-- change by DC -->
     <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}">
        	<th class="y1" align="center" bgcolor="#99CCFF">Y1</th>
  		<th class="y2" align="center" bgcolor="#99CCFF">Y2</th>
@@ -112,7 +112,7 @@ table.table-bordered > tbody > tr > td{
      	<th class="o9" align="center" bgcolor="#99CCFF">Y9</th>
 		<th class="o10" align="center" bgcolor="#99CCFF">Y10</th>
 		<th align="center" bgcolor="#99CCFF">Other Total</th>
-	</c:if>
+	 </c:if>
 	
 	</tr>		
   </thead>
@@ -126,8 +126,8 @@ table.table-bordered > tbody > tr > td{
 	 	    <input type="hidden"  id="user" name="user" value="${sessionScope.roleName}"/>
 		  	<input type="hidden"  name="dlidkey" value="${dl_id_key}"/>
 			<input type="hidden"  id="projectduration" name="project_duration" value="${project_duration}"/>
-			<input type="hidden" id=mydealid  name="boughtOuts[0].dl_id" value="${dl_id_key}"/>
-		 	<input type="hidden" id="timestamp" name="boughtOuts[0].time_stamp" value="${timestamp_key}"/>
+			<input type="hidden" id=mydealid  name="boughtOuts[0].dlId" value="${dl_id_key}"/>
+		 	<input type="hidden" id="timestamp" name="boughtOuts[0].timeStamp" value="${timestamp_key}"/>
 		    <input type="hidden" id="creationDate" name="boughtOuts[0].creationDate" value="${creationDate}" />
 		   	<input type="hidden"  id="createdBy" name="boughtOuts[0].createdBy" value="${createdBy}" />
 		   	<input type="hidden"  id="projectduration" name="boughtOuts[0].project_duration" value="${project_duration}"/>
@@ -157,18 +157,18 @@ table.table-bordered > tbody > tr > td{
 		  </td>
 		  <!-- change by DC -->
 		  <c:if test="${sessionScope.roleName=='Sales SPOC' || sessionScope.roleName=='PreSales Head'}">
-		  <td align="left"><Input type="text" pattern="\d*" title="Please Enter Number" name="boughtOuts[0].priceTotal" size=11 id="priceTotal" ></td>
+		  <td align="left"><Input type="text" pattern="\d*" value = "0" title="Please Enter Number" name="boughtOuts[0].priceTotal" size=11 id="priceTotal" ></td>
 		  
-		  <td align="left" class="y1"><Input type="text" pattern="\d*" size=10 title="Please Enter Number" class="h ty1" name="boughtOuts[0].licenceYear1" id="licenceYear1"></td>
-		  <td align="left" class="y2"><Input type="text" pattern="\d*" size=10 title="Please Enter Number" class="h ty2" name="boughtOuts[0].licenceYear2" id="licenceYear2"></td>
-		  <td align="left" class="y3"><Input type="text" pattern="\d*" size=10 title="Please Enter Number" class="h ty3" name="boughtOuts[0].licenceYear3" id="licenceYear3"></td>
-		  <td align="left" class="y4"><Input type="text" pattern="\d*" size=10 title="Please Enter Number" class="h ty4" name="boughtOuts[0].licenceYear4" id="licenceYear4"></td>
-		  <td align="left" class="y5"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty5" name="boughtOuts[0].licenceYear5" id="licenceYear5"></td>
-		  <td align="left" class="y6"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty6" name="boughtOuts[0].licenceYear6" id="licenceYear6"></td>
-		  <td align="left" class="y7"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty7" name="boughtOuts[0].licenceYear7" id="licenceYear7"></td>
-		  <td align="left" class="y8"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty8" name="boughtOuts[0].licenceYear8" id="licenceYear8"></td>
-		  <td align="left" class="y9"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty9" name="boughtOuts[0].licenceYear9" id="licenceYear9"></td>
-		  <td align="left" class="y10"><Input type="text" pattern="\d*" size=10 title=" Please Enter Number" class="h ty10" name="boughtOuts[0].licenceYear10" id="licenceYear10"></td>
+		  <td align="left" class="y1"><Input type="text" pattern="\d*" value = "0" size=10 title="Please Enter Number" class="h ty1" name="boughtOuts[0].licenceYear1" id="licenceYear1"></td>
+		  <td align="left" class="y2"><Input type="text" pattern="\d*" value = "0"  size=10 title="Please Enter Number" class="h ty2" name="boughtOuts[0].licenceYear2" id="licenceYear2"></td>
+		  <td align="left" class="y3"><Input type="text" pattern="\d*" value = "0" size=10 title="Please Enter Number" class="h ty3" name="boughtOuts[0].licenceYear3" id="licenceYear3"></td>
+		  <td align="left" class="y4"><Input type="text" pattern="\d*" value = "0" size=10 title="Please Enter Number" class="h ty4" name="boughtOuts[0].licenceYear4" id="licenceYear4"></td>
+		  <td align="left" class="y5"><Input type="text" pattern="\d*" value = "0" size=10 title=" Please Enter Number" class="h ty5" name="boughtOuts[0].licenceYear5" id="licenceYear5"></td>
+		  <td align="left" class="y6"><Input type="text" pattern="\d*" value = "0" size=10 title=" Please Enter Number" class="h ty6" name="boughtOuts[0].licenceYear6" id="licenceYear6"></td>
+		  <td align="left" class="y7"><Input type="text" pattern="\d*" value = "0" size=10 title=" Please Enter Number" class="h ty7" name="boughtOuts[0].licenceYear7" id="licenceYear7"></td>
+		  <td align="left" class="y8"><Input type="text" pattern="\d*" value = "0" size=10 title=" Please Enter Number" class="h ty8" name="boughtOuts[0].licenceYear8" id="licenceYear8"></td>
+		  <td align="left" class="y9"><Input type="text" pattern="\d*" value = "0" size=10 title=" Please Enter Number" class="h ty9" name="boughtOuts[0].licenceYear9" id="licenceYear9"></td>
+		  <td align="left" class="y10"><Input type="text" pattern="\d*"value = "0"  size=10 title=" Please Enter Number" class="h ty10" name="boughtOuts[0].licenceYear10" id="licenceYear10"></td>
 		  <td align="left" ><Input type="text" class="myTotal" size=10 readonly="readonly" name="boughtOuts[0].licenceTotal" id="licenceTotal"></td>
 			
 		  <td align="left" class="s1"><Input type="text" class="s sty1"size=10 pattern="\d*" title=" Please Enter Number"  name="boughtOuts[0].supportYear1" id="supportYear1"></td>
@@ -200,7 +200,7 @@ table.table-bordered > tbody > tr > td{
 		  <td align="left" class="o10"><Input type="text" class="o oty10" size=10 pattern="\d*" title=" Please Enter Number" name="boughtOuts[0].otherYear10" id="otherYear10"></td>
 		  <td align="left"><Input type="text" class="myTotal2" size=10 readonly="readonly" name="boughtOuts[0].otherTotal" id="otherTotal">		  
 		  </td>
-		  </c:if>
+		   </c:if>
 	
     </tr>
     </tbody>
@@ -260,18 +260,33 @@ table.table-bordered > tbody > tr > td{
    </table>
  </div>
  <br>
-  <table>
-     <tr>
+   <table>
+   <tr>
 		<td align="left">
-		<!-- change by DC -->
 		<c:choose>
-		 <c:when test="${sessionScope.roleName=='CMC SPOC' || sessionScope.roleName=='PreSales Head'}">
+		 <c:when test="${sessionScope.roleName=='Competency SPOCs' || sessionScope.roleName=='Delivery SPOCS'}">
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()" disabled>Add More</button>
 		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit" disabled>Submit</button>
 		</c:when>
 		<c:otherwise>
+		
+        <c:choose>
+		<c:when test="${sessionScope.roleName=='Delivery SPOCS' || sessionScope.roleName=='CMC SPOC' || sessionScope.roleName=='Solution Architect' && sessionScope.review=='y'}">
+		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		<marquee bgcolor="#d9d9ff" hspace="50" vspace="20">
+               Review is on
+        </marquee>
+		</c:when>
+		<c:when test="${sessionScope.roleName=='Solution Architect' && sessionScope.freeze=='y'}">
+		
+		</c:when>
+		
+		<c:otherwise>
 		<button type="button" class="btn btn-info mr-1" name="AddMore" id="addmore" onclick="Add()">Add More</button>
 		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+		</c:otherwise>
+		
+		</c:choose>
 		</c:otherwise>
 		</c:choose>
 		</td>
@@ -319,16 +334,16 @@ var projectdurationCount=document.getElementById("projectduration").value;
         addMoreString +=  '<td align="left"><Input type="text" size =11 name="boughtOuts['+row+'].productDescription" value="" ><Input type="hidden" name="boughtOuts['+row+'].project_duration" value="'+projectdurationCount+'"></td>';
 
      	addMoreString += '<td align="left"><select name="boughtOuts['+row+'].amortizeId">'
-		 					 +document.getElementById("amortizeId").innerHTML+' </select><input type="hidden" name="boughtOuts['+row+'].time_stamp" value="'+timestamp1+'"></td>';
+		 					 +document.getElementById("amortizeId").innerHTML+' </select><input type="hidden" name="boughtOuts['+row+'].timeStamp" value="'+timestamp1+'"></td>';
 
 	   addMoreString += '<td align="left"><select name="boughtOuts['+row+'].quoteCurrencyId">'
-		  					+document.getElementById("quoteCurrencyId").innerHTML+' </select><Input type="hidden" name="boughtOuts['+row+'].dl_id" value="'+dlId1+'"></td>';
+		  					+document.getElementById("quoteCurrencyId").innerHTML+' </select><Input type="hidden" name="boughtOuts['+row+'].dlId" value="'+dlId1+'"></td>';
 
 	    addMoreString += '<td align="left"><select name="boughtOuts['+row+'].quoteExistsId">'
 		 				    +document.getElementById("quoteExistsId").innerHTML+' </select><input type="hidden" name="boughtOuts['+row+'].creationDate" value="'+creationDate1+'"></td>';
 
 
-		 //change by DC
+		  //change by DC
 		 if(user=="Sales SPOC" || user=="PreSales Head")
 			{
         addMoreString +=  '<td align="left"><Input type="text" size =11 name="boughtOuts['+row+'].priceTotal" value="" ></td>';
@@ -374,7 +389,7 @@ var projectdurationCount=document.getElementById("projectduration").value;
         addMoreString +=  '<td align="left" class="o9"><Input type="text" size =10 class="'+horizontalClass2+' oty9" name="boughtOuts['+row+'].otherYear9" value="" ></td>';
         addMoreString +=  '<td align="left" class="o10"><Input type="text" size =10 class="'+horizontalClass2+' oty10" name="boughtOuts['+row+'].otherYear10" value="" ></td>';
         addMoreString +=  '<td align="left"><Input type="text" class="myTotal2" size =10 name="boughtOuts['+row+'].otherTotal" value="" id="'+otherTotal+'" ></td>';
-			}
+			 } 
        	
         addMoreString +=  '<td align="left"><button type="button" class="btn btn-info mr-1" name="remove" value="Remove" onclick="DeleteRow('+row+')">Remove</button></td>';
        	addMoreString +=  '</tr>'; 
@@ -1266,8 +1281,8 @@ $("#oth").attr("colspan",parseInt(projectdurationCount) + 2);
 				<c:forEach items="${boughtoutviewTimp}" var="e">
 					<tr>
 						<td><a
-							href="${pageContext.request.contextPath}/BoughtOutsView?timestampId=${e.time_stamp}&dsld=${e.dl_id}&durayear=${e.project_duration}">
-							<c:out value=" ${e.time_stamp}" /></a></td>
+							href="${pageContext.request.contextPath}/BoughtOutsView?timestampId=${e.timeStamp}&dsld=${e.dlId}&durayear=${e.project_duration}">
+							<c:out value=" ${e.timeStamp}" /></a></td>
 						<td><c:out value=" ${e.creationDate}" /></td>
 						<td><c:out value=" ${e.createdBy}" /></td>
 

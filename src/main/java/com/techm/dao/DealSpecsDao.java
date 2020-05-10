@@ -65,6 +65,9 @@ public class DealSpecsDao {
 		return dealdao.findById(bID_DETAILS_ID).get();
 	}
 
+	public DealSpecs searchProject(String projectId) {
+		return dealdao.findByProjectId(projectId);
+	}
 	// List for "Pricing Model" 
    
     public List<PricingModel> getModelList(){
@@ -101,7 +104,4 @@ public class DealSpecsDao {
     	 return verticalList;
     }
 
-    public void updatedeal(String received_date, String project_start_date, String project_id) {
-    	dealdao.updatedeal(received_date, project_start_date, project_id);
-	}
 }

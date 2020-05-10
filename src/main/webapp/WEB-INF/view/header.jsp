@@ -111,7 +111,7 @@
 		                    </li>
 		                    </c:if>
 		                    <c:choose>
-				 				<c:when test="${sessionScope.roleName=='Bid Manager'}">
+				 				<c:when test="${sessionScope.roleName=='Bid Manager'|| sessionScope.name=='Admin'}">
 		                         <li>
 		                      	  <a href="/access" class="disabled waves-effect"><i class="disabled fa fa-columns fa-fw"
 		                                aria-hidden="true"></i>Access Manager</a>

@@ -4,6 +4,7 @@ package com.techm.dao;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,11 @@ import org.springframework.stereotype.Repository;
 
 import com.techm.entity.Amortize;
 import com.techm.entity.BoughtOuts;
-import com.techm.entity.ProjectCosts;
 import com.techm.entity.QuoteCurrency;
 import com.techm.entity.QuoteExists;
 import com.techm.entity.Tower;
 import com.techm.entity.TowerMapping;
 import com.techm.repository.AmortizeRepository;
-import com.techm.repository.BoughtOutReviewRepo;
 import com.techm.repository.BoughtOutsRepository;
 import com.techm.repository.BoughtSearchRepositroy;
 import com.techm.repository.QuoteCurrencyRepository;
@@ -52,22 +51,23 @@ public class BoughtOutsDao {
 	 public List<BoughtOuts> findAll() {
 			return repo.findAll();
 		}
-	
-	 public List<BoughtOuts> findCurrentDate() {
-			
-		 List<BoughtOuts> bc =  brepo.searchTrack();
-			
+	 
+	public List<BoughtOuts> findByboughtOutsId(String dlId) { 
+		 List<BoughtOuts> list = brepo.findByDlIdSorted(dlId); return list; }
+	 
+	 public List<BoughtOuts> getBoughtOutDetails(String timestamp){
+		 List<BoughtOuts> blist =  brepo.findByTimeStamp(timestamp);
+		 return blist;
+	 }
+	 public List<BoughtOuts> findByboughTimptList(String dl_id) {
+			List<BoughtOuts> list = new ArrayList<BoughtOuts>();
+			BoughtOuts boughtOuts	=  brepo.findFirstByDlIdOrderByCreationDateDesc(dl_id);
+			if(boughtOuts !=null) {
+				String timestamp = boughtOuts.getTimeStamp();
+				list = brepo.findByTimeStamp(timestamp);
 				
-			return bc;
-		  
-	}
-	 public List<BoughtOuts> findByboughtOutsId(String dl_id, String time_stamp) {
-			// TODO Auto-generated method stub
-			return brepo.search(dl_id,time_stamp);
-		}
-		public List<BoughtOuts> findByboughTimptList(String dl_id) {
-			// TODO Auto-generated method stub
-			return brepo.searchDlList(dl_id);
+			}
+			return list;
 		}
 	 
 	 public List<Tower> getTowerList(int id)

@@ -166,8 +166,7 @@ input:checked+.slider:before {
 													.click(
 															function() {
 
-																alert('hi : '
-																		+ this.id);
+																//alert('hi : '+ this.id);
 
 																window.location.href = "/access?dsld="
 																		+ (this.id

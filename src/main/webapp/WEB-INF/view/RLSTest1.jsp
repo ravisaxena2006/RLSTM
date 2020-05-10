@@ -236,7 +236,7 @@ th {
         <c:choose>
 		<c:when test="${sessionScope.roleName=='Delivery SPOCS' || sessionScope.roleName=='CMC SPOC' || sessionScope.roleName=='Solution Architect' && sessionScope.review=='y'}">
 		<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
-		<marquee width="70%" direction="left" height="100px">
+		<marquee bgcolor="#d9d9ff" hspace="50" vspace="20">
                Review is on
         </marquee>
 		</c:when>

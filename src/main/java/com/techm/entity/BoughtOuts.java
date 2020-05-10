@@ -102,8 +102,8 @@ public class BoughtOuts {
 	
 	private int otherTotal;
 	
-	private String dl_id;
-    private String time_stamp;
+	private String dlId;
+    private String timeStamp;
     private String creationDate;
     private String createdBy;
     private String project_duration;
@@ -390,17 +390,20 @@ public class BoughtOuts {
 	public void setOtherTotal(int otherTotal) {
 		this.otherTotal = otherTotal;
 	}
-	public String getDl_id() {
-		return dl_id;
+	
+	
+	
+	public String getDlId() {
+		return dlId;
 	}
-	public void setDl_id(String dl_id) {
-		this.dl_id = dl_id;
+	public void setDlId(String dlId) {
+		this.dlId = dlId;
 	}
-	public String getTime_stamp() {
-		return time_stamp;
+	public String getTimeStamp() {
+		return timeStamp;
 	}
-	public void setTime_stamp(String time_stamp) {
-		this.time_stamp = time_stamp;
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
 	}
 	public String getCreationDate() {
 		return creationDate;
