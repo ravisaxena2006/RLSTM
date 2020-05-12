@@ -124,7 +124,7 @@
 										<label>Optional Project Duration( Yrs)*</label><br>
 										<input type="text" name="optional_duration"
 										value="${deal.optional_duration}" class="form-control"
-										readonly="readonly"> <label>Project
+										readonly="readonly"> <input type="hidden" name="total_duration" value="${deal.total_duration }"><label>Project
 										Start Date / Month</label><br> <input type="text"
 										name="PROJECT_START_DATE"
 										value="${deal.PROJECT_START_DATE }" class="form-control datepicker"

@@ -47,7 +47,7 @@ public class DealSpecs {
 	
 	private int PROJECT_DURATION;
 	private int optional_duration;
-	
+	private int total_duration;
 	private String BID_SUBMISSION_DATE;
 	
 	
@@ -443,6 +443,12 @@ public class DealSpecs {
 	}
 	public void setOptional_duration(int optional_duration) {
 		this.optional_duration = optional_duration;
+	}
+	public int getTotal_duration() {
+		return total_duration;
+	}
+	public void setTotal_duration(int total_duration) {
+		this.total_duration = total_duration;
 	}
 	
 	

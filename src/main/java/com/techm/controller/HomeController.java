@@ -78,13 +78,18 @@ public class HomeController {
 	public ModelAndView saveDeal(@ModelAttribute("deal") DealSpecs dealobj,@RequestParam("projectId") String projectId) {
 		ModelAndView mav = new ModelAndView("save");
 		DealSpecs  dealobj1 =dao.searchProject(dealobj.getProjectId());
-		
+		Integer project_duration=   dealobj.getPROJECT_DURATION();
+		Integer optional_duration = dealobj.getOptional_duration();
+		Integer total_duration = project_duration+optional_duration ;
+		System.out.println("total" +total_duration);
+		dealobj.setTotal_duration(total_duration);
 		try {
 			
 			if(dealobj1 != null) {
 				mav.addObject("message", "message");
 				return new ModelAndView("duplicate");
 			}else {
+				
 		dao.add(dealobj);
 		}
 		}catch (Exception e) {
@@ -125,9 +130,8 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("dealspecsview");
 		DealSpecs dealobj = dao.findByBidId(bID_DETAILS_ID);
 		String creationDate=getCurrentDateTime();
-		Integer project_duration=   dealobj.getPROJECT_DURATION();
-		Integer optional_duration = dealobj.getOptional_duration();
-		Integer total_duration = project_duration+optional_duration ;
+		
+		Integer total_duration = dealobj.getTotal_duration() ;
 		System.out.println(total_duration);
 		Set<Integer> towerselected = dealobj.getTowers();
 		System.out.println(towerselected);
@@ -139,13 +143,13 @@ public class HomeController {
 		Integer verticalCount = verticalselected.size();
 		HttpSession session=request.getSession();
 		 session.setAttribute("Bid_ID",bID_DETAILS_ID);
-		 session.setAttribute("duryr", project_duration);
+		 session.setAttribute("duryr", total_duration);
 		 mav.addObject("verticalCount", verticalCount) ;
 		 System.out.println("vertical count:" +verticalCount);
 		 mav.addObject("towerCount", towerCount) ;
 		 System.out.println("tower count:" +towerCount);
 		mav.addObject("deal", dealobj);
-		mav.addObject("duryr", project_duration);
+		mav.addObject("duryr", total_duration);
 		mav.addObject("creationDate",creationDate);
 		mav.addObject("bID_DETAILS_ID",bID_DETAILS_ID);
 		return mav;
