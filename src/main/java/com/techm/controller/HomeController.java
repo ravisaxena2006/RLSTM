@@ -88,8 +88,7 @@ public class HomeController {
 			if(dealobj1 != null) {
 				mav.addObject("message", "message");
 				return new ModelAndView("duplicate");
-			}else {
-				
+			}else {		
 		dao.add(dealobj);
 		}
 		}catch (Exception e) {
@@ -102,7 +101,7 @@ public class HomeController {
 
 	}
 
-	@RequestMapping(value ="/view", method = RequestMethod.GET,headers = "Accept=application/json")
+	@RequestMapping(value ="/view", method = RequestMethod.GET)
 	public ModelAndView bidview(@ModelAttribute("deal") DealSpecs dealobj ,HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("bidmanager");
 		HttpSession session=request.getSession(true);
