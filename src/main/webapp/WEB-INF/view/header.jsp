@@ -136,6 +136,11 @@
 		                                aria-hidden="true"></i>Role Access Mapping </a>
 		                  </li>
 		                 
+		            	  <li>
+		                        <a href="delspaceReport" class="waves-effect" ><i class="fa fa-columns fa-fw"
+		                                aria-hidden="true"></i>Deal Space Report </a>
+		                  </li>
+		            	 
 		            	 
 		             </c:if>
 		              
