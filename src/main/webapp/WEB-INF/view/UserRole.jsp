@@ -47,44 +47,99 @@ th {
 <div class="row">
                     <div class="col-md-12" style ="margin-top:20px;">
 
-<form:form action="saveRoles" method="post">
+<form:form action="searchRoles" method="get">
 <div style="overflow-x:auto;">
    <table class="table table-bordered" id="tblRLS">
-    	<thead>
-		   <tr>	
-		   		<th>Users</th>
-		   		<th>Roles</th>
-		   	</tr>
-		</thead>
-		<tbody>
+   
 		   	<tr>
-		   		<td><select id="user" name="userId">
-		   					<option value=0>select</option>
+		   		<td>
+		   		<label>Select User:</label>
+		   		<select id="user" name="userId" required>
+		   					<option value="">Select</option>
 							<c:forEach items="${usersList}" var="user">
 				       	   <option value="${user.usersnum}">${user.loginId}</option>
 				    		</c:forEach></select>
 				 </td>
-				
-		   		 <td><select id="role" name="roleId" multiple>
-							<c:forEach items="${rolesList}" var="role">
-				       	   <option value="${role.roleId}">${role.role}</option>
-				    		</c:forEach></select>
-				</td>
-			</tr>
+				 <td><label>Enter CRM Id:</label>
+				 <input type="text" name="crmId" id="crmId" required>
+				 </td>
+ 			</tr>
 			<tr>
 				<td colspan="2">
-					<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Submit</button>
+					<button type="submit" class="btn btn-info mr-1" name="submit" id="submit">Search</button>
 				</td>
 			</tr>
-	  </tbody>
+	
+</table>
+</div>
+</form:form>
+<form:form action="userRoles" method="post">
+<div style="overflow-x:auto;">
+   <table class="table table-bordered" id="tblRLS">
+   
+		   	<tr>
+		   		<td>
+		   		<label>Select User:</label><br>
+		   		<select id="user" name="userId" required>
+		   					<option value="">select</option>
+							<c:forEach items="${usersList}" var="user">
+				       	   <option value="${user.usersnum}">${user.loginId}</option>
+				    		</c:forEach></select>
+				 </td>
+				 <td><label>Enter CRM Id:</label><br>
+				 <input type="text" name="crmId" id="crmId" required>
+				 </td>
+				  <td><label>Select Roles:</label><br>
+				  <select id="role" name="roleId" multiple required>
+				  	<c:forEach items="${rolesList}" var="role">
+				    	<option value="${role.roleId}">${role.role}</option>
+				    </c:forEach>
+				  </select>
+				</td>
+ 			</tr>
+			<tr>
+				<td colspan="3	">
+					<button type="submit" class="btn btn-info mr-1" name="add" id="add">Add Roles</button>
+					<button type="submit" class="btn btn-info mr-1" name="remove" id="remove">Remove Roles</button>
+				</td>
+			</tr>
+	
 </table>
 </div>
 </form:form>
 
-
-
-<br><br><br>
+<div class="container-fluid">
+	 <div class="row">
+		<div class="col-md-12" style ="margin-top:20px;">
+			<h2><font color="blue"><c:out value="${message}" /></font></h2>
+		</div>
+	  </div>
+	
 <div style="overflow-x:auto;">
+  <table class="table table-bordered table-sm" id="tblRLS">
+  	<thead>
+   	 <tr>
+   		<th align="left">User</th>
+		<th align="left">Roles Assigned</th>
+	 </tr>
+    </thead>
+    <tbody id="roles">
+   		 <c:forEach items="${userRolesList}" var="e">
+						<tr>
+							
+							<td><c:out value=" ${e.loginId}" /></td>
+							<td><c:out value=" ${e.role}" /></td>
+							
+						</tr>
+		  </c:forEach>
+    </tbody>
+ </table>
+ </div>
+</div>
+
+
+
+<!-- <div style="overflow-x:auto;">
   <table class="table table-bordered table-sm" id="tblRLS">
   	<thead>
    	 <tr>
@@ -138,7 +193,7 @@ th {
 	});
 	//document.ready end
 </script>
-
+ -->
 </div>
 </div>
 </div>

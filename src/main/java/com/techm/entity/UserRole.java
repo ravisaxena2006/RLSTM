@@ -18,6 +18,8 @@ public class UserRole {
 	private int userId;
 	@Column(name="ROLE_ID")
 	private int roleId;
+	@Column(name="CRM_ID")
+	private String crmId;
 	@Column(name="RECORD_STATUS")
 	private String recordStatus;
 	
@@ -38,6 +40,12 @@ public class UserRole {
 	}
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
+	}
+	public String getCrmId() {
+		return crmId;
+	}
+	public void setCrmId(String crmId) {
+		this.crmId = crmId;
 	}
 	public String getRecordStatus() {
 		return recordStatus;
