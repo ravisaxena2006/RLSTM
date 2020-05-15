@@ -36,6 +36,7 @@ th {
 					<thead>
 						<tr>
 							<th scope="col">BID ID</th>
+							<th scope="col">Report Download</th>
 							<th scope="col">CUSTOMER NAME</th>
 							<th scope="col">BID MANAGER</th>
 							<th scope="col">DELIVERY SPOCS</th>
@@ -52,6 +53,7 @@ th {
 					<c:forEach items="${list}" var="e">
 						<tr>
 							<td><a href="${pageContext.request.contextPath}/bidview/${e.BID_DETAILS_ID}">${e.BID_DETAILS_ID}</a></td>
+							<td><a href="${pageContext.request.contextPath}/delspaceReport?bidId=${e.BID_DETAILS_ID}">Download Report</a></td>
 
 							<td><c:out value=" ${e.CUSTOMER_NAME }" /></td>
 							<td><c:out value=" ${e.BID_MANAGER}" /></td>
