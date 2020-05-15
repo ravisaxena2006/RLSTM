@@ -40,7 +40,7 @@
     </script> -->
 <div class="container-fluid">
 
-	<form:form action="/save" method="post" modelattribute="deal" id="form1">
+	<form:form action="/save" method="post" modelattribute="deal" id="form1" enctype="multipart/form-data">
 
 		<h4 class="text-center">
 			<b>Deal Specific Details</b>
@@ -331,6 +331,9 @@
 		<br>
 
 		<div align="right">
+		<div class="file btn btn-info mr-1"><input type="file" name="file" id="file" accept=".pptx" />	
+		</div>
+		<br> <br>
 			<button type="submit" class="btn btn-info mr-1" name="submit"
 				id="submit">Submit</button>
 		</div>

@@ -1,8 +1,15 @@
 package com.techm.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -20,15 +27,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
+
 import com.techm.bean.MappingRole;
 import com.techm.dao.DealSpecsAcessDao;
 import com.techm.dao.DealSpecsDao;
 import com.techm.dao.MappingDao;
-import com.techm.dao.RLSDao2;
 import com.techm.entity.CurrencyQuote;
 import com.techm.entity.DealSpecs;
 import com.techm.entity.PricingModel;
@@ -36,7 +42,7 @@ import com.techm.entity.ProjectIdStatus;
 
 import com.techm.entity.Tower;
 import com.techm.entity.Vertical;
-import com.techm.repository.DealSpecsAcessRepo;
+
 
 
 @Controller
@@ -64,6 +70,7 @@ public class HomeController {
       
 		ModelAndView mav = new ModelAndView("dealspecs");
 		 try {
+			 
 		mav.addObject("deal", new DealSpecs());
        }catch (Exception e) {
            e.printStackTrace();
@@ -75,7 +82,7 @@ public class HomeController {
 	}
 
 	@RequestMapping("/save")
-	public ModelAndView saveDeal(@ModelAttribute("deal") DealSpecs dealobj,@RequestParam("projectId") String projectId) {
+	public ModelAndView saveDeal(@ModelAttribute("deal") DealSpecs dealobj,@RequestParam("projectId") String projectId,@RequestParam("file") MultipartFile file) throws IOException {
 		ModelAndView mav = new ModelAndView("save");
 		DealSpecs  dealobj1 =dao.searchProject(dealobj.getProjectId());
 		Integer project_duration=   dealobj.getPROJECT_DURATION();
@@ -83,13 +90,27 @@ public class HomeController {
 		Integer total_duration = project_duration+optional_duration ;
 		System.out.println("total" +total_duration);
 		dealobj.setTotal_duration(total_duration);
+		
+		
 		try {
 			
 			if(dealobj1 != null) {
 				mav.addObject("message", "message");
 				return new ModelAndView("duplicate");
-			}else {		
-		dao.add(dealobj);
+			}else {	
+				byte[] bytes = file.getBytes();
+
+				// Creating the directory to store file
+				String rootPath = System.getProperty("user.dir")+"/uploads"; 
+
+	            Path path = Paths.get(rootPath , file.getOriginalFilename());
+
+	           
+
+	            Files.write(path, bytes);
+	            System.out.println(path);
+	            dealobj.setFile(file);
+		        dao.add(dealobj);  
 		}
 		}catch (Exception e) {
 	           e.printStackTrace();

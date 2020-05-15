@@ -633,6 +633,7 @@ th {
 		<th align="left">Creation Date</th>
      	<th align="left">Created By</th>
      	<th align="left">File Location</th>
+     	<th align="left">Report Location</th>
  		
 	    </tr>
     </thead>
@@ -643,6 +644,8 @@ th {
 		<td><c:out value=" ${e.creationDate}" /></td>
 		<td><c:out value=" ${e.createdBy}" /></td>
 		<td><a href="/uploads/RLS_DB_MAPPING_V1.1.xlsx">  <c:out value="Download file" /></a></td>
+		
+		<td><a href="/projectCostReport?timestampId=${e.time_stamp}&dsld=${e.dl_id}">  <c:out value="Download Report" /></a></td>
 		</tr>
 </c:forEach>
 </table>

@@ -1,5 +1,6 @@
 package com.techm.entity;
 
+import java.io.File;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
@@ -115,6 +117,9 @@ public class DealSpecs {
 	
 	private String review;
  	private String freeze;
+ 	@Transient
+ 	private MultipartFile  file;
+ 	
 	// table mapping
 	
 		@ElementCollection
@@ -450,6 +455,18 @@ public class DealSpecs {
 	public void setTotal_duration(int total_duration) {
 		this.total_duration = total_duration;
 	}
+	
+	
+	
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	
+	
 	
 	
 }

@@ -34,7 +34,7 @@ public class DealSpaceReportMaper implements RowMapper<DealSpaceBin> {
 		mapping.setAnnualitspendofcustomer(resultSet.getString("annual_it_spend_of_customer"));
 		mapping.setContractsignedstatus(resultSet.getString("contract_signed_status"));
 		mapping.setProjectduration(resultSet.getString("project_duration"));
-		mapping.setProjectstatrtdate(resultSet.getString("project_statrt_date"));
+		mapping.setProjectstatrtdate(resultSet.getString("project_start_date"));
 		mapping.setBiddingCompetitors(resultSet.getString("Bidding_Competitors"));
 		mapping.setIncumbents(resultSet.getString("Incumbents"));
 		mapping.setMaturedoutsourced(resultSet.getString("matured_outsourced"));

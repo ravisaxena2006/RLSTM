@@ -520,6 +520,7 @@ function validate()
    		<th align="left">Version Id</th>
 		<th align="left">Creation Date</th>
      	<th align="left">Created By</th>
+     	<th align="left">Report Location</th>
  		
 	    </tr>
     </thead>
@@ -528,6 +529,7 @@ function validate()
 							<td><a href="/getRLSDetails1?trackingNo=${e.trackingNumber}&dsld=${dl_id_key}&durayear=${e.projectDuration}"><c:out value=" ${e.trackingNumber}" /></a></td>
 							<td><c:out value=" ${e.creationDate}" /></td>
 							<td><c:out value=" ${e.createdBy}" /></td>
+							<td><a href="/rlsReport?timestampId=${e.trackingNumber}&dsld=${dl_id_key}">  <c:out value="Download Report" /></a></td>
 							
 						</tr>
 		  </c:forEach>

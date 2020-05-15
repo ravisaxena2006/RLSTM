@@ -174,4 +174,158 @@ public class ExcelGenerator {
 	    }
 	  }
 
+	
+	public static ByteArrayInputStream projectCostToExcel(List<ProjectCostBin> projectCosts) throws IOException {
+	    String[] COLUMNs = {"tower", "cost_category", "cost_item", "cost_type","description", 
+	    		"days_year1", "days_year2", "days_year3","days_year4", "days_year5", "days_year6", "days_year7","days_year8", "days_year9", "days_year10"};
+	    try(
+	        Workbook workbook = new XSSFWorkbook();
+	        ByteArrayOutputStream out = new ByteArrayOutputStream();
+	    ){
+	      CreationHelper createHelper = workbook.getCreationHelper();
+	   
+	      Sheet sheet = workbook.createSheet("projectCost");
+	   
+	      Font headerFont = workbook.createFont();
+	      headerFont.setBold(true);
+	      headerFont.setColor(IndexedColors.BLUE.getIndex());
+	   
+	      CellStyle headerCellStyle = workbook.createCellStyle();
+	      headerCellStyle.setFont(headerFont);
+	   
+	      // Row for Header
+	      Row headerRow = sheet.createRow(0);
+	   
+	      // Header
+	      for (int col = 0; col < COLUMNs.length; col++) {
+	        Cell cell = headerRow.createCell(col);
+	        cell.setCellValue(COLUMNs[col]);
+	        cell.setCellStyle(headerCellStyle);
+	      }
+	   
+	      // CellStyle for Age
+	      CellStyle ageCellStyle = workbook.createCellStyle();
+	      ageCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("#"));
+	   
+	      int rowIdx = 1;
+	      for (ProjectCostBin projectCost : projectCosts) {
+	        Row row = sheet.createRow(rowIdx++);
+	   
+	        row.createCell(0).setCellValue(projectCost.getTower());
+	        row.createCell(1).setCellValue(projectCost.getCost_category());
+	        row.createCell(2).setCellValue(projectCost.getCost_item());
+	        
+	        row.createCell(3).setCellValue(projectCost.getCost_type());
+	        row.createCell(4).setCellValue(projectCost.getDescription());
+	        row.createCell(5).setCellValue(projectCost.getDays_year1());
+	        
+	        row.createCell(6).setCellValue(projectCost.getDays_year2());
+	        row.createCell(7).setCellValue(projectCost.getDays_year3());
+	        row.createCell(8).setCellValue(projectCost.getDays_year4());
+	        
+	        row.createCell(9).setCellValue(projectCost.getDays_year5());
+	        row.createCell(10).setCellValue(projectCost.getDays_year6());
+	        row.createCell(11).setCellValue(projectCost.getDays_year7());
+	        
+	        row.createCell(12).setCellValue(projectCost.getDays_year8());
+	        row.createCell(13).setCellValue(projectCost.getDays_year9());
+	        row.createCell(14).setCellValue(projectCost.getDays_year10());
+	        
+	      
+	   
+	    
+	      }
+	   
+	      workbook.write(out);
+	      return new ByteArrayInputStream(out.toByteArray());
+	    }
+	  }
+	
+	
+	
+	public static ByteArrayInputStream rlstToExcel(List<RlsReporttBin> rlsReports) throws IOException {
+	    String[] COLUMNs = {"tracking_number", "project_phase", "vertical", "tower","sub_tower", "role", "billable", "work_place", "location","skill_type", "resource_type", "band", "premises", "remarks", 
+	    		"days_year1", "days_year2", "days_year3","days_year4", "days_year5", "days_year6", "days_year7","days_year8", "days_year9", "days_year10"};
+	    try(
+	        Workbook workbook = new XSSFWorkbook();
+	        ByteArrayOutputStream out = new ByteArrayOutputStream();
+	    ){
+	      CreationHelper createHelper = workbook.getCreationHelper();
+	   
+	      Sheet sheet = workbook.createSheet("rlsReports");
+	   
+	      Font headerFont = workbook.createFont();
+	      headerFont.setBold(true);
+	      headerFont.setColor(IndexedColors.BLUE.getIndex());
+	   
+	      CellStyle headerCellStyle = workbook.createCellStyle();
+	      headerCellStyle.setFont(headerFont);
+	   
+	      // Row for Header
+	      Row headerRow = sheet.createRow(0);
+	   
+	      // Header
+	      for (int col = 0; col < COLUMNs.length; col++) {
+	        Cell cell = headerRow.createCell(col);
+	        cell.setCellValue(COLUMNs[col]);
+	        cell.setCellStyle(headerCellStyle);
+	      }
+	   
+	      // CellStyle for Age
+	      CellStyle ageCellStyle = workbook.createCellStyle();
+	      ageCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("#"));
+	   
+	      int rowIdx = 1;
+	      for (RlsReporttBin rlsReport : rlsReports) {
+	        Row row = sheet.createRow(rowIdx++);
+	   
+	        row.createCell(0).setCellValue(rlsReport.getTracking_number());
+	        row.createCell(1).setCellValue(rlsReport.getProject_phase());
+	        row.createCell(2).setCellValue(rlsReport.getVertical());
+	        
+	        row.createCell(3).setCellValue(rlsReport.getTower());
+	        row.createCell(4).setCellValue(rlsReport.getSub_tower());
+	        
+	        row.createCell(5).setCellValue(rlsReport.getRole());
+	        row.createCell(6).setCellValue(rlsReport.getBillable());
+	        row.createCell(7).setCellValue(rlsReport.getWork_place());
+	        
+	        row.createCell(8).setCellValue(rlsReport.getLocation());
+	        row.createCell(9).setCellValue(rlsReport.getSkill_type());
+	        
+	        row.createCell(10).setCellValue(rlsReport.getResource_type());
+	        row.createCell(11).setCellValue(rlsReport.getBand());
+	        
+	        row.createCell(12).setCellValue(rlsReport.getPremises());
+	        row.createCell(13).setCellValue(rlsReport.getRemarks());
+	        
+	
+	        
+	        row.createCell(14).setCellValue(rlsReport.getDays_year1());
+	        
+	        row.createCell(15).setCellValue(rlsReport.getDays_year2());
+	        row.createCell(16).setCellValue(rlsReport.getDays_year3());
+	        row.createCell(17).setCellValue(rlsReport.getDays_year4());
+	        
+	        row.createCell(18).setCellValue(rlsReport.getDays_year5());
+	        row.createCell(19).setCellValue(rlsReport.getDays_year6());
+	        row.createCell(20).setCellValue(rlsReport.getDays_year7());
+	        
+	        row.createCell(21).setCellValue(rlsReport.getDays_year8());
+	        row.createCell(22).setCellValue(rlsReport.getDays_year9());
+	        row.createCell(23).setCellValue(rlsReport.getDays_year10());
+	        
+	      
+	   
+	    
+	      }
+	   
+	      workbook.write(out);
+	      return new ByteArrayInputStream(out.toByteArray());
+	    }
+	  }
+	
+	
+	
+	
 }

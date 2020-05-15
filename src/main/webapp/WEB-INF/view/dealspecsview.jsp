@@ -382,11 +382,14 @@
 						class="form-control" readonly="readonly">
 						 <label>Received Date*:</label> <input type="text" name="RECEIVED_DATE"
 						value="${deal.RECEIVED_DATE}" class="form-control datepicker">
+						
 				</div>
 			</div>
 			<br>
            
            <div align="right">
+           <a href="C:\Users\Administrator\git\RLSTM_new\uploads\Garbage Collection.pptx" class=" btn btn-info">
+		<c:out value="Download" /></a>
            <button type="submit" class="btn btn-info mr-1" name="submit" id="submit" >Submit</button>
 					 <a href="/view" class="btn btn-info mr-1">Back</a>
 				</div>
