@@ -35,6 +35,7 @@ import com.techm.bean.MappingRole;
 import com.techm.dao.DealSpecsAcessDao;
 import com.techm.dao.DealSpecsDao;
 import com.techm.dao.MappingDao;
+import com.techm.dao.RoleMappingDao;
 import com.techm.entity.CurrencyQuote;
 import com.techm.entity.DealSpecs;
 import com.techm.entity.PricingModel;
@@ -51,7 +52,8 @@ public class HomeController {
 
 	@Autowired
 	private DealSpecsDao dao;
-	
+	@Autowired
+	RoleMappingDao roleMappingDao;
 	@Autowired
 	MappingDao mappingDao;
 	@Autowired
@@ -125,26 +127,54 @@ public class HomeController {
 	@RequestMapping(value ="/view", method = RequestMethod.GET)
 	public ModelAndView bidview(@ModelAttribute("deal") DealSpecs dealobj ,HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("bidmanager");
-		HttpSession session=request.getSession(true);
-		String roleName=null;
-		String loginId=(String) session.getAttribute("name");
-       List<MappingRole>  role =mappingDao.getMappingById(loginId);
-		
+		/*
+	 	String loginId=(String) session.getAttribute("name");
+        List<MappingRole>  role =mappingDao.getMappingById(loginId);
 		for (MappingRole mappingRole : role) {
 			Stream<MappingRole> stream = Stream.of(mappingRole);
 			stream.forEach(System.out::println);
 			System.out.println(mappingRole.getRole());
 			roleName=mappingRole.getRole();
 		}
-		session.setAttribute("roleName", roleName);
+		*/
 		List<DealSpecs> list = dao.findAll();
 		mav.addObject("list", list);
-		mav.addObject("roleMapping", role);
-		//mav.addObject("roleName", roleName);
+		//mav.addObject("roleMapping", role);
+		
 		return mav;
 		
+	}
+	
+
+	@RequestMapping(value ="/view", method = RequestMethod.POST)
+	public ModelAndView bidview1(@ModelAttribute("deal") DealSpecs dealobj ,HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("bidmanager");
+		HttpSession session=request.getSession(true);
+		String crmId=request.getParameter("crmId");
+		int roleId=Integer.parseInt(request.getParameter("roleId"));
+		String roleName=roleMappingDao.getRole(roleId);
+	
+		/*
+	 	String loginId=(String) session.getAttribute("name");
+	    List<MappingRole>  role =mappingDao.getMappingById(loginId);
+		for (MappingRole mappingRole : role) {
+			Stream<MappingRole> stream = Stream.of(mappingRole);
+			stream.forEach(System.out::println);
+			System.out.println(mappingRole.getRole());
+			roleName=mappingRole.getRole();
+		}
+		*/
+		session.setAttribute("crmId", crmId);
+		session.setAttribute("roleName", roleName);
+		System.out.println(crmId);
+		System.out.println(roleName);
+		List<DealSpecs> list = dao.findAll();
+		mav.addObject("list", list);
+		//mav.addObject("roleMapping", role);
+		return mav;
 		
 	}
+
 	@RequestMapping("/bidview/{bID_DETAILS_ID}")
 	public ModelAndView get(@PathVariable("bID_DETAILS_ID")  Long bID_DETAILS_ID, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("dealspecsview");

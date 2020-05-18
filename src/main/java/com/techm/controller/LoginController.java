@@ -74,7 +74,7 @@ public class LoginController {
 		for(UserDetails ud:userDetails) {
 		if (uname.equalsIgnoreCase(ud.getLoginId())&& password.equalsIgnoreCase(ud.getPasswod())&& status.equalsIgnoreCase(ud.getRecordStatus())) {
 			 session.setAttribute("name",uname);
-			return new RedirectView("/view");
+			return new RedirectView("/viewRole");
 		}
 		}
 		System.out.println(uname);

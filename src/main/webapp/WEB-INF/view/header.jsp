@@ -68,20 +68,20 @@
                     <li>
                     <h2><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> 
                     <span style="color:white; margin-right:180px">RLS TOOL</span></h2>
-                            </li>
-                            <li>
+                     </li>
+                     <li>
                     <h4><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> 
-                    <span style="color:white; margin-right:150px">Welcome ${sessionScope.name}</span></h4>
-                            </li>
+                    <span style="color:white; margin-right:150px">Welcome ${sessionScope.name}  ${sessionScope.roleName}</span></h4>
+                     </li>
                     
-
-    <li>
-                    <a href="/logout">Logout</a>
-                            </li>
-
-
-                </ul>
-            </div>
+ 					<li>
+                    <a href="/viewRole">Change Role</a>
+                     </li>
+   					 <li>
+                    <a href="/logout">Logout</a> 
+                    </li>
+           </ul>
+         </div>
             <!-- /.navbar-header -->
             <!-- /.navbar-top-links -->
             <!-- /.navbar-static-side -->
@@ -111,7 +111,7 @@
 		                    </li>
 		                    </c:if>
 		                    <c:choose>
-				 				<c:when test="${sessionScope.roleName=='Bid Manager'|| sessionScope.name=='Admin'}">
+				 				<c:when test="${sessionScope.roleName=='Bid Manager'}">
 		                         <li>
 		                      	  <a href="/access" class="disabled waves-effect"><i class="disabled fa fa-columns fa-fw"
 		                                aria-hidden="true"></i>Access Manager</a>
@@ -125,7 +125,7 @@
 		               		    </c:otherwise>
 							 </c:choose>
 							 
-					<c:if test="${sessionScope.name=='Admin' || sessionScope.name=='admin'}">
+					<c:if test="${sessionScope.roleName=='Solution Architect'}">
 					
 		          		 <li>
 		                        <a href="userRole" class="waves-effect" ><i class="fa fa-columns fa-fw"
