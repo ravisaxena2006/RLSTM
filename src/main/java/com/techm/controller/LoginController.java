@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,6 +51,7 @@ public class LoginController {
 	@RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
 	public RedirectView loginProcess(HttpServletRequest request, HttpServletResponse response) {
 		String uname = request.getParameter("uname");
+		String userName= WordUtils.capitalize(uname);
 		String password = request.getParameter("psw");
 		String status="C";
 		
@@ -73,7 +75,7 @@ public class LoginController {
 		List<UserDetails> userDetails=loginDao.getLoginDetails();
 		for(UserDetails ud:userDetails) {
 		if (uname.equalsIgnoreCase(ud.getLoginId())&& password.equalsIgnoreCase(ud.getPasswod())&& status.equalsIgnoreCase(ud.getRecordStatus())) {
-			 session.setAttribute("name",uname);
+			 session.setAttribute("name",userName);
 			return new RedirectView("/viewRole");
 		}
 		}

@@ -27,10 +27,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.google.gson.Gson;
 import com.techm.bean.MappingRole;
 import com.techm.dao.DealSpecsAcessDao;
 import com.techm.dao.DealSpecsDao;
@@ -40,7 +41,7 @@ import com.techm.entity.CurrencyQuote;
 import com.techm.entity.DealSpecs;
 import com.techm.entity.PricingModel;
 import com.techm.entity.ProjectIdStatus;
-
+import com.techm.entity.RoleDetails;
 import com.techm.entity.Tower;
 import com.techm.entity.Vertical;
 
@@ -123,6 +124,29 @@ public class HomeController {
 		return mav;
 
 	}
+	
+	@RequestMapping(value ="/viewRole", method = RequestMethod.GET)
+	public ModelAndView viewRoles(@ModelAttribute("deal") DealSpecs dealobj ,HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("Role");
+		HttpSession session=request.getSession(true);
+		String loginId=(String) session.getAttribute("name");
+		List<String> crmList =roleMappingDao.getCrmIdList(loginId);
+		mav.addObject("crmList",crmList);
+		return mav;
+	}
+
+	  @RequestMapping(value="/getRolesByCrmId", method=RequestMethod.GET)
+	  public @ResponseBody
+	  String getRolesByCrmId(@RequestParam("crmId") String crmId, HttpServletRequest request)
+	  {	
+		  HttpSession session=request.getSession(true);
+		  String loginId=(String) session.getAttribute("name");
+		  List<RoleDetails> roles = roleMappingDao.getRoles(crmId,loginId);
+		  Gson gson = new Gson();
+		  return gson.toJson(roles);
+		  
+	  }
+
 
 	@RequestMapping(value ="/view", method = RequestMethod.GET)
 	public ModelAndView bidview(@ModelAttribute("deal") DealSpecs dealobj ,HttpServletRequest request, HttpServletResponse response) {

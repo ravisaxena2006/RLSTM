@@ -108,6 +108,12 @@ th {
 							<td><a href="${pageContext.request.contextPath}/ProjectCosts?dsld=${e.BID_DETAILS_ID}&durayear=${e.total_duration}">ProjectCost</a></td>
 							<td><a href="${pageContext.request.contextPath}/BoughtOuts?dsld=${e.BID_DETAILS_ID}&durayear=${e.total_duration}">Bought-Outs</a></td>
 						</c:if>
+							<c:if test="${sessionScope.roleName=='Admin'}">
+							<td><a href="${pageContext.request.contextPath}/bidview/${e.BID_DETAILS_ID}">Deal-Specs</a>	</td>
+							<td><a href="${pageContext.request.contextPath}/RLS?dsld=${e.BID_DETAILS_ID}&durayear=${e.total_duration}">RLS</a></td>
+							<td><a href="${pageContext.request.contextPath}/ProjectCosts?dsld=${e.BID_DETAILS_ID}&durayear=${e.total_duration}">ProjectCost</a></td>
+							<td><a href="${pageContext.request.contextPath}/BoughtOuts?dsld=${e.BID_DETAILS_ID}&durayear=${e.total_duration}">Bought-Outs</a></td>
+						</c:if>
 						</tr>
 					</c:forEach>
 				</table>

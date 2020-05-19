@@ -53,12 +53,14 @@ public class UserRoleMappingController {
 		  String crmId=request.getParameter("crmId");
 		  List<UserRoleMap> userRolesList=userRoledao.getRoles(userId,crmId);
 		  mav.addObject("userRolesList",userRolesList);
+		  mav.addObject("userId",userId);
+		  mav.addObject("crmId",crmId);
 		  return mav;
 		 
 	  }
 	 
-	 @RequestMapping(value="/userRoles",params="add" ,method=RequestMethod.POST)
-		public ModelAndView saveUserRoles(HttpServletRequest request)
+	 @RequestMapping(value="/addRoles", method=RequestMethod.POST)
+		public ModelAndView addUserRoles(HttpServletRequest request)
 		{
 		 ModelAndView mav = new ModelAndView("UserRole");
 		 String msg1="Roles assigned successfully";
@@ -66,62 +68,9 @@ public class UserRoleMappingController {
 		 String userId=request.getParameter("userId");
 		 String crmId=request.getParameter("crmId");
 		 System.out.println("LoginId: "+userId);
-		 String roles[]=request.getParameterValues("roleId");
-		 String status=checkRoles(userId,crmId,"c",roles);
-		 if(status.equals("success"))
-		 {
-			 mav.addObject("message",msg2);
-			 return mav; 
-		 }
-		 else
-		 {
-			 for(String role:roles)
-			 {
-				 int roleId=Integer.parseInt(role);
-				 userRoledao.add(userId,roleId,crmId);
-			 }
-			 List<UserRoleMap> userRolesList=userRoledao.getRoles(userId,crmId);
-			 mav.addObject("userRolesList",userRolesList);
-			 mav.addObject("message",msg1);
-			 return mav;
-		 }
-	}
-	        
-	 
-	 @RequestMapping(value="/userRoles",params="remove" ,method=RequestMethod.POST)
-		public ModelAndView removeUserRoles(HttpServletRequest request)
-		{
-		 ModelAndView mav = new ModelAndView("UserRole");
-		 String msg1="Roles removed successfully";
-		 String msg2="User does not has role to be removed";
-		 String userId=request.getParameter("userId");
-		 String crmId=request.getParameter("crmId");
-		 System.out.println("LoginId: "+userId);
-		 String roles[]=request.getParameterValues("roleId");
-		 String status=checkRoles(userId,crmId,"c",roles);
-		 if(status.equals("failure"))
-		 {
-			 mav.addObject("message",msg2);
-			 return mav; 
-		 }
-		 else
-		 {
-		
-		 for(String role:roles)
-		 {
-		 userRoledao.delete(userId,crmId,role);
-		 }
-		 List<UserRoleMap> userRolesList=userRoledao.getRoles(userId,crmId);
-		 mav.addObject("userRolesList",userRolesList);
-		 mav.addObject("message",msg1);
-		 return mav;
-		}
-	}
-	 
-	 public String checkRoles(String userId, String crmId, String recordStatus, String[]roles)
-	 {
+		 String roles[]=request.getParameterValues("role");
 		 int flag=0;
-		 List <UserRole>userRoleList=userRoledao.getRoles(userId,crmId,recordStatus);
+		 List <UserRole>userRoleList=userRoledao.getRoles(userId,crmId,"c");
 			
 		 for(String role:roles)
 		 {
@@ -137,14 +86,57 @@ public class UserRoleMappingController {
 		 }
 		 if(flag==0)
 		 {
-			 return "failure";
+			 for(String role:roles)
+			 {
+				 int roleId=Integer.parseInt(role);
+				 userRoledao.add(userId,roleId,crmId);
+			 }
+		
+			 List<UserRoleMap> userRolesList=userRoledao.getRoles(userId,crmId);
+			 mav.addObject("userRolesList",userRolesList);
+			 mav.addObject("userId",userId);
+			 mav.addObject("crmId",crmId);
+			 mav.addObject("message",msg1);
+			 return mav;
 		 }
 		 else
 		 {
-			 return "success";
+			 mav.addObject("message",msg2);
+			 return mav;
 		 }
-		
-	 }
+	}
+	        
+	 
+	 @RequestMapping(value="/deleteRoles", method=RequestMethod.POST)
+		public ModelAndView removeUserRoles(HttpServletRequest request)
+		{
+		 ModelAndView mav = new ModelAndView("UserRole");
+		 String msg1="Roles removed successfully";
+		 String msg2="Please select the role";
+		 String userId=request.getParameter("userId");
+		 String crmId=request.getParameter("crmId");
+		 System.out.println("LoginId: "+userId);
+		 String roles[]=request.getParameterValues("role");
+		 List<UserRoleMap> userRolesList=userRoledao.getRoles(userId,crmId);
+		 if(roles==null)
+		 {
+			 mav.addObject("message",msg2);
+			 mav.addObject("userRolesList",userRolesList);
+			 return mav;
+		 }
+		 for(String role:roles)
+		 {
+		 userRoledao.delete(userId,crmId,role);
+		 }
+		 userRolesList=userRoledao.getRoles(userId,crmId);
+		 mav.addObject("userRolesList",userRolesList);
+		 mav.addObject("userId",userId);
+		 mav.addObject("crmId",crmId);
+		 mav.addObject("message",msg1);
+		 return mav;
+		}
+	 
+
 	 
 	 
 	 

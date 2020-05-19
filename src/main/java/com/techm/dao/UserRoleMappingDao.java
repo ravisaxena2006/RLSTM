@@ -31,7 +31,7 @@ public class UserRoleMappingDao {
 	private final String SQL_FIND_role = "select r.role,t.login_id from m_roles r,t_user_info t,t_user_role u where  t.user_srno=u.user_id and r.role_id=u.role_id and t.user_srno=? and u.crm_id=? and u.record_status=?";
 	//private final String SQL_FIND_role1 ="select * from t_user_role where user_id=? and crm_id=? and record_status=?";
 	private final String SQL_insert_role ="INSERT INTO t_user_role(user_id, role_id,record_status,crm_id) VALUES (?,?,?,?)";
-	private final String SQL_update_role="update t_user_role set record_status='d' where user_id=? and crm_id=? and role_id=?";
+	private final String SQL_update_role="update t_user_role set record_status='d' where user_id=? and crm_id=? and role_id=(select role_id from m_roles where role=?)";
 	
 	@Autowired
 	public UserRoleMappingDao(DataSource dataSource) {
@@ -66,8 +66,7 @@ public class UserRoleMappingDao {
      public void delete(String user,String crmId,String role) {
 		
 			int userId=Integer.parseInt(user);
-			int roleId=Integer.parseInt(role);
-			jdbcTemplate.update(SQL_update_role,userId,crmId,roleId);
+			jdbcTemplate.update(SQL_update_role,userId,crmId,role);
 		
     }
 	public void add(String user, int roleId,String crmId) {

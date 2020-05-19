@@ -73,7 +73,7 @@ th {
 </table>
 </div>
 </form:form>
-<form:form action="userRoles" method="post">
+<form:form action="addRoles" method="post">
 <div style="overflow-x:auto;">
    <table class="table table-bordered" id="tblRLS">
    
@@ -90,7 +90,7 @@ th {
 				 <input type="text" name="crmId" id="crmId" required>
 				 </td>
 				  <td><label>Select Roles:</label><br>
-				  <select id="role" name="roleId" multiple required>
+				  <select id="role" name="role" multiple required>
 				  	<c:forEach items="${rolesList}" var="role">
 				    	<option value="${role.roleId}">${role.role}</option>
 				    </c:forEach>
@@ -100,7 +100,7 @@ th {
 			<tr>
 				<td colspan="3	">
 					<button type="submit" class="btn btn-info mr-1" name="add" id="add">Add Roles</button>
-					<button type="submit" class="btn btn-info mr-1" name="remove" id="remove">Remove Roles</button>
+					
 				</td>
 			</tr>
 	
@@ -115,6 +115,8 @@ th {
 		</div>
 	  </div>
 	
+<form:form action="deleteRoles" method="post">
+<c:if test="${not empty userRolesList}">
 <div style="overflow-x:auto;">
   <table class="table table-bordered table-sm" id="tblRLS">
   	<thead>
@@ -126,15 +128,25 @@ th {
     <tbody id="roles">
    		 <c:forEach items="${userRolesList}" var="e">
 						<tr>
-							
-							<td><c:out value=" ${e.loginId}" /></td>
-							<td><c:out value=" ${e.role}" /></td>
-							
+							<td><input type="checkbox" name="role" value="${e.role}"/>
+							<c:out value=" ${e.loginId}" />
+							</td>
+							<td><c:out value=" ${e.role}" />
+							<input type="hidden" name="userId" value="${userId}">
+							<input type="hidden" name="crmId" value="${crmId}">
+							</td>
 						</tr>
 		  </c:forEach>
+		  <tr>
+			<td colspan="2">
+		  <button type="submit" class="btn btn-info mr-1" name="remove" id="remove">Remove Roles</button>
+			</td>
+		  </tr>
     </tbody>
  </table>
  </div>
+ </c:if>
+ </form:form>
 </div>
 
 
