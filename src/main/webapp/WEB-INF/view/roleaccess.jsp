@@ -157,7 +157,7 @@ th {
 
 </tr>
 <tr>
-<td colspan="2">
+<td colspan="3">
 <button type="submit" name="submit" id="submit">Submit</button>
 </td>
 </table>

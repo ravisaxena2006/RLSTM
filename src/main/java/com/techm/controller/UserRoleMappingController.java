@@ -63,8 +63,8 @@ public class UserRoleMappingController {
 		public ModelAndView addUserRoles(HttpServletRequest request)
 		{
 		 ModelAndView mav = new ModelAndView("UserRole");
-		 String msg1="Roles assigned successfully";
-		 String msg2="Role already assigned";
+		 String msg1="Role(s) assigned successfully";
+		 String msg2="Role(s) already assigned";
 		 String userId=request.getParameter("userId");
 		 String crmId=request.getParameter("crmId");
 		 System.out.println("LoginId: "+userId);
@@ -111,24 +111,17 @@ public class UserRoleMappingController {
 		public ModelAndView removeUserRoles(HttpServletRequest request)
 		{
 		 ModelAndView mav = new ModelAndView("UserRole");
-		 String msg1="Roles removed successfully";
-		 String msg2="Please select the role";
+		 String msg1="Role(s) removed successfully";
 		 String userId=request.getParameter("userId");
 		 String crmId=request.getParameter("crmId");
 		 System.out.println("LoginId: "+userId);
 		 String roles[]=request.getParameterValues("role");
-		 List<UserRoleMap> userRolesList=userRoledao.getRoles(userId,crmId);
-		 if(roles==null)
-		 {
-			 mav.addObject("message",msg2);
-			 mav.addObject("userRolesList",userRolesList);
-			 return mav;
-		 }
+	
 		 for(String role:roles)
 		 {
 		 userRoledao.delete(userId,crmId,role);
 		 }
-		 userRolesList=userRoledao.getRoles(userId,crmId);
+		 List<UserRoleMap> userRolesList=userRoledao.getRoles(userId,crmId);
 		 mav.addObject("userRolesList",userRolesList);
 		 mav.addObject("userId",userId);
 		 mav.addObject("crmId",crmId);

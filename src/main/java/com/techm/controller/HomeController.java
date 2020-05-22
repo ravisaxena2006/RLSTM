@@ -234,9 +234,10 @@ public class HomeController {
 	public ModelAndView access(@ModelAttribute("deal") DealSpecs dealobj ,HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("accessManager");
 		HttpSession session=request.getSession(true);
+		/*
 		String roleName=null;
 		String loginId=(String) session.getAttribute("name");
-       List<MappingRole>  role =mappingDao.getMappingById(loginId);
+   		List<MappingRole>  role =mappingDao.getMappingById(loginId);
 		
 		for (MappingRole mappingRole : role) {
 			Stream<MappingRole> stream = Stream.of(mappingRole);
@@ -245,6 +246,7 @@ public class HomeController {
 			roleName=mappingRole.getRole();
 		}
 		session.setAttribute("roleName", roleName);
+		*/
 		String ds_id1 = request.getParameter("dsld");
 		String review = null;		
 		review = request.getParameter("review");
@@ -275,7 +277,7 @@ public class HomeController {
 		System.out.println(review);	
 		List<DealSpecs> list = dao.findAll();
 		mav.addObject("list", list);
-		mav.addObject("roleMapping", role);
+		//mav.addObject("roleMapping", role);
 		//mav.addObject("roleName", roleName);
 		return mav;
 		

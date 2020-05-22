@@ -11,6 +11,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
 <script src="/js/jquery.min.js"></script>
 <style>
 .y1, .y2, .y3, .y4, .y5, .y6, .y7, .y8, .y9, .y10{
@@ -115,7 +116,7 @@ th {
 		</div>
 	  </div>
 	
-<form:form action="deleteRoles" method="post">
+<form:form action="deleteRoles" method="post" onsubmit="return validateForm()">
 <c:if test="${not empty userRolesList}">
 <div style="overflow-x:auto;">
   <table class="table table-bordered table-sm" id="tblRLS">
@@ -150,65 +151,34 @@ th {
 </div>
 
 
-
-<!-- <div style="overflow-x:auto;">
-  <table class="table table-bordered table-sm" id="tblRLS">
-  	<thead>
-   	 <tr>
-   		<th align="left">User</th>
-		<th align="left">Roles Assigned</th>
-	 </tr>
-    </thead>
-    <tbody id="roles">
-   
-    </tbody>
-	
- </table>
- </div>
-
-
-
  <script>
-    //document.ready start
-	$(document).ready(function(){
-		
-				// For 
-			 $('#user').on('change', function(){
+function validateForm() {
+	
+	var isValid = false;
+	var elements = document.getElementsByName('role');
 
-				//alert("Hello");
-				var userId = $(this).val();
-				$.ajax({
-					type: 'GET',
-                    url: '/getRoles',
-                    data:{ user: userId}, 
-                   
-					success: function(result) {
-						//alert("Hello2"+result);
-						var result = JSON.parse(result);
-						
-						//alert("Hello3"+result);
-						var s = '';
-						for(var i = 0; i < result.length; i++) {
-							s += '<tr><td>' + result[i].loginId + '</td><td>'+result[i].role+ '</td></tr>';
-							
-						} 
-						//alert("Hello4"+s);
-						$('#roles').html(s); 
-					},
-					error: function () {
-	                    alert("error");
-	                }
-				});
-			});
-	//End
- 		   	
-	});
-	//document.ready end
+	for(var i=0; i< elements.length; i++)
+	{
+		if (elements[i].checked) {
+			isValid = true;
+		}
+	}
+	 if (isValid==false) {
+		 alert("Please select Role(s).");
+         return false;
+     }
+	 else
+	 {
+		  return true;
+	 }
+}
 </script>
- -->
+ 
 </div>
 </div>
 </div>
+
+
 <jsp:include page="footer.jsp" />
 
 </body>
